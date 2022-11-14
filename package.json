@@ -1,0 +1,19 @@
+{
+  "name": "gameswitch",
+  "version": "1.0.0",
+  "description": "fullstack video game trading app",
+  "main": "backend/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lortiz528/GameSwitch.git"
+  },
+  "author": "Luis, Juhao, Lili, Pratima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lortiz528/GameSwitch/issues"
+  },
+  "homepage": "https://github.com/Lortiz528/GameSwitch#readme"
+}
