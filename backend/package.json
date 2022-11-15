@@ -4,6 +4,8 @@
   "description": "fullstack video game trading app",
   "main": "server.js",
   "scripts": {
+    "db:init": "psql -U postgres -f db/schema.sql",
+    "db:seed": "psql -U postgres -f db/seed.sql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "luis, juhao, li li, pratima",
