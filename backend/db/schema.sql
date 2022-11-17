@@ -21,14 +21,16 @@ CREATE TABLE users (
     user_avatar TEXT
 );
 
---create the reveiws table
--- DROP TABLE IF EXISTS reviews;
--- CREATE TABLE reviews(
---     review_id SERIAL PRIMARY KEY,
---     reviewer TEXT,
---     content TEXT,
---     rating NUMERIC,
---     CHECK (rating >= 0 AND rating <= 5),
---     id_of_recipe INTEGER REFERENCES recipes (recipe_id)
---     ON DELETE CASCADE
--- )
+--create the games table
+DROP TABLE IF EXISTS games;
+CREATE TABLE games(
+    game_id SERIAL PRIMARY KEY,
+    game_name TEXT NOT NULL,
+    game_img TEXT,
+    game_rating NUMERIC,
+    CHECK (game_rating >= 0 AND game_rating <= 5),
+    game_description TEXT,
+    game_brand TEXT,
+    user_id INTEGER NOT NULL REFERENCES users (user_id)
+     ON DELETE CASCADE
+);
