@@ -1,8 +1,10 @@
 <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+    import {getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-auth.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
+    import { getDatabase,set,ref } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
   
     // Your web app's Firebase configuration
     const firebaseConfig = {
@@ -16,4 +18,43 @@
   
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
+    const auth = getAuth();
+    const database = getDatabase(app);
+
+
+    submitData.addEventListener('click', (e) => {
+        let email = document.getElementById('email').value;
+        let password = document.getElementById('psw').value;
+
+        createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredentials) => {
+            //Signed in
+            const user = userCredential.user;
+              // ... user.uid this is a unique id firebase
+              set(ref(database, 'users/' + user.uid), {
+                   username: name,
+                     email: email,
+                     password: password,
+                   profile_picture : imageUrl
+                })
+                .then(() => {
+         // Data saved successfully!
+         alert('user created successfully');
+            })
+            .catch((error) => {
+          // The write failed...
+          alert(error);
+             });
+            
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            alert(errorMessage);
+         
+        });
+
+
+
+    });
   </script>
