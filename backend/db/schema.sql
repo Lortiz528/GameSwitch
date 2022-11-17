@@ -31,6 +31,6 @@ CREATE TABLE games(
     CHECK (game_rating >= 0 AND game_rating <= 5),
     game_description TEXT,
     game_brand TEXT,
-    user_id INTEGER NOT NULL REFERENCES games (game_id)
+    user_id INTEGER NOT NULL REFERENCES users (user_id)
      ON DELETE CASCADE
 );
