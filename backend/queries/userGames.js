@@ -12,17 +12,17 @@ const getAllUserGames = async (user_id) => {
   }
 };
 
-// const getUserGameByID = async (user_id, game_id) => {
-//   try {
-//     const game = await db.any(
-//       'SELECT * FROM games WHERE user_id = $1 AND game_id = $2',
-//       [user_id, game_id]
-//     );
-//     return game;
-//   } catch (err) {
-//     return err;
-//   }
-// };
+const getUserGameByID = async (user_id, game_id) => {
+  try {
+    const game = await db.any(
+      'SELECT * FROM games WHERE user_id = $1 AND game_id = $2',
+      [user_id, game_id]
+    );
+    return game;
+  } catch (err) {
+    return err;
+  }
+};
 
 const createUserGame = async (
   game_name,
@@ -30,12 +30,21 @@ const createUserGame = async (
   game_rating,
   game_description,
   game_brand,
+  game_console,
   user_id
 ) => {
   try {
     const newGame = await db.one(
-      'INSERT INTO games (game_name, game_img, game_rating, game_description, game_brand, user_id) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *',
-      [game_name, game_img, game_rating, game_description, game_brand, user_id]
+      'INSERT INTO games (game_name, game_img, game_rating, game_description, game_brand, game_console, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *',
+      [
+        game_name,
+        game_img,
+        game_rating,
+        game_description,
+        game_brand,
+        game_console,
+        user_id,
+      ]
     );
     return newGame;
   } catch (error) {
@@ -50,11 +59,12 @@ const updateUserGame = async (
   game_rating,
   game_description,
   game_brand,
+  game_console,
   user_id
 ) => {
   try {
     const updateGame = await db.one(
-      'UPDATE games SET game_name=$2, game_img=$3, game_rating=$4, game_description=$5, game_brand=$6, WHERE user_id=$1 AND game_id=$7 RETURNING *',
+      'UPDATE games SET game_name=$2, game_img=$3, game_rating=$4, game_description=$5, game_brand=$6, game_console=$7 WHERE user_id=$1 AND game_id=$8 RETURNING *',
       [
         user_id,
         game_name,
@@ -62,6 +72,7 @@ const updateUserGame = async (
         game_rating,
         game_description,
         game_brand,
+        game_console,
         game_id,
       ]
     );
