@@ -8,7 +8,7 @@ CREATE DATABASE game_switch;
 \c game_switch; 
 
 --step 4 create the tables
---create the recipes table
+--create the USERS table
 DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     user_id SERIAL PRIMARY KEY,
@@ -31,6 +31,7 @@ CREATE TABLE games(
     CHECK (game_rating >= 0 AND game_rating <= 5),
     game_description TEXT,
     game_brand TEXT,
+    game_console TEXT,
     user_id INTEGER NOT NULL REFERENCES users (user_id)
      ON DELETE CASCADE
 );
