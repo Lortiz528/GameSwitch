@@ -50,10 +50,10 @@ function About() {
         <strong>
           <p>Pratima Roy</p>
         </strong>
-        <a className='Member2' href={'https://github.com/PratimaRoy'}>
+        <a className='Member4' href={'https://github.com/PratimaRoy'}>
           GitHub
         </a>
-        <p>about Pratima Roy</p>
+        <p>God above all! I am a Software Engineer with a background in Computer Engineering Technology from The New York City College of Technology. I have interned at NASA 2x times. I was a Computer Science Teaching Assistant at Girls Who Code and interned at Google as a Technology & Policy intern! When I'm not coding, I enjoy spending time with my family, playing games, and watching different series.</p>
       </article>
     </div>
   )
