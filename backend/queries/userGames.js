@@ -12,17 +12,17 @@ const getAllUserGames = async (user_id) => {
   }
 };
 
-const getUserGameByID = async (user_id, game_id) => {
-  try {
-    const game = await db.any(
-      'SELECT * FROM games WHERE user_id = $1 AND game_id = $2',
-      [user_id, game_id]
-    );
-    return game;
-  } catch (err) {
-    return err;
-  }
-};
+// const getUserGameByID = async (user_id, game_id) => {
+//   try {
+//     const game = await db.any(
+//       'SELECT * FROM games WHERE user_id = $1 AND game_id = $2',
+//       [user_id, game_id]
+//     );
+//     return game;
+//   } catch (err) {
+//     return err;
+//   }
+// };
 
 const createUserGame = async (
   game_name,
