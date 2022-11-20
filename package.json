@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Lortiz528/GameSwitch/issues"
   },
-  "homepage": "https://github.com/Lortiz528/GameSwitch#readme"
+  "homepage": "https://github.com/Lortiz528/GameSwitch#readme",
+  "dependencies": {
+    "react-router-dom": "^6.4.3"
+  }
 }

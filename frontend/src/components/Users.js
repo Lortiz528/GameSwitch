@@ -1,26 +1,26 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-const API = process.env.REACT_APP_API_URL
+import axios from "axios";
+import { useState, useEffect } from "react";
+const API = process.env.REACT_APP_API_URL;
 
 function Users() {
-  const [users, setUsers] = useState([])
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios
       .get(`${API}/users`)
       .then((res) => {
-        setUsers(res.data.payload)
+        setUsers(res.data.payload);
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+        console.log(err);
+      });
+  }, []);
 
   const allUsers = users.map((user, index) => {
-    return <div key={index}>{user.user_name}</div>
-  })
+    return <div key={index}>{user.user_name}</div>;
+  });
 
-  return <div>{allUsers}</div>
+  return <div>{allUsers}</div>;
 }
 
-export default Users
+export default Users;
