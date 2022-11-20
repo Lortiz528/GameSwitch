@@ -121,6 +121,12 @@ function Signup() {
       <br></br>
       <button>
         {" "}
+        <Link to="/login">Login</Link>
+      </button>
+      <br></br>
+      <br></br>
+      <button>
+        {" "}
         <Link to="/">Home</Link>
       </button>
       <hr />
