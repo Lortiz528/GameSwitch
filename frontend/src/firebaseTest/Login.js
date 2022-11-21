@@ -67,7 +67,7 @@ function Login() {
         <br />
         <div>
           <label htmlFor="user_password">Password: </label>
-          <textarea
+          <input
             id="user_password"
             value={userInput.user_password}
             type="password"

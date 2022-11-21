@@ -29,7 +29,9 @@ function About() {
         <a className='Member2' href={' https://github.com/Lortiz528'}>
           GitHub
         </a>
-        <p>about luis</p>
+        <p>I am a full stack engineer based in NYC with a background in
+          Logistics/transportation. I have a passion for wildlife, space
+          exploration, and baseball.</p>
       </article>
       <hr />
       <article>
