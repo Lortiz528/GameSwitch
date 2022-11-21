@@ -20,6 +20,16 @@ function Home() {
       <button>
         <Link to="userprofile">User Profile</Link>
       </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="resetpassword">Reset Password</Link>
+      </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="updateprofile">Update Profile</Link>
+      </button>
     </div>
   );
 }

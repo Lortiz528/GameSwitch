@@ -2,48 +2,28 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
-//firebase import
-import auth from "./firebaseAuth";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { CurrentUserContext } from "../components/CurrentUserContext";
+import { useContext } from "react";
 
 //API url
 const API = process.env.REACT_APP_API_URL;
 
-function Signup() {
+function UserProfileUpdate() {
+  const { currentUser } = useContext(CurrentUserContext);
+  //console.log(currentUser);
+
   const [userInput, setUserInput] = useState({
     user_name: "",
-    user_email: "",
-    user_password: "",
-    user_confirmPassWord: "",
+    user_trade_score: "",
+    user_location: "",
+    user_avatar: "",
   });
 
   const navigate = useNavigate();
 
-  const signUp = () => {
-    if (userInput.user_password === userInput.user_confirmPassWord) {
-      createUserWithEmailAndPassword(
-        auth,
-        userInput.user_email,
-        userInput.user_password
-      )
-        .then((cred) => {
-          console.log(cred);
-          alert("you have signed up", cred);
-          createNewUser();
-        })
-        .catch((error) => {
-          console.log(error.message);
-          alert(error.message);
-        });
-    } else {
-      alert("Password not match");
-    }
-  };
-
-  const createNewUser = () => {
+  const updateProfile = () => {
     axios
-      .post(`${API}/users/newuser`, userInput)
+      .put(`${API}/users/${currentUser.user_email}`, userInput)
       .then(() => {
         navigate("/");
       })
@@ -56,19 +36,23 @@ function Signup() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signUp();
+    updateProfile();
     setUserInput({
-      user_name: "",
-      user_email: "",
       user_password: "",
       user_confirmPassWord: "",
     });
   };
 
+  //  [user_name, user_trade_score, user_location, user_avatar, email]
+
   return (
     <section>
-      <h2>Sign Up Page</h2>
+      <h2>Update Profile Page</h2>
       <form onSubmit={handleSubmit} className="form">
+        <div>
+          <h2>Email: {currentUser.user_email}</h2>
+        </div>
+        <br />
         <div>
           <label htmlFor="user_name">User Name: </label>
           <input
@@ -81,10 +65,10 @@ function Signup() {
         </div>
         <br />
         <div>
-          <label htmlFor="user_email">Email: </label>
+          <label htmlFor="user_trade_score">Trade Score: </label>
           <input
-            id="user_email"
-            value={userInput.user_email}
+            id="user_trade_score"
+            value={userInput.user_trade_score}
             type="text"
             onChange={handleTextChange}
             required
@@ -92,30 +76,29 @@ function Signup() {
         </div>
         <br />
         <div>
-          <label htmlFor="user_password">Password: </label>
+          <label htmlFor="user_location">Location: </label>
           <input
-            id="user_password"
-            value={userInput.user_password}
-            type="password"
+            id="user_location"
+            value={userInput.user_location}
+            type="text"
             onChange={handleTextChange}
             required
           ></input>
         </div>
         <br />
         <div>
-          <label htmlFor="user_confirmPassword">Password: </label>
+          <label htmlFor="user_avatar">Avatar: </label>
           <input
-            id="user_confirmPassWord"
-            value={userInput.user_confirmPassWord}
-            type="password"
+            id="user_avatar"
+            value={userInput.user_avatar}
+            type="text"
             onChange={handleTextChange}
             required
           ></input>
         </div>
         <br />
-
         <button>
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value="Update Profile" />
         </button>
       </form>
       <br></br>
@@ -134,4 +117,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default UserProfileUpdate;

@@ -3,8 +3,8 @@ import SignOut from "../firebaseTest/Signout";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 //import from firebase
-import { onAuthStateChanged } from "firebase/auth";
-import auth from "../firebaseTest/firebaseAuth";
+//import { onAuthStateChanged } from "firebase/auth";
+//import auth from "../firebaseTest/firebaseAuth";
 import axios from "axios";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useContext } from "react";
@@ -12,76 +12,44 @@ import { useContext } from "react";
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
 export default function UserProfile() {
-  const currentUser = useContext(CurrentUserContext);
-  const [gameCollection, setGameCollection] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
-
-  //console.log("The current user", currentUser.currentUser);
-
-  //   useEffect(() => {
-  //     //const unsubscribe =
-  //     onAuthStateChanged(auth, (user) => {
-  //       currentUser.setCurrentUser({});
-  //     });
-
-  //     //return unsubscribe;
-  //   }, []);
-
-  useEffect(() => {
-    //console.log("useEffect hello");
-    axios
-      .get(`${API}/users/${currentUser.currentUser}`)
-      .then((res) => {
-        setUserInfo(res.data.payload);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  function displayGameCollection() {
-    axios
-      .get(`${API}/loggedin/${userInfo.user_id}/games`)
-      .then((res) => {
-        setGameCollection(res.data.payload);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-
-  function closeDisplayGameCollection() {
-    setGameCollection([]);
-  }
-
-  //console.log("The current user", currentUser);
+  const { currentUser } = useContext(CurrentUserContext);
+  console.log(currentUser);
 
   return (
     <div>
       <h2>User Profile</h2>
+      <h3>UserName: </h3>
       <div>
-        {Object.keys(currentUser).length === 0 ? currentUser.currentUser : null}
+        {currentUser.hasOwnProperty("user_name")
+          ? currentUser.user_name
+          : "user name placeholder"}
       </div>
-      <h2>email is:</h2>
-      {/* current user is the object contains login user's personal email */}
-      <h3>user info from db:</h3>
-      <div>{userInfo.user_location}</div>
-      <div>{userInfo.user_trade_score}</div>
-      <button onClick={displayGameCollection}>Display Game Collection</button>
-      <button onClick={closeDisplayGameCollection}>Hide Game Collection</button>
+      <h3>UserEmail: </h3>
       <div>
-        {gameCollection
-          ? gameCollection.map((game) => <div>{game.game_name}</div>)
-          : null}
+        {currentUser.hasOwnProperty("user_email")
+          ? currentUser.user_email
+          : "user email placeholder"}
       </div>
-      <button
-        onClick={() => {
-          setUserInfo({});
-          setGameCollection([]);
-        }}
-      >
-        <SignOut />
-      </button>
+      <h3>User Location: </h3>
+      <div>
+        {currentUser.hasOwnProperty("user_location")
+          ? currentUser.user_location
+          : "user location placeholder"}
+      </div>
+      <h3>User Trade Score: </h3>
+      <div>
+        {currentUser.hasOwnProperty("user_trade_score")
+          ? currentUser.user_trade_score
+          : "user trade score placeholder"}
+      </div>
+      <h3>User Date Of Birth: </h3>
+      <div>
+        {currentUser.hasOwnProperty("user_date_of_birth")
+          ? currentUser.user_date_of_birth
+          : "user date of birth placeholder"}
+      </div>
+      <SignOut />
+
       <br></br>
       <br></br>
       <button>
