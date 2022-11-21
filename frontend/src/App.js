@@ -1,6 +1,6 @@
 import "./App.css";
+import FourOFour from "./pages/FourOFour";
 // import Edit from './Pages/Edit'
-// import FourOFour from './Pages/FourOFour'
 import Home from "./pages/Home";
 import UsersIndex from "./pages/UsersIndex";
 // import New from './Pages/New'
@@ -30,6 +30,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="userprofile" element={<UserProfile />} />
+            <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
       </CurrentUserContext.Provider>
