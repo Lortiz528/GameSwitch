@@ -28,7 +28,7 @@ export default function UserProfile() {
   //   }, []);
 
   useEffect(() => {
-    console.log("useEffect hello");
+    //console.log("useEffect hello");
     axios
       .get(`${API}/users/${currentUser.currentUser}`)
       .then((res) => {
@@ -54,15 +54,16 @@ export default function UserProfile() {
     setGameCollection([]);
   }
 
-  console.log("The current user", currentUser);
+  //console.log("The current user", currentUser);
 
   return (
     <div>
       <h2>User Profile</h2>
-      <div>{currentUser ? currentUser.currentUser : null}</div>
+      <div>
+        {Object.keys(currentUser).length === 0 ? currentUser.currentUser : null}
+      </div>
       <h2>email is:</h2>
       {/* current user is the object contains login user's personal email */}
-      {/* {currentUser.email} */}
       <h3>user info from db:</h3>
       <div>{userInfo.user_location}</div>
       <div>{userInfo.user_trade_score}</div>
@@ -73,7 +74,14 @@ export default function UserProfile() {
           ? gameCollection.map((game) => <div>{game.game_name}</div>)
           : null}
       </div>
-      <SignOut />
+      <button
+        onClick={() => {
+          setUserInfo({});
+          setGameCollection([]);
+        }}
+      >
+        <SignOut />
+      </button>
       <br></br>
       <br></br>
       <button>

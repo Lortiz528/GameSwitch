@@ -29,6 +29,7 @@ function Login() {
         currentUser.setCurrentUser(cred.user.email);
         console.log(cred);
         alert("you have logged in", cred);
+        navigate("/userprofile");
       })
       .catch((error) => {
         console.log(error.message);
