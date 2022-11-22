@@ -11,6 +11,8 @@ import NavBar from "./components/NavBar";
 import Signup from "./firebaseTest/Signup";
 import Login from "./firebaseTest/Login";
 import UserProfile from "./components/UserProfile";
+import ResetPassWord from "./firebaseTest/ResetPassword";
+import UserProfileUpdate from "./components/UserProfileUpdate";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 import { useEffect, useState } from "react";
 
@@ -29,7 +31,9 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="userprofile" element={<UserProfile />} />
+            <Route path="/userprofile" element={<UserProfile />} />
+            <Route path="/resetpassword" element={<ResetPassWord />} />
+            <Route path="/updateprofile" element={<UserProfileUpdate />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
