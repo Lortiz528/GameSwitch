@@ -24,11 +24,11 @@ const getUserByEmail = async (user_email) => {
 }
 
 const updateUser = async (user, email) => {
-  const { user_name, user_trade_score, user_location, user_avatar } = user
+  const { user_name, user_trade_score, user_location, user_avatar ,user_password} = user
   try {
     const user = await db.one(
-      'update users set user_name=$1, user_trade_score=$2, user_location=$3,user_avatar=$4 where user_email=$5 returning *',
-      [user_name, user_trade_score, user_location, user_avatar, email]
+      'update users set user_name=$1, user_trade_score=$2, user_location=$3,user_avatar=$4 ,user_password=$5 where user_email=$6 returning *',
+      [user_name, user_trade_score, user_location, user_avatar,user_password, email]
     )
     return user
   } catch (error) {
