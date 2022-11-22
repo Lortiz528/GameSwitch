@@ -39,7 +39,7 @@ CREATE TABLE games(
 --create the user wishlist table
 DROP TABLE IF EXISTS wishlist;
 CREATE TABLE wishlist(
-    id SERIAL PRIMARY KEY,
+    wishlist_game_id SERIAL PRIMARY KEY,
     wishlist_game_name TEXT NOT NULL,
     wishlist_game_brand TEXT,
     wishlist_game_console TEXT,
