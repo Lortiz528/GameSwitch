@@ -35,3 +35,14 @@ CREATE TABLE games(
     user_id INTEGER NOT NULL REFERENCES users (user_id)
      ON DELETE CASCADE
 );
+
+--create the user wishlist table
+DROP TABLE IF EXISTS wishlist;
+CREATE TABLE wishlist(
+    id SERIAL PRIMARY KEY,
+    wishlist_game_name TEXT NOT NULL,
+    wishlist_game_brand TEXT,
+    wishlist_game_console TEXT,
+    user_id INTEGER NOT NULL REFERENCES users (user_id)
+     ON DELETE CASCADE
+);
