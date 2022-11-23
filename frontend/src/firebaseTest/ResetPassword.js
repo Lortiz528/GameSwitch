@@ -1,36 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../components/CurrentUserContext";
+import { useContext } from "react";
 
 //firebase import
 import auth from "./firebaseAuth";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { updatePassword } from "firebase/auth";
 
 //API url
 const API = process.env.REACT_APP_API_URL;
 
-function Signup() {
+function ResetPassWord() {
+  const { currentUser } = useContext(CurrentUserContext);
+  //console.log(currentUser);
+
   const [userInput, setUserInput] = useState({
-    user_name: "",
-    user_email: "",
     user_password: "",
     user_confirmPassWord: "",
   });
 
   const navigate = useNavigate();
 
-  const signUp = () => {
+  const resetFireBasePassWord = () => {
     if (userInput.user_password === userInput.user_confirmPassWord) {
-      createUserWithEmailAndPassword(
-        auth,
-        userInput.user_email,
-        userInput.user_password
-      )
+      updatePassword(auth.currentUser, userInput.user_password)
         .then((cred) => {
+          //updateDatabasePassword();
           console.log(cred);
-          alert("you have signed up", cred);
-          createNewUser();
+          alert("you have changed your password", cred);
         })
         .catch((error) => {
           console.log(error.message);
@@ -41,9 +40,13 @@ function Signup() {
     }
   };
 
-  const createNewUser = () => {
+  const updateDatabasePassword = () => {
+    const update = { ...currentUser };
+    update.user_password = userInput.user_password;
+    console.log(update);
+
     axios
-      .post(`${API}/users/newuser`, userInput)
+      .put(`${API}/users/${currentUser.user_email}`, update)
       .then(() => {
         navigate("/");
       })
@@ -56,10 +59,9 @@ function Signup() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    signUp();
+    resetFireBasePassWord();
+    updateDatabasePassword();
     setUserInput({
-      user_name: "",
-      user_email: "",
       user_password: "",
       user_confirmPassWord: "",
     });
@@ -67,28 +69,10 @@ function Signup() {
 
   return (
     <section>
-      <h2>Sign Up Page</h2>
+      <h2>Reset Password Page</h2>
       <form onSubmit={handleSubmit} className="form">
         <div>
-          <label htmlFor="user_name">User Name: </label>
-          <input
-            id="user_name"
-            value={userInput.user_name}
-            type="text"
-            onChange={handleTextChange}
-            required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_email">Email: </label>
-          <input
-            id="user_email"
-            value={userInput.user_email}
-            type="text"
-            onChange={handleTextChange}
-            required
-          ></input>
+          <h2>Email: {currentUser.user_email}</h2>
         </div>
         <br />
         <div>
@@ -115,7 +99,7 @@ function Signup() {
         <br />
 
         <button>
-          <input type="submit" value="Sign Up" />
+          <input type="submit" value="Update Password" />
         </button>
       </form>
       <br></br>
@@ -134,4 +118,4 @@ function Signup() {
   );
 }
 
-export default Signup;
+export default ResetPassWord;

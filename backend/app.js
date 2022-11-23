@@ -5,6 +5,7 @@ const cors = require('cors');
 const usersController = require('./controllers/usersController');
 const userGamesController = require('./controllers/userGamesController');
 const gamesController = require('./controllers/gamesController');
+const wishlistController = require('./controllers/wishlistController');
 // const { application } = require("express");
 
 // CONFIGURATION
@@ -23,6 +24,8 @@ app.get('/', (req, res) => {
 app.use('/games', gamesController);
 //route of users
 app.use('/users', usersController);
+
+app.use('/wishlist', wishlistController);
 
 //route for userGames
 app.use('/loggedin', userGamesController);
