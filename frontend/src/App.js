@@ -13,7 +13,7 @@ import Login from "./firebaseTest/Login";
 import UserProfile from "./components/UserProfile";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 import { useEffect, useState } from "react";
-
+import GameSwitchDescription from "./pages/GameSwitchDescription";
 function App() {
   //stores the user info throughout the whole app
   const [currentUser, setCurrentUser] = useState({});
@@ -35,6 +35,7 @@ function App() {
         </main>
       </CurrentUserContext.Provider>
     </div>
+    
   );
 }
 
