@@ -1,5 +1,11 @@
+import SearchBar from './SearchBar'
 function NavBar() {
-    return <>This is NavBar</>
+  return (
+    <>
+   
+      NavBar <SearchBar />
+    </>
+  )
 }
 
 export default NavBar
