@@ -15,7 +15,7 @@ import ResetPassWord from "./firebaseTest/ResetPassword";
 import UserProfileUpdate from "./components/UserProfileUpdate";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 import { useEffect, useState } from "react";
-
+import GameSwitchDescription from "./pages/GameSwitchDescription";
 function App() {
   //stores the user info throughout the whole app
   const [currentUser, setCurrentUser] = useState({});
@@ -34,11 +34,13 @@ function App() {
             <Route path="/userprofile" element={<UserProfile />} />
             <Route path="/resetpassword" element={<ResetPassWord />} />
             <Route path="/updateprofile" element={<UserProfileUpdate />} />
+            <Route path="/tutorial" element={<GameSwitchDescription />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
       </CurrentUserContext.Provider>
     </div>
+    
   );
 }
 
