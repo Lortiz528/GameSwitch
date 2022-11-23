@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -40,14 +40,18 @@ function ResetPassWord() {
     }
   };
 
-  //   const updateDatabasePassword = () => {
-  //     axios
-  //       .put(`${API}/users/${currentUser.user_email}`, userInput)
-  //       .then(() => {
-  //         navigate("/");
-  //       })
-  //       .catch((error) => console.error("catch", error));
-  //   };
+  const updateDatabasePassword = () => {
+    const update = { ...currentUser };
+    update.user_password = userInput.user_password;
+    console.log(update);
+
+    axios
+      .put(`${API}/users/${currentUser.user_email}`, update)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.error("catch", error));
+  };
 
   const handleTextChange = (event) => {
     setUserInput({ ...userInput, [event.target.id]: event.target.value });
@@ -56,6 +60,7 @@ function ResetPassWord() {
   const handleSubmit = (event) => {
     event.preventDefault();
     resetFireBasePassWord();
+    updateDatabasePassword();
     setUserInput({
       user_password: "",
       user_confirmPassWord: "",
