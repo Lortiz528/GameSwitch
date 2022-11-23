@@ -30,6 +30,7 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="userprofile" element={<UserProfile />} />
+            <Route path= "tutorial" element={< GameSwitchDescription />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
