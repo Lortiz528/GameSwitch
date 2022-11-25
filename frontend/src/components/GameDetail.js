@@ -25,6 +25,7 @@ function GameDetail() {
       <p>Description: {game.game_description}</p>
       <p>Game Brand: {game.game_brand}</p>
       <p>Game Console: {game.game_console}</p>
+      <p>User</p>
     </div>
   )
 }

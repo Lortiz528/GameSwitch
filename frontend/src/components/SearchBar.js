@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const API = process.env.REACT_APP_API_URL
 
 function SearchBar() {
@@ -18,23 +18,34 @@ function SearchBar() {
       })
   }, [])
 
-
   const inputHandler = (event) => {
     let textLowerCase = event.target.value.toLowerCase()
     setUserInput(textLowerCase)
   }
 
-  // const handleClick = () => {}
+  const SearchHandleClick = (input) => {
+    setUserInput(input)
+    // console.log('input is', input)
+  }
+
   return (
     <>
-      <label>search for games</label>
-      <input input='text' onChange={inputHandler} placeholder='Enter Games' />
-      {/* <button onClick={handleClick}>type game to search</button> */}
+      <input
+        input='text'
+        onChange={inputHandler}
+        value={userInput}
+        placeholder='Search Games'
+      />
+      {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
       {userInput.length > 0
         ? games
-            .filter((game) => game.game_name.toLowerCase().includes(userInput))
+            .filter(
+              (game) =>
+                game.game_name.toLowerCase().includes(userInput) &&
+                game.game_name.toLowerCase() !== userInput
+            )
             .map((game, index) => (
-              <ul key={index}>
+              <ul key={index} onClick={() => SearchHandleClick(game.game_name)}>
                 <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
               </ul>
             ))
