@@ -16,6 +16,7 @@ import UserProfileUpdate from "./components/UserProfileUpdate";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 import { useEffect, useState } from "react";
 import GameSwitchDescription from "./pages/GameSwitchDescription";
+import User from "./components/User";
 function App() {
   //stores the user info throughout the whole app
   const [currentUser, setCurrentUser] = useState({});
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/users" element={<UsersIndex />} />
+            <Route path="/users/:user_email" element={<User />} />
             <Route path="/about" element={<About />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
