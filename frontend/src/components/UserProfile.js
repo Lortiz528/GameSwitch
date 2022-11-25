@@ -18,7 +18,7 @@ export default function UserProfile() {
   return (
     <div>
       <h2>User Profile</h2>
-      <img src="https://i.imgur.com/6vzydmf.jpg"/>
+      <img src={currentUser.user_avatar} alt={currentUser.user_name}/>
       <h3>UserName: </h3>
       <div>
         {currentUser.hasOwnProperty("user_name")
