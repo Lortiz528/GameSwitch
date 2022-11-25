@@ -18,6 +18,7 @@ export default function UserProfile() {
   return (
     <div>
       <h2>User Profile</h2>
+      <img src="https://i.imgur.com/6vzydmf.jpg"/>
       <h3>UserName: </h3>
       <div>
         {currentUser.hasOwnProperty("user_name")
