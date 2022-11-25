@@ -41,7 +41,7 @@ function User() {
   return (
     <div>
       <h1>{user.user_name}</h1>
-      <img src={user.user_name} alt={user.user_name} />
+      <img src={user.user_avatar} alt={user.user_name} />
       <h5>
         <strong>Trade Score:</strong> {user.user_trade_score}
       </h5>
@@ -54,11 +54,11 @@ function User() {
       </span>
 
       <Button variant="primary" onClick={showGamesHandler}>
-        {setGamesVisible
+        {!gamesVisible
           ? `${user.user_name}'s Games`
           : `Hide ${user.user_name}'s Games`}
       </Button>
-      {showUserGames}
+      <div>{gamesVisible ? showUserGames : null}</div>
     </div>
   );
 }
