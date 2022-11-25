@@ -30,6 +30,11 @@ function Home() {
       <button>
         <Link to="updateprofile">Update Profile</Link>
       </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="gamecollection">Game Collection</Link>
+      </button>
     </div>
   );
 }
