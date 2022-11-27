@@ -29,28 +29,35 @@ function SearchBar() {
   }
 
   return (
-    <>
+    <div>
       <input
         input='text'
         onChange={inputHandler}
         value={userInput}
         placeholder='Search Games'
+        class='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      {userInput.length > 0
-        ? games
-            .filter(
-              (game) =>
-                game.game_name.toLowerCase().includes(userInput) &&
-                game.game_name.toLowerCase() !== userInput
-            )
-            .map((game, index) => (
-              <ul key={index} onClick={() => SearchHandleClick(game.game_name)}>
-                <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
-              </ul>
-            ))
-        : null}
-    </>
+      <div className='dropdown'>
+        {userInput.length > 0
+          ? games
+              .filter(
+                (game) =>
+                  game.game_name.toLowerCase().includes(userInput) &&
+                  game.game_name.toLowerCase() !== userInput
+              )
+              .map((game, index) => (
+                <ul
+                  className='dropdown-row'
+                  key={index}
+                  onClick={() => SearchHandleClick(game.game_name)}
+                >
+                  <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
+                </ul>
+              ))
+          : null}
+      </div>
+    </div>
   )
 }
 

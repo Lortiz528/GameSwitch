@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.users {
+  margin: 5%;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 1em;
+}
+.usercard {
+  border-radius: 15px;
+  align-items: center;
+  background-color: aliceblue;
+  box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  gap: 10px;
+  padding: 1em;
+}
+
+.dropdown {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}

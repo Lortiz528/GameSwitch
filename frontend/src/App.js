@@ -5,19 +5,20 @@ import Home from './pages/Home'
 import UsersIndex from './pages/UsersIndex'
 // import New from './Pages/New'
 // import Show from './Pages/Show'
-import About from './pages/About'
-import { Routes, Route } from 'react-router-dom'
-import NavBar from './components/NavBar'
-import Signup from './firebaseTest/Signup'
-import Login from './firebaseTest/Login'
-import UserProfile from './components/UserProfile'
-import ResetPassWord from './firebaseTest/ResetPassword'
-import UserProfileUpdate from './components/UserProfileUpdate'
-import { CurrentUserContext } from './components/CurrentUserContext'
-import { useEffect, useState } from 'react'
-import GameSwitchDescription from './pages/GameSwitchDescription'
-import GameDetail from './components/GameDetail'
-import GameCollection from './gamecollection/GameCollection'
+import About from "./pages/About";
+import { Routes, Route } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Signup from "./firebaseTest/Signup";
+import Login from "./firebaseTest/Login";
+import UserProfile from "./components/UserProfile";
+import ResetPassWord from "./firebaseTest/ResetPassword";
+import UserProfileUpdate from "./components/UserProfileUpdate";
+import { CurrentUserContext } from "./components/CurrentUserContext";
+import { useState } from "react";
+import GameSwitchDescription from "./pages/GameSwitchDescription";
+import User from "./components/User";
+import GameCollection from "./gamecollection/GameCollection";
+import GameDetail from "./components/GameDetail"
 function App() {
   //stores the user info throughout the whole app
   const [currentUser, setCurrentUser] = useState({})
@@ -37,9 +38,9 @@ function App() {
             <Route path='/userprofile' element={<UserProfile />} />
             <Route path='/resetpassword' element={<ResetPassWord />} />
             <Route path='/updateprofile' element={<UserProfileUpdate />} />
-            <Route path='/games/:gameId' element={<GameDetail />} />
             <Route path='/gamecollection' element={<GameCollection />} />
             <Route path='/tutorial' element={<GameSwitchDescription />} />
+            <Route path='/games/:gameId' element={<GameDetail />} />
             <Route path='*' element={<FourOFour />} />
           </Routes>
         </main>
