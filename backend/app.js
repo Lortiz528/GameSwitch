@@ -6,6 +6,7 @@ const usersController = require('./controllers/usersController');
 const userGamesController = require('./controllers/userGamesController');
 const gamesController = require('./controllers/gamesController');
 const wishlistController = require('./controllers/wishlistController');
+const tradeController = require('./controllers/tradeController');
 // const { application } = require("express");
 
 // CONFIGURATION
@@ -29,6 +30,8 @@ app.use('/wishlist', wishlistController);
 
 //route for userGames
 app.use('/loggedin', userGamesController);
+
+app.use('/trades', tradeController);
 
 app.get('*', (req, res) => {
   res.status(404).send('Not found!');
