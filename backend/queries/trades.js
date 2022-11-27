@@ -12,25 +12,30 @@ const getAllTrades = async () => {
 
 const getTradeByID = async (trade_id) => {
   try {
-    const trade = await db.any(
-      'SELECT * FROM   where trade_id=$1',
-      trade_id
-    );
+    const trade = await db.any('SELECT * FROM tradeRequests where trade_id=$1', trade_id);
     return trade;
   } catch (error) {
-    res
-      .status(404)
-      .json({ sucess: false, message: `no trade with id of ${trade_id}` });
+    res.status(404).json({ sucess: false, message: `no trade with id of ${trade_id}` });
   }
 };
 
 const createTrade = async (trade) => {
-  const { trade_game1, trade_game2 } = trade;
+  const {
+    trade_offerer_game_id,
+    trade_receiver_game_id,
+    trade_offerer_user_id,
+    trade_receiver_user_id,
+  } = trade;
 
   try {
     const addTrade = await db.one(
-      'insert into tradeRequests (trade_game1, trade_game2) values ($1,$2) returning *',
-      [trade_game1, trade_game2]
+      'insert into tradeRequests (trade_offerer_game_id,trade_receiver_game_id, trade_offerer_user_id, trade_receiver_user_id) values ($1,$2,$3,$4) returning *',
+      [
+        trade_offerer_game_id,
+        trade_receiver_game_id,
+        trade_offerer_user_id,
+        trade_receiver_user_id,
+      ]
     );
     return addTrade;
   } catch (error) {

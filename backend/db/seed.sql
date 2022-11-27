@@ -12,4 +12,4 @@ INSERT INTO games (game_name,game_img,game_rating,game_description,game_brand,ga
 
 INSERT INTO wishlist (wishlist_game_name,wishlist_game_brand,wishlist_game_console,user_id) VALUES('Cyberpunk 2077','Playstation', 'PS4', 1),('Mario Kart 8 Deluxe','Nintendo', 'Switch', 2), ('Pokemon Sword','Nintendo', 'Switch', 3), ('Final Fantasy XV','Playstation', 'PS4', 4);
 
-INSERT INTO tradeRequests (trade_game1, trade_game2) VALUES(5,20),(12,1),(11,17),(22,8);
+INSERT INTO tradeRequests (trade_offerer_game_id,trade_receiver_game_id,trade_offerer_user_id,trade_receiver_user_id) VALUES(5,20,1,4),(8,20,16,3),(18,25,3,4),(5,10,1,2);

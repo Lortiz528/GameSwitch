@@ -51,9 +51,9 @@ CREATE TABLE wishlist(
 DROP TABLE IF EXISTS tradeRequests;
 CREATE TABLE tradeRequests(
     trade_id SERIAL PRIMARY KEY,
-    trade_game1 INTEGER NOT NULL REFERENCES games(game_id),
-    trade_game2 INTEGER NOT NULL REFERENCES games(game_id)
-    -- trader1_user_id INTEGER NOT NULL REFERENCES users (user_id),
-    -- trader2_user_id INTEGER NOT NULL REFERENCES users (user_id)
-     ON DELETE CASCADE
+    trade_offerer_game_id INTEGER NOT NULL REFERENCES games(game_id),
+    trade_receiver_game_id INTEGER NOT NULL REFERENCES games(game_id),
+    trade_offerer_user_id INTEGER NOT NULL REFERENCES users (user_id),
+    trade_receiver_user_id INTEGER NOT NULL REFERENCES users (user_id),
+    trade_success BOOLEAN
 );

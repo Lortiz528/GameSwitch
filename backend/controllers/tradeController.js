@@ -38,7 +38,6 @@ tradeController.get('/:trade_id', async (req, res) => {
 
 tradeController.post('/newtrade', async (req, res) => {
   const addTrade = await createTrade(req.body);
-  console.log(req.body);
   if (addTrade) {
     res.status(200).json({ success: true, payload: addTrade });
   } else {
@@ -53,12 +52,10 @@ tradeController.delete('/:trade_id', async (req, res) => {
   if (deletedTrade.trade_id) {
     res.status(200).json({ success: true, payload: deletedTrade });
   } else {
-    res
-      .status(404)
-      .json({
-        success: false,
-        message: `deletion error for trade with id of ${trade_id}`,
-      });
+    res.status(404).json({
+      success: false,
+      message: `deletion error for trade with id of ${trade_id}`,
+    });
   }
 });
 
