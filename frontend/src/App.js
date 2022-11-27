@@ -18,6 +18,8 @@ import { useEffect, useState } from "react";
 import GameSwitchDescription from "./pages/GameSwitchDescription";
 import User from "./components/User";
 import GameCollection from "./gamecollection/GameCollection";
+import AddNewGame from "./gamecollection/AddNewGame";
+
 function App() {
   //stores the user info throughout the whole app
   const [currentUser, setCurrentUser] = useState({});
@@ -38,6 +40,7 @@ function App() {
             <Route path="/resetpassword" element={<ResetPassWord />} />
             <Route path="/updateprofile" element={<UserProfileUpdate />} />
             <Route path="/gamecollection" element={<GameCollection />} />
+            <Route path="/addnewgame" element={<AddNewGame />} />
             <Route path="/tutorial" element={<GameSwitchDescription />} />
             <Route path="*" element={<FourOFour />} />
           </Routes>

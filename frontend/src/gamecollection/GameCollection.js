@@ -38,6 +38,9 @@ export default function GameCollection() {
 
   return (
     <seciton>
+      <Link to="/addnewgame">
+        <button>Add New Game</button>
+      </Link>
       <div>{games.length !== 0 ? games : null}</div>
       <button>
         <Link to="/">Home</Link>
