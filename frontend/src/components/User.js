@@ -47,10 +47,8 @@ function User() {
       </h5>
       <h5>Location: {user.user_location}</h5>
       <span>
-        <h5>Bio:</h5> Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-        enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-        aliquip ex ea commodo consequat.{' '}
+        <h5>Bio:</h5> 
+        <p>{user.user_bio}</p>
       </span>
 
       <Button variant="primary" onClick={showGamesHandler}>
