@@ -1,13 +1,14 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
-
+import TradeRequest from './TradeRequest'
 const API = process.env.REACT_APP_API_URL
 
 function GameDetail() {
   const { gameId } = useParams()
   const [game, setGame] = useState([])
   const [user, setUser] = useState([])
+  const [show, setShow] = useState(false)
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -32,17 +33,6 @@ function GameDetail() {
       })
   }, [])
 
-  useEffect(() => {
-    axios
-      .get(`${API}/users`)
-      .then((res) => {
-        setUser(res.data.payload)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
   const findUserName = (users) => {
     for (let user of users) {
       if (user.user_id === game.user_id) {
@@ -52,12 +42,15 @@ function GameDetail() {
   }
 
   const findUserEmail = (users) => {
-     for (let user of users) {
-       if (user.user_id === game.user_id) {
-         return user.user_email
-       }
-     }
+    for (let user of users) {
+      if (user.user_id === game.user_id) {
+        return user.user_email
+      }
+    }
   }
+
+  const handleOpen = () => setShow(true)
+  const handleClose = () => setShow(false)
 
   return (
     <div>
@@ -66,8 +59,12 @@ function GameDetail() {
       <p>Description: {game.game_description}</p>
       <p>Game Brand: {game.game_brand}</p>
       <p>Game Console: {game.game_console}</p>
-      <p>UserName: <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link> </p>
-      <button>offer trade</button>
+      <p>
+        UserName:{' '}
+        <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link>{' '}
+      </p>
+      <button onClick={handleOpen}>offer trade</button>
+      <TradeRequest handleClose={handleClose} show={show} />
     </div>
   )
 }
