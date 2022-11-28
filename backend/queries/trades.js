@@ -19,6 +19,25 @@ const getTradeByID = async (trade_id) => {
   }
 };
 
+
+const getReceivedTradesByUserID = async (trade_receiver_user_id) => {
+  try {
+    const trade = await db.any('SELECT * FROM tradeRequests where trade_receiver_user_id=$1', trade_receiver_user_id);
+    return trade;
+  } catch (error) {
+    res.status(404).json({ sucess: false, message: `no trade with id of ${trade_receiver_user_id}` });
+  }
+}
+
+const getOfferedTradesByUserID = async (trade_offerer_user_id) => {
+  try {
+    const trade = await db.any('SELECT * FROM tradeRequests where trade_offerer_user_id=$1', trade_offerer_user_id);
+    return trade;
+  } catch (error) {
+    res.status(404).json({ sucess: false, message: `no trade offered by user id ${trade_offerer_user_id}` });
+  }
+}
+
 const createTrade = async (trade) => {
   const {
     trade_offerer_game_id,
@@ -65,4 +84,6 @@ module.exports = {
   getTradeByID,
   createTrade,
   deleteTrade,
+  getReceivedTradesByUserID,
+  getOfferedTradesByUserID
 };
