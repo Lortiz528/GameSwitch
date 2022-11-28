@@ -20,7 +20,16 @@ export default function GameCollection() {
       .catch((error) => console.error("catch", error));
   }, []);
 
-  const games = gameCollection.map((game) => {
+  function deleteGame(index, game_id) {
+    axios
+      .delete(`${API}/loggedin/${currentUser.user_id}/games/${game_id}`)
+      .then((res) => {
+        setGameCollection(gameCollection.splice(index, 1));
+      })
+      .catch((error) => console.error("catch", error));
+  }
+
+  const games = gameCollection.map((game, index) => {
     return (
       <section style={{ border: "2px solid gold", margin: "20px" }}>
         <Link to={`/gamecollection/${game.game_id}`}>
@@ -32,6 +41,13 @@ export default function GameCollection() {
           />
         </Link>
         <br />
+        <button
+          onClick={() => {
+            deleteGame(index, game.game_id);
+          }}
+        >
+          Delete Game
+        </button>
       </section>
     );
   });
