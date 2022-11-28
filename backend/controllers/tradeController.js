@@ -6,6 +6,8 @@ const {
   getTradeByID,
   createTrade,
   deleteTrade,
+  getReceivedTradesByUserID,
+  getOfferedTradesByUserID,
 } = require('../queries/trades');
 
 //sub routes
@@ -32,6 +34,36 @@ tradeController.get('/:trade_id', async (req, res) => {
     res.status(404).json({
       success: false,
       payload: `no trade found with id of ${trade_id}`,
+    });
+  }
+});
+
+// get trades received by user id
+tradeController.get('/:trade_receiver_user_id/received', async (req, res) => {
+  const { trade_receiver_user_id } = req.params;
+
+  const getTrade = await getReceivedTradesByUserID(trade_receiver_user_id);
+  if (getTrade.length > 0) {
+    res.status(200).json({ success: true, payload: getTrade });
+  } else {
+    res.status(404).json({
+      success: false,
+      payload: `no received trade offers found for user id ${trade_receiver_user_id}`,
+    });
+  }
+});
+
+// get trades offered by user id
+tradeController.get('/:trade_offerer_user_id/offered', async (req, res) => {
+  const { trade_offerer_user_id } = req.params;
+
+  const getTrade = await getOfferedTradesByUserID(trade_offerer_user_id);
+  if (getTrade.length > 0) {
+    res.status(200).json({ success: true, payload: getTrade });
+  } else {
+    res.status(404).json({
+      success: false,
+      payload: `no trades offered by user id ${trade_offerer_user_id}`,
     });
   }
 });
