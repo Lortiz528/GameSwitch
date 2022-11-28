@@ -1,0 +1,14 @@
+.dropdown {
+  background-color: white;
+  border: 1px solid gray;
+}
+
+.dropdown:empty {
+  border: none;
+}
+
+.dropdown-row {
+  cursor: pointer;
+  text-align: start;
+  margin: 2px 0;
+}

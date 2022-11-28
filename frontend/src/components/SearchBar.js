@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import './SearchBar.css'
 const API = process.env.REACT_APP_API_URL
 
 function SearchBar() {
@@ -29,7 +30,7 @@ function SearchBar() {
   }
 
   return (
-    <div>
+    <div className='dropdown'>
       <input
         input='text'
         onChange={inputHandler}
@@ -38,7 +39,7 @@ function SearchBar() {
         class='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      <div className='dropdown'>
+      <div>
         {userInput.length > 0
           ? games
               .filter(
@@ -52,7 +53,9 @@ function SearchBar() {
                   key={index}
                   onClick={() => SearchHandleClick(game.game_name)}
                 >
-                  <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
+                  <li class='dropdown-item '>
+                    <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
+                  </li>
                 </ul>
               ))
           : null}
