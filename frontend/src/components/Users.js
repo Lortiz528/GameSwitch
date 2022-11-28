@@ -25,7 +25,7 @@ function Users() {
         </Link>
 
         <h3>
-          {user.user_name} ({user.user_trade_score})
+          {user.user_name} 
         </h3>
       </div>
     );
