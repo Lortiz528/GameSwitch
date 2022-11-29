@@ -2,6 +2,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./Signup.css";
 
 //firebase import
 import auth from "./firebaseAuth";
@@ -68,56 +71,60 @@ function Signup() {
   return (
     <section>
       <h2>Sign Up Page</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <div>
-          <label htmlFor="user_name">User Name: </label>
-          <input
+      <Form onSubmit={handleSubmit} className="signUpForm">
+        <Form.Group className="mb-3" controlId="formBasicUserName">
+          <Form.Label>User Name: </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Username"
             id="user_name"
             value={userInput.user_name}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_email">Email: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicUserEmail">
+          <Form.Label>Email: </Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter Email"
             id="user_email"
             value={userInput.user_email}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_password">Password: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicUserPassWord">
+          <Form.Label>Password: </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter Password"
             id="user_password"
             value={userInput.user_password}
-            type="password"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_confirmPassword">Password: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicUserConfirmedPassWord">
+          <Form.Label>Confirmed Password: </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="confirmed Password"
             id="user_confirmPassWord"
             value={userInput.user_confirmPassWord}
-            type="password"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
+          />
+        </Form.Group>
 
-        <button>
-          <input type="submit" value="Sign Up" />
-        </button>
-      </form>
+        <Button variant="primary" type="submit">
+          Sign Up
+        </Button>
+      </Form>
+
       <br></br>
       <button>
         {" "}
