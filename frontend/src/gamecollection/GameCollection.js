@@ -48,6 +48,9 @@ export default function GameCollection() {
         >
           Delete Game
         </button>
+        <Link to={`/updategame/${game.game_id}`}>
+          <button>Update Game</button>
+        </Link>
       </section>
     );
   });
