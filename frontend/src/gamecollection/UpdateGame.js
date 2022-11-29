@@ -42,7 +42,10 @@ function UpdateGame() {
     updatedGame.user_id = currentUser.user_id;
 
     axios
-      .post(`${API}/loggedin/${currentUser.user_id}/games`, updatedGame)
+      .put(
+        `${API}/loggedin/${currentUser.user_id}/games/${gameid}`,
+        updatedGame
+      )
       .then(() => {
         navigate("/");
       })

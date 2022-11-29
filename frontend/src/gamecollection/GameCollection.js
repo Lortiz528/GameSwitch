@@ -21,6 +21,8 @@ export default function GameCollection() {
   }, []);
 
   function deleteGame(index, game_id) {
+    console.log(index, game_id);
+    console.log(`${API}/loggedin/${currentUser.user_id}/games/${game_id}`);
     axios
       .delete(`${API}/loggedin/${currentUser.user_id}/games/${game_id}`)
       .then((res) => {
@@ -32,14 +34,14 @@ export default function GameCollection() {
   const games = gameCollection.map((game, index) => {
     return (
       <section style={{ border: "2px solid gold", margin: "20px" }}>
-        <Link to={`/gamecollection/${game.game_id}`}>
-          <div>{game.game_name}</div>
-          <img
-            src={game.game_img}
-            alt="img"
-            style={{ height: "200px", width: "150px" }}
-          />
-        </Link>
+        {/* <Link to={`/gamecollection/${game.game_id}`}> */}
+        <div>{game.game_name}</div>
+        <img
+          src={game.game_img}
+          alt="img"
+          style={{ height: "200px", width: "150px" }}
+        />
+        {/* </Link> */}
         <br />
         <button
           onClick={() => {
