@@ -16,7 +16,7 @@ CREATE TABLE users (
     user_email TEXT,
     user_password TEXT NOT NULL,
     user_trade_score NUMERIC,
-    user_date_of_birth DATE,
+    user_bio TEXT,
     user_location TEXT,
     user_avatar TEXT
 );
