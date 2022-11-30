@@ -12,6 +12,7 @@ function TradeRequest({
 }) {
   const { currentUser } = useContext(CurrentUserContext)
   const [game, setGame] = useState([])
+  const [selectGame, setSelectGame] = useState('')
   useEffect(() => {
     axios
       .get(`${API}/games`)
@@ -30,6 +31,7 @@ function TradeRequest({
       }
     }
   }
+
   console.log(game)
   return (
     <Modal show={show} onHide={handleClose}>
@@ -46,7 +48,7 @@ function TradeRequest({
                     {currentUser.user_name ? currentUser.user_name : null}
                   </Card.Title>
                   <Card.Img src={currentUser.user_avatar} />
-                  <Form.Select>
+                  <Form.Select onChange={(e) => setSelectGame(e.target.value)}>
                     <option>Select Game</option>
                     {game
                       .filter((game) => game.user_id === currentUser.user_id)
