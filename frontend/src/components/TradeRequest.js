@@ -1,6 +1,7 @@
 import { Button, Modal, Card, Form, Container, Row, Col } from 'react-bootstrap'
 import { CurrentUserContext } from './CurrentUserContext'
 import { useContext, useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import axios from 'axios'
 const API = process.env.REACT_APP_API_URL
 function TradeRequest({
@@ -13,6 +14,9 @@ function TradeRequest({
   const { currentUser } = useContext(CurrentUserContext)
   const [game, setGame] = useState([])
   const [selectGame, setSelectGame] = useState('')
+  const { gameId } = useParams()
+  let navigate = useNavigate()
+
   useEffect(() => {
     axios
       .get(`${API}/games`)
@@ -32,7 +36,28 @@ function TradeRequest({
     }
   }
 
-  console.log(game)
+  const receiverUserId = currentGameInfo.user_id
+  const receiverGameId = currentGameInfo.game_id
+  console.log('currentuserId:', currentUser.user_id)
+  console.log('currentuser gameid', selectGame)
+  console.log('reciever userid:', receiverUserId)
+  console.log('receiver gameid', receiverGameId)
+  const handleClick = () => {
+    let allId = {}
+    allId.trade_offerer_user_id = currentUser.user_id;
+    allId.trade_offerer_game_id = parseInt(selectGame);
+    allId.trade_receiver_game_id = receiverGameId;
+    allId.trade_receiver_user_id = receiverUserId;
+
+    axios
+      .post(`${API}/trades/newtrade`,allId )
+      .then(() => {
+        alert('you successfully made a trade request')
+        navigate(`/`) 
+      })
+      .catch((error) => console.log(error))
+    
+  }
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -48,12 +73,15 @@ function TradeRequest({
                     {currentUser.user_name ? currentUser.user_name : null}
                   </Card.Title>
                   <Card.Img src={currentUser.user_avatar} />
-                  <Form.Select onChange={(e) => setSelectGame(e.target.value)}>
+                  <Form.Select
+                    value={selectGame}
+                    onChange={(e) => setSelectGame((e.target.value))}
+                  >
                     <option>Select Game</option>
                     {game
                       .filter((game) => game.user_id === currentUser.user_id)
                       .map((game) => (
-                        <option>{game.game_name}</option>
+                        <option value={game.game_id}>{game.game_name}</option>
                       ))}
                   </Form.Select>
                 </Card.Body>
@@ -73,7 +101,10 @@ function TradeRequest({
       </Modal.Body>
       <Modal.Footer>
         <Button variant='secondary' onClick={handleClose}>
-          Close
+          Cancel
+        </Button>
+        <Button variant='secondary' onClick={handleClick}>
+          Submit
         </Button>
       </Modal.Footer>
     </Modal>

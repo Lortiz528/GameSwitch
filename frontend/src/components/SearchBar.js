@@ -30,7 +30,7 @@ function SearchBar() {
   }
 
   return (
-    <div className='dropdown'>
+    <div>
       <input
         input='text'
         onChange={inputHandler}
@@ -39,7 +39,7 @@ function SearchBar() {
         class='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      <div>
+      <div className='dropdown'>
         {userInput.length > 0
           ? games
               .filter(
@@ -53,9 +53,7 @@ function SearchBar() {
                   key={index}
                   onClick={() => SearchHandleClick(game.game_name)}
                 >
-                  <li class='dropdown-item '>
-                    <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
-                  </li>
+                  <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
                 </ul>
               ))
           : null}
