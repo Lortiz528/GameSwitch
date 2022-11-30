@@ -4,7 +4,7 @@ function UsersIndex() {
   return (
     <div className='Index'>
       <h2 >
-        All the Users
+        Meet Our Game Switchers!
       </h2>
       <Users/>
     </div>

@@ -1,0 +1,24 @@
+.userPage{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    margin: 10px;
+}
+
+.userGames{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.usergameImage{
+    width:200px;
+    height: 250px;
+    margin: 10px
+
+}
+
+.gameCard{
+    margin: 10px;
+    box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 250px;
+ 
+}
