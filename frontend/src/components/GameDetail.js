@@ -64,7 +64,13 @@ function GameDetail() {
         <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link>{' '}
       </p>
       <button onClick={handleOpen}>offer trade</button>
-      <TradeRequest handleClose={handleClose} show={show} />
+      <TradeRequest
+        handleClose={handleClose}
+        show={show}
+        findUserName={findUserName(user)}
+        user={user}
+        currentGameInfo={game}
+      />
     </div>
   )
 }
