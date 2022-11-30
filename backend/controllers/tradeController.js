@@ -1,5 +1,5 @@
 //dependencies
-const express = require('express');
+const express = require("express");
 
 const {
   getAllTrades,
@@ -8,23 +8,23 @@ const {
   deleteTrade,
   getReceivedTradesByUserID,
   getOfferedTradesByUserID,
-} = require('../queries/trades');
+} = require("../queries/trades");
 
 //sub routes
 const tradeController = express.Router();
 
 //index route
 
-tradeController.get('/', async (req, res) => {
+tradeController.get("/", async (req, res) => {
   try {
     const allTrades = await getAllTrades();
     res.status(200).json({ success: true, payload: allTrades });
   } catch (error) {
-    res.status(404).json({ sucess: false, message: 'no trades found!' });
+    res.status(404).json({ sucess: false, message: "no trades found!" });
   }
 });
 
-tradeController.get('/:trade_id', async (req, res) => {
+tradeController.get("/:trade_id", async (req, res) => {
   const { trade_id } = req.params;
 
   const getTrade = await getTradeByID(trade_id);
@@ -39,14 +39,14 @@ tradeController.get('/:trade_id', async (req, res) => {
 });
 
 // get trades received by user id
-tradeController.get('/:trade_receiver_user_id/received', async (req, res) => {
+tradeController.get("/:trade_receiver_user_id/received", async (req, res) => {
   const { trade_receiver_user_id } = req.params;
 
   const getTrade = await getReceivedTradesByUserID(trade_receiver_user_id);
   if (getTrade.length > 0) {
     res.status(200).json({ success: true, payload: getTrade });
   } else {
-    res.status(404).json({
+    res.status(200).json({
       success: false,
       payload: `no received trade offers found for user id ${trade_receiver_user_id}`,
     });
@@ -54,30 +54,30 @@ tradeController.get('/:trade_receiver_user_id/received', async (req, res) => {
 });
 
 // get trades offered by user id
-tradeController.get('/:trade_offerer_user_id/offered', async (req, res) => {
+tradeController.get("/:trade_offerer_user_id/offered", async (req, res) => {
   const { trade_offerer_user_id } = req.params;
 
   const getTrade = await getOfferedTradesByUserID(trade_offerer_user_id);
   if (getTrade.length > 0) {
     res.status(200).json({ success: true, payload: getTrade });
   } else {
-    res.status(404).json({
+    res.status(200).json({
       success: false,
       payload: `no trades offered by user id ${trade_offerer_user_id}`,
     });
   }
 });
 
-tradeController.post('/newtrade', async (req, res) => {
+tradeController.post("/newtrade", async (req, res) => {
   const addTrade = await createTrade(req.body);
   if (addTrade) {
     res.status(200).json({ success: true, payload: addTrade });
   } else {
-    res.status(404).send({ success: false, payload: 'create trade error' });
+    res.status(404).send({ success: false, payload: "create trade error" });
   }
 });
 
-tradeController.delete('/:trade_id', async (req, res) => {
+tradeController.delete("/:trade_id", async (req, res) => {
   const { trade_id } = req.params;
   const deletedTrade = await deleteTrade(trade_id);
 
