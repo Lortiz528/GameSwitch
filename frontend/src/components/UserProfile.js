@@ -8,6 +8,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { CurrentUserContext } from "./CurrentUserContext";
 import { useContext } from "react";
+import Table from "react-bootstrap/Table";
+import "./UserProfile.css";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -18,39 +20,64 @@ export default function UserProfile() {
   return (
     <div>
       <h2>User Profile</h2>
-      <img src={currentUser.user_avatar} alt={currentUser.user_name}/>
-      <h3>UserName: </h3>
-      <div>
-        {currentUser.hasOwnProperty("user_name")
-          ? currentUser.user_name
-          : "user name placeholder"}
-      </div>
-      <h3>UserEmail: </h3>
-      <div>
-        {currentUser.hasOwnProperty("user_email")
-          ? currentUser.user_email
-          : "user email placeholder"}
-      </div>
-      <h3>User Location: </h3>
-      <div>
-        {currentUser.hasOwnProperty("user_location")
-          ? currentUser.user_location
-          : "user location placeholder"}
-      </div>
-      <h3>User Trade Score: </h3>
-      <div>
-        {currentUser.hasOwnProperty("user_trade_score")
-          ? currentUser.user_trade_score
-          : "user trade score placeholder"}
-      </div>
-      <h3>User Date Of Birth: </h3>
-      <div>
-        {currentUser.hasOwnProperty("user_date_of_birth")
-          ? currentUser.user_date_of_birth
-          : "user date of birth placeholder"}
-      </div>
-      <SignOut />
+      <Table striped bordered hover className="userprofile">
+        <tbody>
+          <tr>
+            <td>Username:</td>
+            <td>
+              {" "}
+              <div>
+                {currentUser.hasOwnProperty("user_name")
+                  ? currentUser.user_name
+                  : "user name placeholder"}
+              </div>
+            </td>
+          </tr>
 
+          <tr>
+            <td>Avatar:</td>
+            <td>
+              <img src={currentUser.user_avatar} alt={currentUser.user_name} />
+            </td>
+          </tr>
+
+          <tr>
+            <td>Email:</td>
+            <td>
+              <div>
+                {currentUser.hasOwnProperty("user_email")
+                  ? currentUser.user_email
+                  : "user email placeholder"}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Location:</td>
+            <td>
+              <div>
+                {currentUser.hasOwnProperty("user_location")
+                  ? currentUser.user_location
+                  : "user location placeholder"}
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td>Trade Score:</td>
+            <td>
+              <div>
+                {currentUser.hasOwnProperty("user_trade_score")
+                  ? currentUser.user_trade_score
+                  : "user trade score placeholder"}
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </Table>
+
+      <br></br>
+      <SignOut />
       <br></br>
       <br></br>
       <button>
