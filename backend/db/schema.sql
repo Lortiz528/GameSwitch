@@ -55,5 +55,5 @@ CREATE TABLE tradeRequests(
     trade_receiver_game_id INTEGER NOT NULL REFERENCES games(game_id),
     trade_offerer_user_id INTEGER NOT NULL REFERENCES users (user_id),
     trade_receiver_user_id INTEGER NOT NULL REFERENCES users (user_id),
-    trade_success BOOLEAN
+    trade_success TEXT DEFAULT 'pending'
 );

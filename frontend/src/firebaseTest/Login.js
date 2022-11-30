@@ -5,6 +5,9 @@ import SignOut from "./Signout";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./Login.css";
 
 //firebase import
 import auth from "./firebaseAuth";
@@ -70,34 +73,35 @@ function Login() {
   return (
     <section>
       <h2>Login Page</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <div>
-          <label htmlFor="user_email">Email: </label>
-          <input
+      <Form onSubmit={handleSubmit} className="loginForm">
+        <Form.Group className="mb-3" controlId="formBasicUserEmail">
+          <Form.Label>User Email: </Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter Email"
             id="user_email"
             value={userInput.user_email}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_password">Password: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3" controlId="formBasicUserPassword">
+          <Form.Label>Password: </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Password"
             id="user_password"
             value={userInput.user_password}
-            type="password"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <br />
-        <button>
-          <input type="submit" value="Login" />
-        </button>
-      </form>
+          />
+        </Form.Group>
+
+        <Button variant="primary" type="submit">
+          Login
+        </Button>
+      </Form>
       <br></br>
       <SignOut />
       <button>
