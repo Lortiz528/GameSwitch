@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
 function NavBar() {
   return (
-    <Navbar className='justify-content-between' bg='dark'>
+    <Navbar className=' justify-content-between' bg='dark' sticky='top'>
       <Link to='/'>
         <img src={logo} alt='logo' width={100} />
       </Link>
       <SearchBar />
-      <div>
+      <div className='button-nav'>
         <button>
           <Link to='signup'>Sign Up</Link>
         </button>
