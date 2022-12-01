@@ -65,7 +65,7 @@ function Users() {
 
   return (
     <Container>
-      <Form.Select
+      <Form.Select className='dropdown-userLocation' 
         onChange={(e) => {
           getUsersByLocation(users, e.target.value);
         }}
@@ -78,7 +78,7 @@ function Users() {
         <option value={'Queens'}>Queens</option>
       </Form.Select>
       <Container>
-        <Row xs={2} md={5}>
+        <Row xs={1} md={5}>
           {allUsers}
         </Row>
       </Container>
