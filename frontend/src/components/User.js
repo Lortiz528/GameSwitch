@@ -1,7 +1,8 @@
 import axios from 'axios';
-import { Button } from 'react-bootstrap';
+import './User.css';
+import { Button, Card, Container } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -30,34 +31,46 @@ function User() {
     setGamesVisible(!gamesVisible);
   };
 
-  const showUserGames = userGames.map((game) => {
+  const showUserGames = userGames.map((game, idx) => {
     return (
-      <div>
-        <img src={game.game_img} alt={game.game_name} />
-      </div>
+      <Card key={idx} className="gameCard">
+        <Card.Link href={`/games/${game.game_id}`}>
+          <Card.Img
+            className="usergameImage"
+            src={game.game_img}
+            alt={game.game_name}
+          />
+        </Card.Link>
+        <Card.Title>{game.game_name}</Card.Title>
+        <Card.Subtitle>
+          {game.game_brand}-{game.game_console}
+        </Card.Subtitle>
+      </Card>
     );
   });
 
   return (
-    <div>
-      <h1>{user.user_name}</h1>
-      <img src={user.user_avatar} alt={user.user_name} />
-      <h5>
-        <strong>Trade Score:</strong> {user.user_trade_score}
-      </h5>
-      <h5>Location: {user.user_location}</h5>
-      <span>
-        <h5>Bio:</h5> 
-        <p>{user.user_bio}</p>
-      </span>
+    <Container className="userPage">
+      <Card style={{ width: '27rem' }}>
+        <Card.Img src={user.user_avatar} />
+        <Card.Body>
+          <Card.Title>{user.user_name}</Card.Title>
+          <br></br>
+          <Card.Subtitle>Trade Score: {user.user_trade_score}</Card.Subtitle>
+          <br></br>
+          <Card.Subtitle>Location: {user.user_location}</Card.Subtitle>
+          <br></br>
+          <Card.Text>{user.user_bio}</Card.Text>
+          <Button variant="primary" onClick={showGamesHandler}>
+            {!gamesVisible
+              ? `${user.user_name}'s Games`
+              : `Hide ${user.user_name}'s Games`}
+          </Button>
+        </Card.Body>
+      </Card>
 
-      <Button variant="primary" onClick={showGamesHandler}>
-        {!gamesVisible
-          ? `${user.user_name}'s Games`
-          : `Hide ${user.user_name}'s Games`}
-      </Button>
-      <div>{gamesVisible ? showUserGames : null}</div>
-    </div>
+      <div className="userGames">{gamesVisible ? showUserGames : null}</div>
+    </Container>
   );
 }
 

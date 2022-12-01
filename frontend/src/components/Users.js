@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Card, Container, Row, Col } from 'react-bootstrap';
+import './Users.css'
 const API = process.env.REACT_APP_API_URL;
 
 function Users() {
@@ -17,21 +18,24 @@ function Users() {
       });
   }, []);
 
-  const allUsers = users.map((user, index) => {
+  const allUsers = users.map((user, idx) => {
     return (
-      <div className="usercard" key={index}>
-        <Link to={`/users/${user.user_email}`}>
-          <img src={user.user_avatar} alt={user.user_name} />
-        </Link>
-
-        <h3>
-          {user.user_name} 
-        </h3>
-      </div>
+      <Card className='usercard' key={idx}>
+        <Card.Title>{user.user_name}</Card.Title>
+        <Card.Link href={`/users/${user.user_email}`}>
+        <Card.Img className='userImage' src={user.user_avatar} alt={user.user_name}/>
+        </Card.Link>
+      </Card>
     );
   });
 
-  return <div className="users">{allUsers}</div>;
+  return (
+    <Container>
+      <Row xs={2} md={5}>
+        {allUsers}
+      </Row>
+    </Container>
+  );
 }
 
 export default Users;
