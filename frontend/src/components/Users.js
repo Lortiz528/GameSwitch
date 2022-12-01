@@ -37,7 +37,7 @@ function Users() {
 
   const getUsersByLocation = (users, location) => {
     if (location === 'All Locations') {
-      setSelectedUsers({ ...users });
+      setSelectedUsers([...users]);
     } else {
       let filteredUsers = users.filter((user) => {
         return user.user_location === location;
