@@ -74,7 +74,7 @@ function Login() {
     <section>
       <h2>Login Page</h2>
       <Form onSubmit={handleSubmit} className="loginForm">
-        <Form.Group className="mb-3" controlId="formBasicUserEmail">
+        <Form.Group className="mb-3">
           <Form.Label>User Email: </Form.Label>
           <Form.Control
             type="email"
@@ -86,7 +86,7 @@ function Login() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicUserPassword">
+        <Form.Group className="mb-3">
           <Form.Label>Password: </Form.Label>
           <Form.Control
             type="password"

@@ -72,7 +72,7 @@ function Signup() {
     <section>
       <h2>Sign Up Page</h2>
       <Form onSubmit={handleSubmit} className="signUpForm">
-        <Form.Group className="mb-3" controlId="formBasicUserName">
+        <Form.Group className="mb-3">
           <Form.Label>User Name: </Form.Label>
           <Form.Control
             type="text"
@@ -84,7 +84,7 @@ function Signup() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicUserEmail">
+        <Form.Group className="mb-3">
           <Form.Label>Email: </Form.Label>
           <Form.Control
             type="email"
@@ -96,7 +96,7 @@ function Signup() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicUserPassWord">
+        <Form.Group className="mb-3">
           <Form.Label>Password: </Form.Label>
           <Form.Control
             type="password"
@@ -108,7 +108,7 @@ function Signup() {
           />
         </Form.Group>
 
-        <Form.Group className="mb-3" controlId="formBasicUserConfirmedPassWord">
+        <Form.Group className="mb-3">
           <Form.Label>Confirmed Password: </Form.Label>
           <Form.Control
             type="password"
