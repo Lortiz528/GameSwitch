@@ -24,6 +24,11 @@ function Home() {
       <button>
         <Link to="gamecollection">Game Collection</Link>
       </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="traderequestrecords">Trade Records</Link>
+      </button>
     </div>
   );
 }

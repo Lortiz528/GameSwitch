@@ -21,6 +21,7 @@ import GameCollection from "./gamecollection/GameCollection";
 import GameDetail from "./components/GameDetail";
 import AddNewGame from "./gamecollection/AddNewGame";
 import UpdateGame from "./gamecollection/UpdateGame";
+import TradeRequestRecords from "./tradeRequestRecords/TradeRequestRecords";
 
 function App() {
   //stores the user info throughout the whole app
@@ -46,6 +47,10 @@ function App() {
             <Route path="/updategame/:gameid" element={<UpdateGame />} />
             <Route path="/tutorial" element={<GameSwitchDescription />} />
             <Route path="/games/:gameId" element={<GameDetail />} />
+            <Route
+              path="/traderequestrecords"
+              element={<TradeRequestRecords />}
+            />
             <Route path="*" element={<FourOFour />} />
           </Routes>
         </main>
