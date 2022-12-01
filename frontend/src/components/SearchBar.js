@@ -36,9 +36,10 @@ function SearchBar() {
         onChange={inputHandler}
         value={userInput}
         placeholder='Search Games'
+        className='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      <div className='dropdown'>
+      <div className='dropdown position-absolute'>
         {userInput.length > 0
           ? games
               .filter((game) =>
