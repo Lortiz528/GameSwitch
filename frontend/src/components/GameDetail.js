@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import TradeRequest from './TradeRequest'
+import { Container, Row, Col } from 'react-bootstrap'
 const API = process.env.REACT_APP_API_URL
 
 function GameDetail() {
@@ -54,23 +55,25 @@ function GameDetail() {
 
   return (
     <div>
-      <p>Game Name: {game.game_name}</p>
-      <img src={game.game_img} alt='game pic' width={200} />
-      <p>Description: {game.game_description}</p>
-      <p>Game Brand: {game.game_brand}</p>
-      <p>Game Console: {game.game_console}</p>
-      <p>
-        UserName:{' '}
-        <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link>{' '}
-      </p>
-      <button onClick={handleOpen}>offer trade</button>
-      <TradeRequest
-        handleClose={handleClose}
-        show={show}
-        findUserName={findUserName(user)}
-        user={user}
-        currentGameInfo={game}
-      />
+      <Container>
+        <p>Game Name: {game.game_name}</p>
+        <img src={game.game_img} alt='game pic' width={200} />
+        <p>Description: {game.game_description}</p>
+        <p>Game Brand: {game.game_brand}</p>
+        <p>Game Console: {game.game_console}</p>
+        <p>
+          UserName:{' '}
+          <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link>{' '}
+        </p>
+        <button onClick={handleOpen}>offer trade</button>
+        <TradeRequest
+          handleClose={handleClose}
+          show={show}
+          findUserName={findUserName(user)}
+          user={user}
+          currentGameInfo={game}
+        />
+      </Container>
     </div>
   )
 }
