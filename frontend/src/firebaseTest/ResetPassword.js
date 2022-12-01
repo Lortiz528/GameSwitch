@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./ResetPassword.css";
 
 //firebase import
 import auth from "./firebaseAuth";
@@ -68,40 +71,41 @@ function ResetPassWord() {
   };
 
   return (
-    <section>
+    <section className="resetPasswordForm">
       <h2>Reset Password Page</h2>
-      <form onSubmit={handleSubmit} className="form">
+      <Form onSubmit={handleSubmit} className="form">
         <div>
           <h2>Email: {currentUser.user_email}</h2>
         </div>
         <br />
-        <div>
-          <label htmlFor="user_password">Password: </label>
-          <input
+        <Form.Group className="mb-3">
+          <Form.Label>Password: </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter Password"
             id="user_password"
             value={userInput.user_password}
-            type="password"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_confirmPassword">Password: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Password: </Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="Enter Password"
             id="user_confirmPassWord"
             value={userInput.user_confirmPassWord}
-            type="password"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
+          />
+        </Form.Group>
 
-        <button>
-          <input type="submit" value="Update Password" />
-        </button>
-      </form>
+        <Button variant="primary" type="submit">
+          Update Password
+        </Button>
+      </Form>
       <br></br>
       <button>
         {" "}

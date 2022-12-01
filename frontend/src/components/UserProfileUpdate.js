@@ -4,6 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "./UserProfileUpdate.css";
 
 //API url
 const API = process.env.REACT_APP_API_URL;
@@ -46,61 +49,51 @@ function UserProfileUpdate() {
   //  [user_name, user_trade_score, user_location, user_avatar, email]
 
   return (
-    <section>
+    <section className="userProfileUpdateForm">
       <h2>Update Profile Page</h2>
-      <form onSubmit={handleSubmit} className="form">
+      <Form onSubmit={handleSubmit} className="form">
         <div>
           <h2>Email: {currentUser.user_email}</h2>
         </div>
-        <br />
-        <div>
-          <label htmlFor="user_name">User Name: </label>
-          <input
+        <Form.Group className="mb-3">
+          <Form.Label>UserName: </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Username"
             id="user_name"
             value={userInput.user_name}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_trade_score">Trade Score: </label>
-          <input
-            id="user_trade_score"
-            value={userInput.user_trade_score}
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Location: </Form.Label>
+          <Form.Control
             type="text"
-            onChange={handleTextChange}
-            required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_location">Location: </label>
-          <input
+            placeholder="Enter Location"
             id="user_location"
             value={userInput.user_location}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <div>
-          <label htmlFor="user_avatar">Avatar: </label>
-          <input
+          />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
+          <Form.Label>Avatar: </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Enter Avatar Url"
             id="user_avatar"
             value={userInput.user_avatar}
-            type="text"
             onChange={handleTextChange}
             required
-          ></input>
-        </div>
-        <br />
-        <button>
-          <input type="submit" value="Update Profile" />
-        </button>
-      </form>
+          />
+        </Form.Group>
+        <Button variant="primary" type="submit">
+          Update Profile
+        </Button>
+      </Form>
       <br></br>
       <button>
         {" "}
