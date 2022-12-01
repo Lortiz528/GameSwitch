@@ -30,22 +30,20 @@ function SearchBar() {
   }
 
   return (
-    <div className='dropdown'>
+    <div>
       <input
         input='text'
         onChange={inputHandler}
         value={userInput}
         placeholder='Search Games'
-        class='form-control mr-sm-2'
+        className='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      <div>
+      <div className='dropdown position-absolute'>
         {userInput.length > 0
           ? games
-              .filter(
-                (game) =>
-                  game.game_name.toLowerCase().includes(userInput) &&
-                  game.game_name.toLowerCase() !== userInput
+              .filter((game) =>
+                game.game_name.toLowerCase().includes(userInput)
               )
               .map((game, index) => (
                 <ul
@@ -53,9 +51,7 @@ function SearchBar() {
                   key={index}
                   onClick={() => SearchHandleClick(game.game_name)}
                 >
-                  <li class='dropdown-item '>
-                    <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
-                  </li>
+                  <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
                 </ul>
               ))
           : null}
