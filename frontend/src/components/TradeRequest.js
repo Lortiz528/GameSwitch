@@ -1,9 +1,10 @@
 import { Button, Modal, Card, Form, Container, Row, Col } from 'react-bootstrap'
 import { CurrentUserContext } from './CurrentUserContext'
 import { useContext, useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 const API = process.env.REACT_APP_API_URL
+
 function TradeRequest({
   show,
   handleClose,
@@ -14,7 +15,6 @@ function TradeRequest({
   const { currentUser } = useContext(CurrentUserContext)
   const [game, setGame] = useState([])
   const [selectGame, setSelectGame] = useState('')
-  const { gameId } = useParams()
   let navigate = useNavigate()
 
   useEffect(() => {
@@ -44,19 +44,18 @@ function TradeRequest({
   console.log('receiver gameid', receiverGameId)
   const handleClick = () => {
     let allId = {}
-    allId.trade_offerer_user_id = currentUser.user_id;
-    allId.trade_offerer_game_id = parseInt(selectGame);
-    allId.trade_receiver_game_id = receiverGameId;
-    allId.trade_receiver_user_id = receiverUserId;
+    allId.trade_offerer_user_id = currentUser.user_id
+    allId.trade_offerer_game_id = parseInt(selectGame)
+    allId.trade_receiver_game_id = receiverGameId
+    allId.trade_receiver_user_id = receiverUserId
 
     axios
-      .post(`${API}/trades/newtrade`,allId )
+      .post(`${API}/trades/newtrade`, allId)
       .then(() => {
         alert('you successfully made a trade request')
-        navigate(`/`) 
+        navigate(`/`)
       })
       .catch((error) => console.log(error))
-    
   }
   return (
     <Modal show={show} onHide={handleClose}>
@@ -75,7 +74,7 @@ function TradeRequest({
                   <Card.Img src={currentUser.user_avatar} />
                   <Form.Select
                     value={selectGame}
-                    onChange={(e) => setSelectGame((e.target.value))}
+                    onChange={(e) => setSelectGame(e.target.value)}
                   >
                     <option>Select Game</option>
                     {game

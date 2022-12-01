@@ -36,16 +36,13 @@ function SearchBar() {
         onChange={inputHandler}
         value={userInput}
         placeholder='Search Games'
-        class='form-control mr-sm-2'
       />
       {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
       <div className='dropdown'>
         {userInput.length > 0
           ? games
-              .filter(
-                (game) =>
-                  game.game_name.toLowerCase().includes(userInput) &&
-                  game.game_name.toLowerCase() !== userInput
+              .filter((game) =>
+                game.game_name.toLowerCase().includes(userInput)
               )
               .map((game, index) => (
                 <ul
