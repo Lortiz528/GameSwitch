@@ -1,7 +1,8 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Card, Container, Row, Form } from 'react-bootstrap';
-import './Users.css';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { Card, Container, Row, Form } from "react-bootstrap";
+import "./Users.css";
+import { Link } from "react-router-dom";
 const API = process.env.REACT_APP_API_URL;
 
 function Users() {
@@ -36,7 +37,7 @@ function Users() {
   // //console.log(locationsArray)
 
   const getUsersByLocation = (users, location) => {
-    if (location === 'All Locations') {
+    if (location === "All Locations") {
       setSelectedUsers([...users]);
     } else {
       let filteredUsers = users.filter((user) => {
@@ -50,13 +51,13 @@ function Users() {
     return (
       <Card className="usercard" key={idx}>
         <Card.Title>{user.user_name}</Card.Title>
-        <Card.Link href={`/users/${user.user_email}`}>
+        <Link to={`/users/${user.user_email}`}>
           <Card.Img
             className="userImage"
             src={user.user_avatar}
             alt={user.user_name}
           />
-        </Card.Link>
+        </Link>
       </Card>
     );
   });
@@ -65,17 +66,18 @@ function Users() {
 
   return (
     <Container>
-      <Form.Select className='dropdown-userLocation' 
+      <Form.Select
+        className="dropdown-userLocation"
         onChange={(e) => {
           getUsersByLocation(users, e.target.value);
         }}
       >
-        <option value={'All Locations'}>All Locations</option>
-        <option value={'Brooklyn'}>Brooklyn</option>
-        <option value={'Manhattan'}>Manhattan</option>
-        <option value={'Bronx'}>Bronx</option>
-        <option value={'Staten Island'}>Staten Island</option>
-        <option value={'Queens'}>Queens</option>
+        <option value={"All Locations"}>All Locations</option>
+        <option value={"Brooklyn"}>Brooklyn</option>
+        <option value={"Manhattan"}>Manhattan</option>
+        <option value={"Bronx"}>Bronx</option>
+        <option value={"Staten Island"}>Staten Island</option>
+        <option value={"Queens"}>Queens</option>
       </Form.Select>
       <Container>
         <Row xs={1} md={5}>

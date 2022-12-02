@@ -1,8 +1,8 @@
-import axios from 'axios';
-import './User.css';
-import { Button, Card, Container } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import axios from "axios";
+import "./User.css";
+import { Button, Card, Container } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 
 const API = process.env.REACT_APP_API_URL;
 
@@ -34,13 +34,13 @@ function User() {
   const showUserGames = userGames.map((game, idx) => {
     return (
       <Card key={idx} className="gameCard">
-        <Card.Link href={`/games/${game.game_id}`}>
+        <Link to={`/games/${game.game_id}`}>
           <Card.Img
             className="usergameImage"
             src={game.game_img}
             alt={game.game_name}
           />
-        </Card.Link>
+        </Link>
         <Card.Title>{game.game_name}</Card.Title>
         <Card.Subtitle>
           {game.game_brand}-{game.game_console}
@@ -51,7 +51,7 @@ function User() {
 
   return (
     <Container className="userPage">
-      <Card style={{ width: '27rem' }}>
+      <Card style={{ width: "27rem" }}>
         <Card.Img src={user.user_avatar} />
         <Card.Body>
           <Card.Title>{user.user_name}</Card.Title>
