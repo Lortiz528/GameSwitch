@@ -43,7 +43,7 @@ tradeController.get("/:trade_receiver_user_id/received", async (req, res) => {
   const { trade_receiver_user_id } = req.params;
 
   const getTrade = await getReceivedTradesByUserID(trade_receiver_user_id);
-  if (getTrade.length > 0) {
+  if (getTrade) {
     res.status(200).json({ success: true, payload: getTrade });
   } else {
     res.status(200).json({
@@ -58,7 +58,7 @@ tradeController.get("/:trade_offerer_user_id/offered", async (req, res) => {
   const { trade_offerer_user_id } = req.params;
 
   const getTrade = await getOfferedTradesByUserID(trade_offerer_user_id);
-  if (getTrade.length > 0) {
+  if (getTrade) {
     res.status(200).json({ success: true, payload: getTrade });
   } else {
     res.status(200).json({
