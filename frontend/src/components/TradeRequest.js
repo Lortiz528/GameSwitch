@@ -2,8 +2,11 @@ import { Button, Modal, Card, Form, Container, Row, Col } from 'react-bootstrap'
 import { CurrentUserContext } from './CurrentUserContext'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {toast, ToastContainer} from 'react-toastify'
+import submitSound from '../mixkit-bonus-earned-in-video-game-2058.wav'
 import axios from 'axios'
 const API = process.env.REACT_APP_API_URL
+
 
 function TradeRequest({
   show,
@@ -28,6 +31,9 @@ function TradeRequest({
       })
   }, [])
 
+  const playAudio = () => {
+    new Audio(submitSound).play();
+  }
   let image = (users) => {
     for (let user of users) {
       if (user.user_name === findUserName) {
@@ -52,11 +58,33 @@ function TradeRequest({
     axios
       .post(`${API}/trades/newtrade`, allId)
       .then(() => {
-        alert('you successfully made a trade request')
-        navigate(`/`)
+      playAudio()
+       notify()
       })
       .catch((error) => console.log(error))
+      
   }
+  const notify = () => {
+    toast.success(
+      'Congrats on trading this is your first step! \n You will be redirected in 2 seconds.',
+      {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate('/');
+    }, 3100);
+  };
+
+
+
+
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
@@ -105,6 +133,9 @@ function TradeRequest({
         <Button variant='secondary' onClick={handleClick}>
           Submit
         </Button>
+      
+      <ToastContainer autoClose={2000} theme="light" />
+    
       </Modal.Footer>
     </Modal>
   )

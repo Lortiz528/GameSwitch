@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import {toast, ToastContainer} from 'react-toastify'
 import "./Signup.css";
 
 //firebase import
@@ -32,7 +33,7 @@ function Signup() {
       )
         .then((cred) => {
           console.log(cred);
-          alert("you have signed up", cred);
+          // alert("you have signed up", cred);
           createNewUser();
         })
         .catch((error) => {
@@ -48,7 +49,8 @@ function Signup() {
     axios
       .post(`${API}/users/newuser`, userInput)
       .then(() => {
-        navigate("/");
+        notify()
+        // navigate("/");
       })
       .catch((error) => console.error("catch", error));
   };
@@ -67,7 +69,23 @@ function Signup() {
       user_confirmPassWord: "",
     });
   };
-
+  const notify = () => {
+    toast.success(
+      'You have successfully created a new account!',
+      {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate('/');
+    }, 3100);
+  };
   return (
     <section>
       <h2>Sign Up Page</h2>
@@ -124,7 +142,7 @@ function Signup() {
           Sign Up
         </Button>
       </Form>
-
+      <ToastContainer autoClose={2000} theme="light" />
       <br></br>
       <button>
         {" "}
