@@ -6,6 +6,7 @@ import { CurrentUserContext } from '../components/CurrentUserContext';
 import { useContext } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import Image from 'react-bootstrap/Image';
 import './UserProfileUpdate.css';
 
 //API url
@@ -13,13 +14,14 @@ const API = process.env.REACT_APP_API_URL;
 
 function UserProfileUpdate() {
   const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+  //console.log(currentUser);
 
   const [userInput, setUserInput] = useState({
     user_name: '',
     user_trade_score: '',
     user_location: '',
     user_avatar: '',
+    user_bio: '',
   });
 
   useEffect(() => {
@@ -41,6 +43,7 @@ function UserProfileUpdate() {
         currentUser.user_name = userInput.user_name;
         currentUser.user_location = userInput.user_location;
         currentUser.user_avatar = userInput.user_avatar;
+        currentUser.user_bio = userInput.user_bio;
         navigate('/userprofile');
       })
       .catch((error) => console.error('catch', error));
@@ -63,13 +66,15 @@ function UserProfileUpdate() {
 
   return (
     <section className="userProfileUpdateForm">
-      <h2>Update Profile Page</h2>
+      <h2>Update your Profile Page</h2>
       <Form onSubmit={handleSubmit} className="form">
         <div>
           <h2>Email: {currentUser.user_email}</h2>
         </div>
         <Form.Group className="mb-3">
-          <Form.Label>UserName: </Form.Label>
+          <Form.Label>
+            <strong>UserName:</strong>{' '}
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Username"
@@ -81,19 +86,49 @@ function UserProfileUpdate() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Location: </Form.Label>
-          <Form.Control
+          <Form.Label>
+            <strong>Location:</strong>{' '}
+          </Form.Label>
+          <Form.Select
+            type="text"
+            id="user_location"
+            value={userInput.user_location}
+            onChange={handleTextChange}
+            required
+          >
+            <option>{userInput.user_location}</option>
+            <option value='Manhattan'>Manhattan</option>
+            <option value='Queens'>Queens</option>
+            <option value='Staten Island'>Staten Island</option>
+            <option value='Bronx'>Bronx</option>
+            <option value='Brooklyn'>Brooklyn</option>
+          </Form.Select>
+          {/* <Form.Control
             type="text"
             placeholder="Enter Location"
             id="user_location"
             value={userInput.user_location}
             onChange={handleTextChange}
             required
+          /> */}
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <strong>Bio:</strong>{' '}
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="User Bio"
+            id="user_bio"
+            value={userInput.user_bio}
+            onChange={handleTextChange}
+            required
           />
         </Form.Group>
-
         <Form.Group className="mb-3">
-          <Form.Label>Avatar: </Form.Label>
+          <Form.Label>
+            <strong>Avatar:</strong>{' '}
+          </Form.Label>
           <Form.Control
             type="text"
             placeholder="Enter Avatar Url"
@@ -103,21 +138,22 @@ function UserProfileUpdate() {
             required
           />
         </Form.Group>
+        <Image
+          roundedCircle
+          src={userInput.user_avatar}
+          alt={userInput.user_name}
+        />
+        <br></br>
+        <br></br>
         <Button variant="primary" type="submit">
           Update Profile
         </Button>
       </Form>
       <br></br>
-      <button>
-        {' '}
-        <Link to="/login">Login</Link>
-      </button>
+      <Button variant="light">
+        <Link to="/userprofile">Cancel</Link>
+      </Button>
       <br></br>
-      <br></br>
-      <button>
-        {' '}
-        <Link to="/">Home</Link>
-      </button>
       <hr />
     </section>
   );
