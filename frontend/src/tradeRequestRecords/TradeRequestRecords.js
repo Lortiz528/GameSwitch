@@ -47,20 +47,19 @@ export default function TradeRequestRecords() {
   function displayTradeRecord(tradeRecords) {
     if (tradeRecords.length === 0) return [];
 
-    console.log("hello");
     return tradeRecords.map((tradeRecord) => {
       return (
         <div>
           <ul>
-            <li>trade_offerer_user_id: {tradeRecord.trade_offerer_user_id}</li>
-            <li>trade_offerer_game_id: {tradeRecord.trade_offerer_game_id}</li>
-            <li>
-              trade_receiver_user_id: {tradeRecord.trade_receiver_user_id}
-            </li>
-            <li>
-              trade_receiver_game_id: {tradeRecord.trade_receiver_game_id}
-            </li>
-            <li>status: {tradeRecord.trade_success}</li>
+            <h4>Summary</h4>
+            <p>
+              {`${tradeRecord.offer_name}is offering ${tradeRecord.offerer_game_name} to switch ${tradeRecord.receiver_name}'s ${tradeRecord.receiver_game_name}`}
+            </p>
+            {/* <li>Receiver: {tradeRecord.receiver_name}</li>
+            <li>Offerer: {tradeRecord.offer_name}</li>
+            <li>receiver_game_name: {tradeRecord.receiver_game_name}</li>
+            <li>offerer_game_name: {tradeRecord.offerer_game_name}</li>
+            <li>status: {tradeRecord.trade_success}</li> */}
           </ul>
         </div>
       );

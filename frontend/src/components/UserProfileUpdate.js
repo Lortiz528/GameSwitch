@@ -1,36 +1,49 @@
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import { CurrentUserContext } from "../components/CurrentUserContext";
-import { useContext } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
-import "./UserProfileUpdate.css";
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { CurrentUserContext } from '../components/CurrentUserContext';
+import { useContext } from 'react';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import './UserProfileUpdate.css';
 
 //API url
 const API = process.env.REACT_APP_API_URL;
 
 function UserProfileUpdate() {
   const { currentUser } = useContext(CurrentUserContext);
-  //console.log(currentUser);
+  console.log(currentUser);
 
   const [userInput, setUserInput] = useState({
-    user_name: "",
-    user_trade_score: "",
-    user_location: "",
-    user_avatar: "",
+    user_name: '',
+    user_trade_score: '',
+    user_location: '',
+    user_avatar: '',
   });
 
+  useEffect(() => {
+    axios
+      .get(`${API}/users/${currentUser.user_email}`)
+      .then((res) => {
+        setUserInput(res.data.payload);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
   const navigate = useNavigate();
 
   const updateProfile = () => {
     axios
       .put(`${API}/users/${currentUser.user_email}`, userInput)
       .then(() => {
-        navigate("/");
+        currentUser.user_name = userInput.user_name;
+        currentUser.user_location = userInput.user_location;
+        currentUser.user_avatar = userInput.user_avatar;
+        navigate('/userprofile');
       })
-      .catch((error) => console.error("catch", error));
+      .catch((error) => console.error('catch', error));
   };
 
   const handleTextChange = (event) => {
@@ -41,8 +54,8 @@ function UserProfileUpdate() {
     event.preventDefault();
     updateProfile();
     setUserInput({
-      user_password: "",
-      user_confirmPassWord: "",
+      user_password: '',
+      user_confirmPassWord: '',
     });
   };
 
@@ -96,13 +109,13 @@ function UserProfileUpdate() {
       </Form>
       <br></br>
       <button>
-        {" "}
+        {' '}
         <Link to="/login">Login</Link>
       </button>
       <br></br>
       <br></br>
       <button>
-        {" "}
+        {' '}
         <Link to="/">Home</Link>
       </button>
       <hr />

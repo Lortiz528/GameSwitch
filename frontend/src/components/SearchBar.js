@@ -27,6 +27,7 @@ function SearchBar() {
   const SearchHandleClick = (input) => {
     setUserInput(input)
     // console.log('input is', input)
+    setUserInput('')
   }
 
   return (
@@ -38,8 +39,7 @@ function SearchBar() {
         placeholder='Search Games'
         className='form-control mr-sm-2'
       />
-      {/* <button onClick={() => SearchHandleClick(userInput)}>Search</button> */}
-      <div className='dropdown position-absolute'>
+      <div className='dropdown'>
         {userInput.length > 0
           ? games
               .filter((game) =>
