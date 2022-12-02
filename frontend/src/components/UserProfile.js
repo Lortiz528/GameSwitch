@@ -83,6 +83,26 @@ export default function UserProfile() {
       <button>
         <Link to="/">Home</Link>
       </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="/resetpassword">Reset Password</Link>
+      </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="/updateprofile">Update Profile</Link>
+      </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="/gamecollection">Game Collection</Link>
+      </button>
+      <br></br>
+      <br></br>
+      <button>
+        <Link to="/traderequestrecords">Trade Records</Link>
+      </button>
     </div>
   );
 }

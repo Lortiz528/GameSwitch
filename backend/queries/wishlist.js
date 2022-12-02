@@ -7,8 +7,8 @@ const getAllWishlistGames = async (user_id) => {
       user_id
     );
     return games;
-  } catch (err) {
-    return err;
+  } catch (error) {
+    console.log(error.message)
   }
 };
 
@@ -19,8 +19,8 @@ const getWishlistGameByID = async (user_id, wishlist_game_id) => {
       [user_id, wishlist_game_id]
     );
     return game;
-  } catch (err) {
-    return err;
+  } catch (error) {
+    console.log(error.message)
   }
 };
 
@@ -37,7 +37,7 @@ const createWishlistGame = async (
     );
     return newGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
 
@@ -61,7 +61,7 @@ const updateWishlistGame = async (
     );
     return updateGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
 
@@ -81,7 +81,7 @@ const deleteWishlistGame = async (user_id, wishlist_game_id) => {
     );
     return deletedGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
 

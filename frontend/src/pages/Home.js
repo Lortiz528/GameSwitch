@@ -6,29 +6,7 @@ function Home() {
     <div>
       <h2>Welcome Game Switch NYC !</h2>
       <br></br>
-      <button>
-        <Link to="userprofile">User Profile</Link>
-      </button>
-      <br></br>
-      <br></br>
-      <button>
-        <Link to="resetpassword">Reset Password</Link>
-      </button>
-      <br></br>
-      <br></br>
-      <button>
-        <Link to="updateprofile">Update Profile</Link>
-      </button>
-      <br></br>
-      <br></br>
-      <button>
-        <Link to="gamecollection">Game Collection</Link>
-      </button>
-      <br></br>
-      <br></br>
-      <button>
-        <Link to="traderequestrecords">Trade Records</Link>
-      </button>
+      <h2>Sign up or Log in to view your profile and look for Trades!</h2>
     </div>
   );
 }
