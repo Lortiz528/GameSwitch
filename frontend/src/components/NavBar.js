@@ -10,7 +10,13 @@ function NavBar() {
         <img src={logo} alt='logo' width={100} />
       </Link>
       <SearchBar />
-      <div className='button-nav'>
+      <div>
+        <button>
+          <Link to='/userprofile'>User Profile</Link>
+        </button>
+        <button>
+          <Link to='/users'>Users</Link>
+        </button>
         <button>
           <Link to='signup'>Sign Up</Link>
         </button>
