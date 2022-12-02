@@ -7,8 +7,8 @@ const getAllUserGames = async (user_id) => {
       user_id
     );
     return games;
-  } catch (err) {
-    return err;
+  } catch (error) {
+    console.log(error.message)
   }
 };
 
@@ -17,10 +17,11 @@ const getUserGameByID = async (user_id, game_id) => {
     const game = await db.any(
       'SELECT * FROM games WHERE user_id = $1 AND game_id = $2',
       [user_id, game_id]
+      
     );
     return game;
-  } catch (err) {
-    return err;
+  } catch (error) {
+    console.log(error.message)
   }
 };
 
@@ -48,7 +49,7 @@ const createUserGame = async (
     );
     return newGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
 
@@ -78,9 +79,10 @@ const updateUserGame = async (
     );
     return updateGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
+
 
 const deleteUserGame = async (user_id, game_id) => {
   try {
@@ -98,7 +100,7 @@ const deleteUserGame = async (user_id, game_id) => {
     );
     return deletedGame;
   } catch (error) {
-    return error;
+    console.log(error.message)
   }
 };
 
