@@ -10,6 +10,12 @@ function NavBar() {
       </Link>
       <SearchBar />
       <div>
+      <button>
+        <Link to="/userprofile">User Profile</Link>
+      </button>
+      <button>
+        <Link to="/users">Users</Link>
+      </button>
         <button>
           <Link to='signup'>Sign Up</Link>
         </button>

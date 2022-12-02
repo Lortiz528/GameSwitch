@@ -83,10 +83,6 @@ export default function UserProfile() {
       <button>
         <Link to="/">Home</Link>
       </button>
-     
-      <button>
-        <Link to="/userprofile">User Profile</Link>
-      </button>
       <br></br>
       <br></br>
       <button>
