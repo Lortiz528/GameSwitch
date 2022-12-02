@@ -2,7 +2,7 @@ import SearchBar from './SearchBar'
 import logo from './logo.png'
 import { Link } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
-import './NavBar.css'
+
 function NavBar() {
   return (
     <Navbar className=' justify-content-between' bg='dark' sticky='top'>
