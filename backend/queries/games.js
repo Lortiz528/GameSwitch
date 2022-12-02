@@ -7,19 +7,19 @@ const getAllGames = async () => {
     const allGames = await db.any('SELECT * FROM games');
     return allGames;
   } catch (error) {
-    res.status(404).json({ sucess: false, message: 'no games!' });
+    console.log(error.message)
   }
 };
 const getGame = async (id) => {
   try {
-    const game = await db.any('SELECT * FROM games WHERE game_id=$1', id)
-    return game
+    const game = await db.any('SELECT * FROM games WHERE game_id=$1', id);
+    return game;
   } catch (error) {
-    return error
+    console.log(error.message)
   }
-}
+};
 
 module.exports = {
   getAllGames,
-  getGame
+  getGame,
 };
