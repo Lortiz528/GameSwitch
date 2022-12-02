@@ -18,6 +18,7 @@
   "homepage": "https://github.com/Lortiz528/GameSwitch#readme",
   "dependencies": {
     "bootstrap": "^3.4.1",
-    "react-router-dom": "^6.4.3"
+    "react-router-dom": "^6.4.3",
+    "react-toastify": "^9.1.1"
   }
 }

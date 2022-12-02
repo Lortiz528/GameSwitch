@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import SignOut from "./Signout";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
+import {toast, ToastContainer} from 'react-toastify'
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -48,8 +49,9 @@ function Login() {
         //console.log(email);
         setUserInfo(email);
         //console.log(cred);
-        alert("you have logged in", cred);
-        navigate("/userprofile");
+        // alert("you have logged in", cred);
+        notify()
+        
       })
       .catch((error) => {
         console.log(error.message);
@@ -69,6 +71,25 @@ function Login() {
       user_password: "",
     });
   };
+  const notify = () => {
+    toast.success(
+      'You have successfully logged in!',
+      {
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+    setTimeout(() => {
+      navigate("/userprofile");
+    }, 3100);
+  };
+
+
 
   return (
     <section>
@@ -102,6 +123,7 @@ function Login() {
           Login
         </Button>
       </Form>
+      <ToastContainer autoClose={2000} theme="light" />
       <br></br>
       <SignOut />
       <button>
