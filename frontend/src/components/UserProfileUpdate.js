@@ -13,7 +13,7 @@ const API = process.env.REACT_APP_API_URL;
 
 function UserProfileUpdate() {
   const { currentUser } = useContext(CurrentUserContext);
-  //console.log(currentUser);
+  console.log(currentUser);
 
   const [userInput, setUserInput] = useState({
     user_name: '',
@@ -38,7 +38,10 @@ function UserProfileUpdate() {
     axios
       .put(`${API}/users/${currentUser.user_email}`, userInput)
       .then(() => {
-        navigate('/');
+        currentUser.user_name = userInput.user_name;
+        currentUser.user_location = userInput.user_location;
+        currentUser.user_avatar = userInput.user_avatar;
+        navigate('/userprofile');
       })
       .catch((error) => console.error('catch', error));
   };

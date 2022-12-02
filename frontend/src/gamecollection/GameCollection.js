@@ -15,6 +15,7 @@ export default function GameCollection() {
     axios
       .get(`${API}/loggedin/${currentUser.user_id}/games`)
       .then((res) => {
+        if(res.success){}
         setGameCollection(res.data.payload);
       })
       .catch((error) => console.error("catch", error));
@@ -56,13 +57,13 @@ export default function GameCollection() {
       </section>
     );
   });
-
+console.log(games)
   return (
     <seciton>
       <Link to="/addnewgame">
         <button>Add New Game</button>
       </Link>
-      <div>{games.length !== 0 ? games : null}</div>
+      <div>{games.length !== 0 ? games : <img src="https://i.imgur.com/K8PJPeN.png"/>}</div>
       <button>
         <Link to="/">Home</Link>
       </button>
