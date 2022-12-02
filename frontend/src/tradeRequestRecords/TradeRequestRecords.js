@@ -48,10 +48,17 @@ export default function TradeRequestRecords() {
     if (tradeRecords.length === 0) return [];
 
     return tradeRecords.map((tradeRecord) => {
+      let dateString = tradeRecord.created_at;
+      const formatDate = (dateString) => {
+        const options = { year: "numeric", month: "long", day: "numeric"}
+        return new Date(dateString).toLocaleDateString(undefined, options)
+      }
+      // console.log(tradeRecord)
+      // console.log(formatDate(dateString))
       return (
         <div>
           <ul>
-            <h4>Summary</h4>
+          <h5>Trade Offer Date: {formatDate(dateString)}</h5>
             <p>
               {`${tradeRecord.offer_name}is offering ${tradeRecord.offerer_game_name} to switch ${tradeRecord.receiver_name}'s ${tradeRecord.receiver_game_name}`}
             </p>
