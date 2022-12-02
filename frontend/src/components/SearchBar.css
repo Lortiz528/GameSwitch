@@ -1,6 +1,8 @@
 .dropdown {
   background-color: white;
   border: 1px solid gray;
+  z-index: 1;
+  position: absolute;
 }
 
 .dropdown:empty {

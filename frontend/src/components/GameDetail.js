@@ -2,6 +2,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import TradeRequest from './TradeRequest'
+import { Container, Row, Col } from 'react-bootstrap'
+import './GameDetail.css'
 const API = process.env.REACT_APP_API_URL
 
 function GameDetail() {
@@ -54,23 +56,46 @@ function GameDetail() {
 
   return (
     <div>
-      <p>Game Name: {game.game_name}</p>
-      <img src={game.game_img} alt='game pic' width={200} />
-      <p>Description: {game.game_description}</p>
-      <p>Game Brand: {game.game_brand}</p>
-      <p>Game Console: {game.game_console}</p>
-      <p>
-        UserName:{' '}
-        <Link to={`/users/${findUserEmail(user)}`}>{findUserName(user)}</Link>{' '}
-      </p>
-      <button onClick={handleOpen}>offer trade</button>
-      <TradeRequest
-        handleClose={handleClose}
-        show={show}
-        findUserName={findUserName(user)}
-        user={user}
-        currentGameInfo={game}
-      />
+      <Container fluid className='mt-4'>
+        <Row>
+          <Col>
+            <img
+              className='game-img'
+              src={game.game_img}
+              alt='game pic'
+              height={500}
+            />
+          </Col>
+          <Col>
+            <div className='game-detail'>
+              <h2>{game.game_name}</h2>
+              <p className='description'>
+                <strong>Description:</strong> {game.game_description}
+              </p>
+              <p>
+                <strong>Brand:</strong> {game.game_brand}
+              </p>
+              <p>
+                <strong>Console:</strong> {game.game_console}
+              </p>
+              <p>
+                <strong>Owner: </strong>
+                <Link to={`/users/${findUserEmail(user)}`}>
+                  {findUserName(user)}
+                </Link>{' '}
+              </p>
+              <button onClick={handleOpen}>offer trade</button>
+              <TradeRequest
+                handleClose={handleClose}
+                show={show}
+                findUserName={findUserName(user)}
+                user={user}
+                currentGameInfo={game}
+              />
+            </div>
+          </Col>
+        </Row>
+      </Container>
     </div>
   )
 }
