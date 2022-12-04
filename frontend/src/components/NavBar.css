@@ -1,0 +1,10 @@
+.nav-bar {
+  justify-content: space-between;
+  background-color: #251d52;
+  height: 90px;
+}
+
+.logo {
+  width: 90px;
+  transform: scale(1.5, 1.5);
+}

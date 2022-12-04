@@ -1,5 +1,6 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
+import { CurrentUserContext } from './CurrentUserContext'
 import { useNavigate, useParams, Link } from 'react-router-dom'
 import TradeRequest from './TradeRequest'
 import { Container, Row, Col } from 'react-bootstrap'
@@ -8,6 +9,7 @@ const API = process.env.REACT_APP_API_URL
 
 function GameDetail() {
   const { gameId } = useParams()
+  const { currentUser } = useContext(CurrentUserContext)
   const [game, setGame] = useState([])
   const [user, setUser] = useState([])
   const [show, setShow] = useState(false)
@@ -84,7 +86,9 @@ function GameDetail() {
                   {findUserName(user)}
                 </Link>{' '}
               </p>
-              <button onClick={handleOpen}>offer trade</button>
+              {currentUser.user_name !== findUserName(user) ? (
+                <button onClick={handleOpen}>offer trade</button>
+              ) : null}
               <TradeRequest
                 handleClose={handleClose}
                 show={show}

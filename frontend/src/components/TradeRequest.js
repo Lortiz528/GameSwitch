@@ -2,11 +2,13 @@ import { Button, Modal, Card, Form, Container, Row, Col } from 'react-bootstrap'
 import { CurrentUserContext } from './CurrentUserContext'
 import { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import {toast, ToastContainer} from 'react-toastify'
+import { toast, ToastContainer } from 'react-toastify'
 import submitSound from '../mixkit-bonus-earned-in-video-game-2058.wav'
 import axios from 'axios'
-const API = process.env.REACT_APP_API_URL
+import './TradeRequest.css'
+import { MdOutlineSync } from 'react-icons/md'
 
+const API = process.env.REACT_APP_API_URL
 
 function TradeRequest({
   show,
@@ -32,9 +34,9 @@ function TradeRequest({
   }, [])
 
   const playAudio = () => {
-    new Audio(submitSound).play();
+    new Audio(submitSound).play()
   }
-  let image = (users) => {
+  let userImage = (users) => {
     for (let user of users) {
       if (user.user_name === findUserName) {
         return user.user_avatar
@@ -58,11 +60,10 @@ function TradeRequest({
     axios
       .post(`${API}/trades/newtrade`, allId)
       .then(() => {
-      playAudio()
-       notify()
+        playAudio()
+        notify()
       })
       .catch((error) => console.log(error))
-      
   }
   const notify = () => {
     toast.success(
@@ -76,17 +77,22 @@ function TradeRequest({
         draggable: true,
         progress: undefined,
       }
-    );
+    )
     setTimeout(() => {
-      navigate('/');
-    }, 3100);
-  };
+      navigate('/traderequestrecords')
+    }, 3100)
+  }
 
-
-
+  const offerGameImg = (games, selecting) => {
+    for (let game of games) {
+      if (game.game_id === Number(selecting)) {
+        return game.game_img
+      }
+    }
+  }
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={show} onHide={handleClose} dialogClassName='modal-200w'>
       <Modal.Header closeButton>
         <Modal.Title>Trade Offer</Modal.Title>
       </Modal.Header>
@@ -100,6 +106,7 @@ function TradeRequest({
                     {currentUser.user_name ? currentUser.user_name : null}
                   </Card.Title>
                   <Card.Img src={currentUser.user_avatar} />
+                  <br />
                   <Form.Select
                     value={selectGame}
                     onChange={(e) => setSelectGame(e.target.value)}
@@ -108,19 +115,34 @@ function TradeRequest({
                     {game
                       .filter((game) => game.user_id === currentUser.user_id)
                       .map((game) => (
-                        <option value={game.game_id}>{game.game_name}</option>
+                        <option value={game.game_id} key={game.game_id}>
+                          {game.game_name}
+                        </option>
                       ))}
                   </Form.Select>
                 </Card.Body>
+                {offerGameImg(game, selectGame) ? (
+                  <Card.Img
+                    src={offerGameImg(game, selectGame)}
+                    width={20}
+                    height={250}
+                  />
+                ) : null}
               </Card>
             </Col>
+            <MdOutlineSync className='icons' />
             <Col>
               <Card>
                 <Card.Body>
                   <Card.Title>{findUserName}</Card.Title>
-                  <Card.Img src={image(user)} />
+                  <Card.Img src={userImage(user)} />
                   <Card.Text>{currentGameInfo.game_name}</Card.Text>
                 </Card.Body>
+                <Card.Img
+                  src={currentGameInfo.game_img}
+                  width={20}
+                  height={250}
+                />
               </Card>
             </Col>
           </Row>
@@ -133,9 +155,7 @@ function TradeRequest({
         <Button variant='secondary' onClick={handleClick}>
           Submit
         </Button>
-      
-      <ToastContainer autoClose={2000} theme="light" />
-    
+        <ToastContainer autoClose={2000} theme='light' />
       </Modal.Footer>
     </Modal>
   )
