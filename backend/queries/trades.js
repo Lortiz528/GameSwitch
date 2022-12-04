@@ -70,6 +70,21 @@ const createTrade = async (trade) => {
   }
 };
 
+//update trade
+const updateTrade = async (trade) => {
+  const { trade_id, trade_success } = trade;
+
+  try {
+    const updateTrade = await db.one(
+      "update tradeRequests set trade_success=$1 where trade_id=$2 returning *",
+      [trade_success, trade_id]
+    );
+    return updateTrade;
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
 const deleteTrade = async (trade_id) => {
   try {
     const deletedtrade = await db.one(
@@ -87,6 +102,7 @@ module.exports = {
   getAllTrades,
   getTradeByID,
   createTrade,
+  updateTrade,
   deleteTrade,
   getReceivedTradesByUserID,
   getOfferedTradesByUserID,

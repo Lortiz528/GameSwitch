@@ -44,46 +44,41 @@ export default function TradeRequestRecords() {
   }, []);
 
   //display the name of receiver and offer, received and offered game name
-  function displayTradeRecord(tradeRecords) {
-    if (tradeRecords.length === 0) return [];
+  function displayTradeReceivedRecord(requests) {
+    if (requests.length === 0) return [];
 
-    return tradeRecords.map((tradeRecord) => {
-      let dateString = tradeRecord.created_at;
-      const formatDate = (dateString) => {
-        const options = { year: "numeric", month: "long", day: "numeric"}
-        return new Date(dateString).toLocaleDateString(undefined, options)
-      }
-      // console.log(tradeRecord)
-      // console.log(formatDate(dateString))
-      return (
-        <div>
-          <ul>
-          <h5>Trade Offer Date: {formatDate(dateString)}</h5>
-            <p>
-              {`${tradeRecord.offer_name}is offering ${tradeRecord.offerer_game_name} to switch ${tradeRecord.receiver_name}'s ${tradeRecord.receiver_game_name}`}
-            </p>
-            {/* <li>Receiver: {tradeRecord.receiver_name}</li>
-            <li>Offerer: {tradeRecord.offer_name}</li>
-            <li>receiver_game_name: {tradeRecord.receiver_game_name}</li>
-            <li>offerer_game_name: {tradeRecord.offerer_game_name}</li>
-            <li>status: {tradeRecord.trade_success}</li> */}
-          </ul>
-        </div>
-      );
-    });
+    // return tradeRecords.map((tradeRecord) => {
+    //   let dateString = tradeRecord.created_at;
+    //   const formatDate = (dateString) => {
+    //     const options = { year: "numeric", month: "long", day: "numeric" };
+    //     return new Date(dateString).toLocaleDateString(undefined, options);
+    //   };
+    //   // console.log(tradeRecord)
+    //   // console.log(formatDate(dateString))
+    //   return (
+    //     <div>
+    //       <ul>
+    //         <h5>Trade Offer Date: {formatDate(dateString)}</h5>
+    //         <p>
+    //           {`${tradeRecord.offer_name}is offering ${tradeRecord.offerer_game_name} to switch ${tradeRecord.receiver_name}'s ${tradeRecord.receiver_game_name}`}
+    //         </p>
+    //       </ul>
+    //     </div>
+    //   );
+    // });
   }
 
-  console.log(requests);
-  console.log(offers);
+  // console.log(requests);
+  // console.log(offers);
 
   return (
     <div>
       <h1>hello</h1>
       <h2>Requests I received</h2>
-      <section>{displayTradeRecord(requests)}</section>
+      <section>{displayTradeReceivedRecord(requests)}</section>
       <hr />
       <h2>Requests I sent</h2>
-      <section>{displayTradeRecord(offers)}</section>
+      {/* <section>{displayTradeRecord(offers)}</section> */}
 
       <button>
         <Link to="/">Home</Link>
