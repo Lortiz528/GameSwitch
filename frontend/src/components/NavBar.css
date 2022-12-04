@@ -1,6 +1,7 @@
 .nav-bar {
   justify-content: space-between;
   background-color: #251d52;
+
   height: 90px;
 }
 
@@ -8,3 +9,30 @@
   width: 90px;
   transform: scale(1.5, 1.5);
 }
+
+/* a {
+  text-decoration: none;
+  color: white;
+}
+a:hover {
+  color: white;
+}
+
+.button {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #6f4cff26;
+  border: 3px solid #6f4cff90;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+}
+.button:hover {
+  background-color: #6f4cff59;
+  border: 3px solid #6f4cff99;
+  box-shadow: #6f4cff80 0 0 20px 0;
+  transition: all 0.3s ease;
+} */
