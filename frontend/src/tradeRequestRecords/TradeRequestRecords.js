@@ -5,6 +5,7 @@ import axios from "axios";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
 import ReceivedRecord from "./ReceivedRecord";
+import OfferedRecord from "./OfferedRecord";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -51,6 +52,14 @@ export default function TradeRequestRecords() {
     });
   }
 
+  function displayTradeOfferedRecord(offers) {
+    if (offers.length === 0) return [];
+
+    return offers.map((offer) => {
+      return <OfferedRecord offeredRequest={offer} />;
+    });
+  }
+
   // console.log(requests);
   // console.log(offers);
 
@@ -61,7 +70,7 @@ export default function TradeRequestRecords() {
       <section>{displayTradeReceivedRecord(requests)}</section>
       <hr />
       <h2>Requests I sent</h2>
-      {/* <section>{displayTradeRecord(offers)}</section> */}
+      <section>{displayTradeOfferedRecord(offers)}</section>
 
       <button>
         <Link to="/">Home</Link>
