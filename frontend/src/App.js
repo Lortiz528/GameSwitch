@@ -1,27 +1,28 @@
-import "./App.css";
-import FourOFour from "./pages/FourOFour";
+import './App.css';
+import FourOFour from './pages/FourOFour';
 // import Edit from './Pages/Edit'
-import Home from "./pages/Home";
-import UsersIndex from "./pages/UsersIndex";
+import Home from './pages/Home';
+import UsersIndex from './pages/UsersIndex';
 // import New from './Pages/New'
 // import Show from './Pages/Show'
-import About from "./pages/About";
-import { Routes, Route } from "react-router-dom";
-import NavBar from "./components/NavBar";
-import Signup from "./firebaseTest/Signup";
-import Login from "./firebaseTest/Login";
-import UserProfile from "./components/UserProfile";
-import ResetPassWord from "./firebaseTest/ResetPassword";
-import UserProfileUpdate from "./components/UserProfileUpdate";
-import { CurrentUserContext } from "./components/CurrentUserContext";
-import { useState } from "react";
-import GameSwitchDescription from "./pages/GameSwitchDescription";
-import User from "./components/User";
-import GameCollection from "./gamecollection/GameCollection";
-import GameDetail from "./components/GameDetail";
-import AddNewGame from "./gamecollection/AddNewGame";
-import UpdateGame from "./gamecollection/UpdateGame";
-import TradeRequestRecords from "./tradeRequestRecords/TradeRequestRecords";
+import About from './pages/About';
+import { Routes, Route } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import Signup from './firebaseTest/Signup';
+import Login from './firebaseTest/Login';
+import UserProfile from './components/UserProfile';
+import ResetPassWord from './firebaseTest/ResetPassword';
+import UserProfileUpdate from './components/UserProfileUpdate';
+import { CurrentUserContext } from './components/CurrentUserContext';
+import { useState } from 'react';
+import GameSwitchDescription from './pages/GameSwitchDescription';
+import User from './components/User';
+import GameCollection from './gamecollection/GameCollection';
+import GameDetail from './components/GameDetail';
+import AddNewGame from './gamecollection/AddNewGame';
+import UpdateGame from './gamecollection/UpdateGame';
+import TradeRequestRecords from './tradeRequestRecords/TradeRequestRecords';
+import Footer from './pages/Footer';
 
 function App() {
   //stores the user info throughout the whole app
@@ -55,6 +56,7 @@ function App() {
           </Routes>
         </main>
       </CurrentUserContext.Provider>
+      <Footer />
     </div>
   );
 }

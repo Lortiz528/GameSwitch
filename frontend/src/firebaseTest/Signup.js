@@ -127,7 +127,7 @@ function Signup() {
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Confirmed Password: </Form.Label>
+          <Form.Label>Confirm Password: </Form.Label>
           <Form.Control
             type="password"
             placeholder="confirmed Password"
@@ -144,16 +144,10 @@ function Signup() {
       </Form>
       <ToastContainer autoClose={2000} theme="light" />
       <br></br>
-      <button>
-        {" "}
-        <Link to="/login">Login</Link>
-      </button>
+      Already have an account?
       <br></br>
-      <br></br>
-      <button>
-        {" "}
-        <Link to="/">Home</Link>
-      </button>
+        <Link to="/login"><Button>Login</Button></Link>
+      
       <hr />
     </section>
   );

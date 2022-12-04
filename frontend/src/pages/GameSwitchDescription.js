@@ -1,30 +1,59 @@
-function GameSwitchDescription() {
-    return (
+import { Image } from 'react-bootstrap';
 
-<div className='gameswitchdescription'>
-      <section>
-        <h1>Trade your game for a new game just for free!</h1>
-        <p>Game Switch NYC is a website where users can build their gaming collections and find other users to trade games with. Users can build a wish list and be notified when a user in their area has anything in their wishlist. You can organize in person or virtual multiplayer game sessions based on certain criteria.
-</p>
+function GameSwitchDescription() {
+  return (
+    <div className="gameswitchdescription">
+      <section className="instructionCard">
+        <h2>Welcome to Game Switch NYC!</h2>
+        <p>
+          <strong>
+            This is a platform for gamers to interact with local peers by
+            trading video games. Game Switch provides an alternative way of
+            refreshing your game collection.
+          </strong>
+        </p>
+      </section>
+      <section className="instructionCard">
+        <h4>
+          To make the most out of this site, users need to make an account
+        </h4>
+        <Image src="https://i.imgur.com/h2FOgqH.png" alt="login" />
       </section>
 
-      <h1>What problem does it solve?</h1>
-      <ul>It will help people to make new friends and play with other gamers</ul>
-      <ul>Games are expensive and when you trade them to get money back it's not rewarding</ul>
-      <ul>This website will help people trade and socialize for fun game events in NYC</ul>
+      <section className="instructionCard">
+        <br></br>
+        <h4>Game Switchers can search for local users in their area</h4>
+        <Image width={'1000px'} src="https://i.imgur.com/aTtgct5.png" />
+      </section>
+      <br></br>
+      <br></br>
+
+      <section className="instructionCard">
+        <h4>A users page contains their short bio and game library</h4>
+        <Image width={'1000px'} src="https://i.imgur.com/YRcEDEN.png" />
+      </section>
 
       <br />
       <br />
-      
+      <section className="instructionCard">
+        <h4>
+          See a game you like? click on it and offer up a trade with one of your
+          games
+        </h4>
+        <Image src="https://i.imgur.com/SGcEyGG.png" />
+        <Image src="https://i.imgur.com/5bGYyaw.png" />
+      </section>
 
+      <section className="instructionCard">
+        <h4>Manage your Current Trade requests and Offers</h4>
+        <Image src="https://i.imgur.com/D8zW4CW.png" />
+      </section>
 
-      <h1>Instructions + Info</h1>
-        <ul>Create or Sign Up as a new user by typing your email and password</ul>
-        <ul>Once you acess your account add a profile picture</ul>
-        <ul>Add your game collections, your specific borough, and the games you want to trade to another gamer</ul>
-        <ul>Once you have created the account profile you will get a request for your game that you displayed and if you like their games as well then go ahead and click the accept trade button</ul>
-        </div>
-
-)
+      <section>
+        <h4></h4>
+        <Image />
+      </section>
+    </div>
+  );
 }
-export default GameSwitchDescription
+export default GameSwitchDescription;
