@@ -80,7 +80,6 @@ tradeController.post("/newtrade", async (req, res) => {
 
 //update trade controller
 tradeController.put("/updatetrade", async (req, res) => {
-  console.log(req.body);
   const updateTheTrade = await updateTrade(req.body);
   if (updateTheTrade) {
     res.status(200).json({ success: true, payload: updateTheTrade });
