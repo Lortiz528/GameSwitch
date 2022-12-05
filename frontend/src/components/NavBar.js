@@ -12,7 +12,7 @@ function NavBar() {
       <SearchBar />
       <div>
         <button className='button'>
-          <Link to='/userprofile'>User Profile</Link>
+          <Link to='/userprofile' className='userprofile'>User Profile</Link>
         </button>
         <button>
           <Link to='/users'>Users</Link>
