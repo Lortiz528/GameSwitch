@@ -86,9 +86,12 @@ function GameDetail() {
                   {findUserName(user)}
                 </Link>{' '}
               </p>
-              {currentUser.user_name !== findUserName(user) && currentUser.user_name ? (
+              {currentUser.user_name !== findUserName(user) &&
+              currentUser.user_name ? (
                 <button onClick={handleOpen}>offer trade</button>
-              ) : null}
+              ) : (
+                <Link to='/signup'>Sign Up or Login In</Link>
+              )}
               <TradeRequest
                 handleClose={handleClose}
                 show={show}
