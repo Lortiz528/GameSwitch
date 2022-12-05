@@ -6,13 +6,22 @@ import { setLogLevel } from "firebase/app";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
-export default function OfferedRecord({ offeredRequest }) {
+export default function OfferedRecord({
+  offeredRequest,
+  offers,
+  setOffers,
+  index,
+}) {
   const [status, setStatus] = useState(offeredRequest.trade_success);
 
   const cancel = () => {
+    const gameOffers = [...offers];
+    gameOffers.splice(index, 1);
     axios
       .delete(`${API}/trades/${offeredRequest.trade_id}`)
-      .then((res) => {})
+      .then((res) => {
+        setOffers(gameOffers);
+      })
       .catch((error) => console.log(error));
   };
 
