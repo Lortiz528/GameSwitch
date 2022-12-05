@@ -37,7 +37,7 @@ function SearchBar() {
         onChange={inputHandler}
         value={userInput}
         placeholder='Search Games'
-        className='form-control mr-sm-2'
+        className='form-input'
       />
       <div className='dropdown'>
         {userInput.length > 0
@@ -51,7 +51,9 @@ function SearchBar() {
                   key={index}
                   onClick={() => SearchHandleClick(game.game_name)}
                 >
-                  <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
+                  <li>
+                    <Link to={`/games/${game.game_id}`}>{game.game_name}</Link>
+                  </li>
                 </ul>
               ))
           : null}
