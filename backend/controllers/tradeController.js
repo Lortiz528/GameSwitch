@@ -5,6 +5,7 @@ const {
   getAllTrades,
   getTradeByID,
   createTrade,
+  updateTrade,
   deleteTrade,
   getReceivedTradesByUserID,
   getOfferedTradesByUserID,
@@ -28,7 +29,7 @@ tradeController.get("/:trade_id", async (req, res) => {
   const { trade_id } = req.params;
 
   const getTrade = await getTradeByID(trade_id);
-  if (getTrade[0]) {
+  if (getTrade) {
     res.status(200).json({ success: true, payload: getTrade[0] });
   } else {
     res.status(404).json({
@@ -74,6 +75,16 @@ tradeController.post("/newtrade", async (req, res) => {
     res.status(200).json({ success: true, payload: addTrade });
   } else {
     res.status(404).send({ success: false, payload: "create trade error" });
+  }
+});
+
+//update trade controller
+tradeController.put("/updatetrade", async (req, res) => {
+  const updateTheTrade = await updateTrade(req.body);
+  if (updateTheTrade) {
+    res.status(200).json({ success: true, payload: updateTheTrade });
+  } else {
+    res.status(404).send({ success: false, payload: "update trade error" });
   }
 });
 
