@@ -1,11 +1,11 @@
 import React from "react";
-import SignOut from "../firebaseTest/Signout";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
-import Accordion from "react-bootstrap/Accordion";
+import ReceivedRecord from "./ReceivedRecord";
+import OfferedRecord from "./OfferedRecord";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -44,46 +44,33 @@ export default function TradeRequestRecords() {
   }, []);
 
   //display the name of receiver and offer, received and offered game name
-  function displayTradeRecord(tradeRecords) {
-    if (tradeRecords.length === 0) return [];
+  function displayTradeReceivedRecord(requests) {
+    if (requests.length === 0) return [];
 
-    return tradeRecords.map((tradeRecord) => {
-      let dateString = tradeRecord.created_at;
-      const formatDate = (dateString) => {
-        const options = { year: "numeric", month: "long", day: "numeric"}
-        return new Date(dateString).toLocaleDateString(undefined, options)
-      }
-      // console.log(tradeRecord)
-      // console.log(formatDate(dateString))
-      return (
-        <div>
-          <ul>
-          <h5>Trade Offer Date: {formatDate(dateString)}</h5>
-            <p>
-              {`${tradeRecord.offer_name}is offering ${tradeRecord.offerer_game_name} to switch ${tradeRecord.receiver_name}'s ${tradeRecord.receiver_game_name}`}
-            </p>
-            {/* <li>Receiver: {tradeRecord.receiver_name}</li>
-            <li>Offerer: {tradeRecord.offer_name}</li>
-            <li>receiver_game_name: {tradeRecord.receiver_game_name}</li>
-            <li>offerer_game_name: {tradeRecord.offerer_game_name}</li>
-            <li>status: {tradeRecord.trade_success}</li> */}
-          </ul>
-        </div>
-      );
+    return requests.map((request) => {
+      return <ReceivedRecord receivedRequest={request} />;
     });
   }
 
-  console.log(requests);
-  console.log(offers);
+  function displayTradeOfferedRecord(offers) {
+    if (offers.length === 0) return [];
+
+    return offers.map((offer) => {
+      return <OfferedRecord offeredRequest={offer} />;
+    });
+  }
+
+  // console.log(requests);
+  // console.log(offers);
 
   return (
     <div>
       <h1>hello</h1>
       <h2>Requests I received</h2>
-      <section>{displayTradeRecord(requests)}</section>
+      <section>{displayTradeReceivedRecord(requests)}</section>
       <hr />
       <h2>Requests I sent</h2>
-      <section>{displayTradeRecord(offers)}</section>
+      <section>{displayTradeOfferedRecord(offers)}</section>
 
       <button>
         <Link to="/">Home</Link>
