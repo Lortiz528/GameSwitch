@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import SignOut from './Signout'
+// import SignOut from './Signout'
 import { CurrentUserContext } from '../components/CurrentUserContext'
 import { useContext } from 'react'
 import { toast, ToastContainer } from 'react-toastify'
 import axios from 'axios'
-import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import './Login.css'
 
@@ -91,10 +90,10 @@ function Login() {
       <br />
       <Form onSubmit={handleSubmit} className='loginForm'>
         <Form.Group className='mb-3'>
-          <Form.Label className='label'>Email </Form.Label>
+          {/* <Form.Label className='label'>Email </Form.Label> */}
           <Form.Control
             type='email'
-            placeholder='Enter Email'
+            placeholder='Email'
             id='user_email'
             value={userInput.user_email}
             onChange={handleTextChange}
@@ -103,7 +102,7 @@ function Login() {
         </Form.Group>
 
         <Form.Group className='mb-3'>
-          <Form.Label>Password </Form.Label>
+          {/* <Form.Label>Password </Form.Label> */}
           <Form.Control
             type='password'
             placeholder='Password'
@@ -114,13 +113,19 @@ function Login() {
           />
         </Form.Group>
 
-        <Button variant='primary' type='submit'>
+        <button type='submit' className='login-button'>
           Login
-        </Button>
+        </button>
       </Form>
       <ToastContainer autoClose={2000} theme='light' />
       <br></br>
-      <SignOut />
+      <p>
+        Don't have an account?{' '}
+        <span>
+          <Link to='/signup'>Sign Up</Link>
+        </span>
+      </p>
+      {/* <SignOut /> */}
       {/* <button>
         {' '}
         <Link to='/'>Home</Link>

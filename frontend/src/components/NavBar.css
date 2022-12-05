@@ -33,11 +33,10 @@ div .button a {
   box-shadow: 6px 6px 0 0 #6f4cff99, 5px 5px 0 0 #6f4cff99,
     4px 4px 0 0 #6f4cff99, 3px 3px 0 0 #6f4cff99, 2px 2px 0 0 #6f4cff99,
     1px 1px 0 0 #6f4cff99;
+  border-radius: 8px;
 }
 
 .button:hover {
   transform: translateY(5px);
   box-shadow: none;
 }
-
-

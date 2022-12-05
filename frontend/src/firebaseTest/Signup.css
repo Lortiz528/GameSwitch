@@ -1,4 +1,15 @@
-.signUpForm {
-    width:500px;
-    margin:auto
-}
+/* .signUpForm {
+  width: 500px; 
+  margin-bottom: 100px;
+} */
+
+ .signup {
+  
+  z-index: 1;
+  background: #ffffff;
+  max-width: 360px;
+  margin: 10px auto 100px;
+  padding: 45px;
+
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}  

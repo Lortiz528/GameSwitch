@@ -13,3 +13,19 @@
   /* text-align: center; */
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
+
+.login-button {
+  background-color: #4C34DF;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 9px;
+}
+
+.login-button:hover{
+  background-color: #674CF1;
+}
