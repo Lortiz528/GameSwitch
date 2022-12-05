@@ -52,11 +52,18 @@ export default function TradeRequestRecords() {
     });
   }
 
-  function displayTradeOfferedRecord(offers) {
-    if (offers.length === 0) return [];
+  function displayTradeOfferedRecord(offerRecords) {
+    if (offerRecords.length === 0) return [];
 
-    return offers.map((offer) => {
-      return <OfferedRecord offeredRequest={offer} />;
+    return offerRecords.map((offerRecord, index) => {
+      return (
+        <OfferedRecord
+          index={index}
+          offeredRequest={offerRecord}
+          offers={offers}
+          setOffers={setOffers}
+        />
+      );
     });
   }
 

@@ -15,19 +15,22 @@ export default function GameCollection() {
     axios
       .get(`${API}/loggedin/${currentUser.user_id}/games`)
       .then((res) => {
-        if(res.success){}
+        if (res.success) {
+        }
         setGameCollection(res.data.payload);
       })
       .catch((error) => console.error("catch", error));
   }, []);
 
   function deleteGame(index, game_id) {
-    console.log(index, game_id);
-    console.log(`${API}/loggedin/${currentUser.user_id}/games/${game_id}`);
+    const newGameCollection = [...gameCollection];
+    newGameCollection.splice(index, 1);
+
+    //console.log(newGameCollection);
     axios
       .delete(`${API}/loggedin/${currentUser.user_id}/games/${game_id}`)
       .then((res) => {
-        setGameCollection(gameCollection.splice(index, 1));
+        setGameCollection(newGameCollection);
       })
       .catch((error) => console.error("catch", error));
   }
@@ -57,13 +60,19 @@ export default function GameCollection() {
       </section>
     );
   });
-console.log(games)
+  console.log(games);
   return (
     <seciton>
       <Link to="/addnewgame">
         <button>Add New Game</button>
       </Link>
-      <div>{games.length !== 0 ? games : <img src="https://i.imgur.com/K8PJPeN.png"/>}</div>
+      <div>
+        {games.length !== 0 ? (
+          games
+        ) : (
+          <img src="https://i.imgur.com/K8PJPeN.png" />
+        )}
+      </div>
       <button>
         <Link to="/">Home</Link>
       </button>
