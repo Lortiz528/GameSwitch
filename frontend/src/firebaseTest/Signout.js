@@ -3,7 +3,7 @@ import { signOut } from "firebase/auth";
 import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import './Signout.css'
 export default function SignOut() {
   const currentUser = useContext(CurrentUserContext);
 
@@ -23,5 +23,5 @@ export default function SignOut() {
       });
   };
 
-  return <button onClick={userSignOut}>Sign Out</button>;
+  return <button classname='sign-out' onClick={userSignOut}>Sign Out</button>;
 }

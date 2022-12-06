@@ -2,8 +2,14 @@ import SearchBar from './SearchBar'
 import logo from './logo.png'
 import { Link } from 'react-router-dom'
 import { Navbar } from 'react-bootstrap'
+import { useContext } from 'react'
+import SignOut from '../firebaseTest/Signout'
+import { CurrentUserContext } from './CurrentUserContext'
 import './NavBar.css'
+
 function NavBar() {
+  const { currentUser } = useContext(CurrentUserContext)
+  console.log(currentUser.length)
   return (
     <Navbar className=' nav-bar' sticky='top'>
       <Link to='/'>
@@ -12,17 +18,27 @@ function NavBar() {
       <SearchBar />
       <div>
         <button className='button'>
-          <Link to='/userprofile' className='userprofile'>User Profile</Link>
-        </button>
-        <button>
           <Link to='/users'>Users</Link>
         </button>
-        <button>
-          <Link to='signup'>Sign Up</Link>
-        </button>
-        <button>
-          <Link to='login'>Login</Link>
-        </button>
+        {Object.keys(currentUser).length ? (
+          <>
+            <button className='button'>
+              <Link to='/userprofile' className='userprofile'>
+                My Profile
+              </Link>
+            </button>
+            <SignOut/>
+          </>
+        ) : (
+          <>
+            <button className='button'>
+              <Link to='login'>Login</Link>
+            </button>
+            <button className='button'>
+              <Link to='signup'>Sign Up</Link>
+            </button>
+          </>
+        )}
       </div>
     </Navbar>
   )
