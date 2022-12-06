@@ -54,10 +54,12 @@ CREATE TABLE wishlist(
 DROP TABLE IF EXISTS tradeRequests;
 CREATE TABLE tradeRequests(
     trade_id SERIAL PRIMARY KEY,
-    trade_offerer_game_id INTEGER NOT NULL REFERENCES games(game_id),
-    trade_receiver_game_id INTEGER NOT NULL REFERENCES games(game_id),
+    trade_offerer_game_id INTEGER NOT NULL,
+    trade_receiver_game_id INTEGER NOT NULL,
     trade_offerer_user_id INTEGER NOT NULL REFERENCES users (user_id),
     trade_receiver_user_id INTEGER NOT NULL REFERENCES users (user_id),
     trade_success TEXT DEFAULT 'pending',
+    trade_complete_from_offerer BOOLEAN DEFAULT false,
+    trade_complete_from_receiver BOOLEAN DEFAULT false,
     created_at DATE DEFAULT CURRENT_DATE
 );
