@@ -1,28 +1,26 @@
-import React from 'react';
-import SignOut from '../firebaseTest/Signout';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { useEffect, useState } from 'react'
 //import from firebase
 //import { onAuthStateChanged } from "firebase/auth";
 //import auth from "../firebaseTest/firebaseAuth";
-import axios from 'axios';
-import { CurrentUserContext } from './CurrentUserContext';
-import { useContext } from 'react';
-import Table from 'react-bootstrap/Table';
+import axios from 'axios'
+import { CurrentUserContext } from './CurrentUserContext'
+import { useContext } from 'react'
+import Table from 'react-bootstrap/Table'
 import Image from 'react-bootstrap/Image'
-import './UserProfile.css';
+import './UserProfile.css'
 
-const API = process.env.REACT_APP_API_URL; //localhost:3333
+const API = process.env.REACT_APP_API_URL //localhost:3333
 
 export default function UserProfile() {
- 
-  const { currentUser } = useContext(CurrentUserContext);
-  console.log(currentUser);
+  const { currentUser } = useContext(CurrentUserContext)
+  console.log(currentUser)
 
   return (
     <div>
       <h2>{`${currentUser.user_name}'s Profile`}</h2>
-      <Table striped bordered hover className="userprofile">
+      <Table striped bordered hover className='userprofile'>
         <tbody>
           <tr>
             <td>Username:</td>
@@ -39,7 +37,12 @@ export default function UserProfile() {
           <tr>
             <td>Avatar:</td>
             <td>
-              <Image roundedCircle height={'200px'} src={currentUser.user_avatar} alt={currentUser.user_name} />
+              <Image
+                roundedCircle
+                height={'200px'}
+                src={currentUser.user_avatar}
+                alt={currentUser.user_name}
+              />
             </td>
           </tr>
 
@@ -87,32 +90,24 @@ export default function UserProfile() {
         </tbody>
       </Table>
       <br></br>
-      <SignOut />
-      <br></br>
-      <br></br>
       <button>
-        <Link to="/">Home</Link>
+        <Link to='/resetpassword'>Reset Password</Link>
       </button>
       <br></br>
       <br></br>
       <button>
-        <Link to="/resetpassword">Reset Password</Link>
+        <Link to='/updateprofile'>Update Profile</Link>
       </button>
       <br></br>
       <br></br>
       <button>
-        <Link to="/updateprofile">Update Profile</Link>
+        <Link to='/gamecollection'>Game Collection</Link>
       </button>
       <br></br>
       <br></br>
       <button>
-        <Link to="/gamecollection">Game Collection</Link>
-      </button>
-      <br></br>
-      <br></br>
-      <button>
-        <Link to="/traderequestrecords">Trade Records</Link>
+        <Link to='/traderequestrecords'>Trade Records</Link>
       </button>
     </div>
-  );
+  )
 }

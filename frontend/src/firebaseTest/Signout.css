@@ -1,23 +1,4 @@
-.nav-bar {
-  justify-content: space-between;
-  background-color: #251d52;
-  height: 90px;
-}
-
-.logo {
-  width: 90px;
-  transform: scale(1.5, 1.5);
-}
-
-div .button a {
-  text-decoration: none;
-  color: white;
-}
-/* div .button a:hover {
-  color: white;
-} */
-
-.button {
+.sign-out{
   border: 1px solid transparent;
   background: #4285f4;
   color: #fff;
@@ -35,7 +16,7 @@ div .button a {
   border-radius: 8px;
 }
 
-.button:hover {
+.sign-out:hover {
   transform: translateY(5px);
   box-shadow: none;
 }

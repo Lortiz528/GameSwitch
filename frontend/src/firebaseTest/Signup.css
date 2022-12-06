@@ -4,12 +4,26 @@
 } */
 
  .signup {
-  
   z-index: 1;
   background: #ffffff;
   max-width: 360px;
   margin: 10px auto 100px;
   padding: 45px;
-
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }  
+
+.signup-button {
+  background-color: #4C34DF;
+  font-weight: bold;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  color: #fff;
+  border: none;
+  font-size: 1.2rem;
+  margin-top: 9px;
+}
+
+.signup-button:hover{
+  background-color: #674CF1;
+}
