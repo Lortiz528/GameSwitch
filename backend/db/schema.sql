@@ -18,7 +18,10 @@ CREATE TABLE users (
     user_trade_score NUMERIC,
     user_bio TEXT,
     user_location TEXT,
-    user_avatar TEXT
+    user_avatar TEXT,
+    user_facebook TEXT,
+    user_instagram TEXT,
+    user_twitch TEXT
 );
 
 --create the games table

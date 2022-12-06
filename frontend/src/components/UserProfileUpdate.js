@@ -33,7 +33,7 @@ function UserProfileUpdate() {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentUser.user_email]);
   const navigate = useNavigate();
 
   const updateProfile = () => {
@@ -68,9 +68,6 @@ function UserProfileUpdate() {
     <section className="userProfileUpdateForm">
       <h2>Update your Profile Page</h2>
       <Form onSubmit={handleSubmit} className="form">
-        <div>
-          <h2>Email: {currentUser.user_email}</h2>
-        </div>
         <Form.Group className="mb-3">
           <Form.Label>
             <strong>UserName:</strong>{' '}
@@ -96,21 +93,13 @@ function UserProfileUpdate() {
             onChange={handleTextChange}
             required
           >
-            <option>{userInput.user_location}</option>
-            <option value='Manhattan'>Manhattan</option>
-            <option value='Queens'>Queens</option>
-            <option value='Staten Island'>Staten Island</option>
-            <option value='Bronx'>Bronx</option>
-            <option value='Brooklyn'>Brooklyn</option>
+            <option value="Manhattan">Manhattan</option>
+            <option value="Queens">Queens</option>
+            <option value="Staten Island">Staten Island</option>
+            <option value="Bronx">Bronx</option>
+            <option value="Brooklyn">Brooklyn</option>
           </Form.Select>
-          {/* <Form.Control
-            type="text"
-            placeholder="Enter Location"
-            id="user_location"
-            value={userInput.user_location}
-            onChange={handleTextChange}
-            required
-          /> */}
+    
         </Form.Group>
         <Form.Group className="mb-3">
           <Form.Label>
@@ -125,6 +114,48 @@ function UserProfileUpdate() {
             required
           />
         </Form.Group>
+        
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <strong>Facebook:</strong>
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="facebook Url"
+            id="user_facebook"
+            value={userInput.user_facebook}
+            onChange={handleTextChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <strong>Instagram:</strong>{' '}
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Instagram Url"
+            id="user_instagram"
+            value={userInput.user_instagram}
+            onChange={handleTextChange}
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label>
+            <strong>Twitch:</strong>{' '}
+          </Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="Twitch Url"
+            id="user_Twitch"
+            value={userInput.user_twitch}
+            onChange={handleTextChange}
+            required
+          />
+        </Form.Group>
+        
+
         <Form.Group className="mb-3">
           <Form.Label>
             <strong>Avatar:</strong>{' '}
