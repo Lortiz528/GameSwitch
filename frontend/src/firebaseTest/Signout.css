@@ -1,11 +1,11 @@
-.sign-out{
+.signout{
   border: 1px solid transparent;
   background: #4285f4;
   color: #fff;
   text-transform: uppercase;
   font-weight: bolder;
   display: inline-block;
-  /* padding: 20px 50px; */
+
   transition: 0.5s;
   outline: none;
   cursor: pointer;
@@ -14,9 +14,10 @@
     4px 4px 0 0 #6f4cff99, 3px 3px 0 0 #6f4cff99, 2px 2px 0 0 #6f4cff99,
     1px 1px 0 0 #6f4cff99;
   border-radius: 8px;
+  font-size: 150%;
 }
 
-.sign-out:hover {
+/* .signout:hover {
   transform: translateY(5px);
   box-shadow: none;
-}
+} */

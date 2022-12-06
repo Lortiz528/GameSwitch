@@ -73,9 +73,6 @@ export default function GameCollection() {
           <img src="https://i.imgur.com/K8PJPeN.png" />
         )}
       </div>
-      <button>
-        <Link to="/">Home</Link>
-      </button>
     </seciton>
   );
 }
