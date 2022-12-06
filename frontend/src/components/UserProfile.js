@@ -23,7 +23,7 @@ export default function UserProfile() {
       <Table striped bordered hover className='userprofile'>
         <tbody>
           <tr>
-            <td>Username:</td>
+            <td><strong>Username:</strong></td>
             <td>
               {' '}
               <div>
@@ -35,7 +35,7 @@ export default function UserProfile() {
           </tr>
 
           <tr>
-            <td>Avatar:</td>
+            <td><strong>Avatar:</strong></td>
             <td>
               <Image
                 roundedCircle
@@ -47,7 +47,7 @@ export default function UserProfile() {
           </tr>
 
           <tr>
-            <td>Email:</td>
+            <td><strong>Email:</strong></td>
             <td>
               <div>
                 {currentUser.hasOwnProperty('user_email')
@@ -58,7 +58,7 @@ export default function UserProfile() {
           </tr>
 
           <tr>
-            <td>Location:</td>
+            <td><strong>Location:</strong></td>
             <td>
               <div>
                 {currentUser.hasOwnProperty('user_location')
@@ -68,7 +68,7 @@ export default function UserProfile() {
             </td>
           </tr>
           <tr>
-            <td>Bio:</td>
+            <td><strong>Bio:</strong></td>
             <td>
               <div>
                 {currentUser.hasOwnProperty('user_bio')
@@ -78,7 +78,7 @@ export default function UserProfile() {
             </td>
           </tr>
           <tr>
-            <td>Trade Score:</td>
+            <td><strong>Game Switch Score:</strong></td>
             <td>
               <div>
                 {currentUser.hasOwnProperty('user_trade_score')
@@ -87,8 +87,19 @@ export default function UserProfile() {
               </div>
             </td>
           </tr>
+          
         </tbody>
       </Table>
+      { currentUser.user_facebook ? <a href={currentUser.user_facebook}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/YeiuX4k.png'/>
+         </a> : null}
+         { currentUser.user_instagram ? <a href={currentUser.user_instagram}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/dTKYTwR.png'/>
+         </a> : null}
+         { currentUser.user_twitch ? <a href={currentUser.user_twitch}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/pSgUF1Y.jpg'/>
+         </a> : null}
+         <br></br>
       <br></br>
       <button>
         <Link to='/resetpassword'>Reset Password</Link>
