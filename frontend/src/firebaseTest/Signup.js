@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import {toast, ToastContainer} from 'react-toastify'
+import { toast, ToastContainer } from "react-toastify";
 import "./Signup.css";
 
 //firebase import
@@ -46,10 +46,13 @@ function Signup() {
   };
 
   const createNewUser = () => {
+    const newUser = { ...userInput };
+    newUser.user_email = newUser.user_email.toLowerCase();
+
     axios
-      .post(`${API}/users/newuser`, userInput)
+      .post(`${API}/users/newuser`, newUser)
       .then(() => {
-        notify()
+        notify();
         // navigate("/");
       })
       .catch((error) => console.error("catch", error));
@@ -70,20 +73,17 @@ function Signup() {
     });
   };
   const notify = () => {
-    toast.success(
-      'You have successfully created a new account!',
-      {
-        position: 'top-center',
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        pauseOnFocusLoss: false,
-        draggable: true,
-        progress: undefined,
-      }
-    );
+    toast.success("You have successfully created a new account!", {
+      position: "top-center",
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: true,
+      progress: undefined,
+    });
     setTimeout(() => {
-      navigate('/');
+      navigate("/");
     }, 3100);
   };
   return (
@@ -146,8 +146,9 @@ function Signup() {
       <br></br>
       Already have an account?
       <br></br>
-        <Link to="/login"><Button>Login</Button></Link>
-      
+      <Link to="/login">
+        <Button>Login</Button>
+      </Link>
       <hr />
     </section>
   );
