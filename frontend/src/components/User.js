@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./User.css";
-import { Button, Card, Container } from "react-bootstrap";
+import { Button, Card, Container, Image } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
@@ -56,11 +56,20 @@ function User() {
         <Card.Body>
           <Card.Title>{user.user_name}</Card.Title>
           <br></br>
-          <Card.Subtitle>Trade Score: {user.user_trade_score}</Card.Subtitle>
+          <Card.Subtitle>Game Switcher Score: {user.user_trade_score}</Card.Subtitle>
           <br></br>
           <Card.Subtitle>Location: {user.user_location}</Card.Subtitle>
-          <br></br>
           <Card.Text>{user.user_bio}</Card.Text>
+         { user.user_facebook ? <a href={user.user_facebook}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/YeiuX4k.png'/>
+         </a> : null}
+         { user.user_instagram ? <a href={user.user_instagram}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/dTKYTwR.png'/>
+         </a> : null}
+         { user.user_twitch ? <a href={user.user_twitch}>
+          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/pSgUF1Y.jpg'/>
+         </a> : null}
+         <br></br>
           <Button variant="primary" onClick={showGamesHandler}>
             {!gamesVisible
               ? `${user.user_name}'s Games`
