@@ -37,7 +37,7 @@ const getReceivedTradesByUserID = async (trade_receiver_user_id) => {
 const getOfferedTradesByUserID = async (trade_offerer_user_id) => {
   try {
     const trade = await db.any(
-      "SELECT Receivers.user_name AS receiver_name, Offers.user_name AS offer_name, ReceivedGame.game_name AS receiver_game_name, OfferedGame.game_name AS offerer_game_name, tradeRequests.trade_id,tradeRequests.trade_offerer_game_id,tradeRequests.trade_receiver_game_id, tradeRequests.trade_offerer_user_id,tradeRequests.trade_receiver_user_id, tradeRequests.trade_success, tradeRequests.created_at FROM tradeRequests JOIN users AS Receivers ON Receivers.user_id = tradeRequests.trade_receiver_user_id JOIN users AS Offers ON Offers.user_id = tradeRequests.trade_offerer_user_id JOIN games AS ReceivedGame ON ReceivedGame.game_id = tradeRequests.trade_receiver_game_id JOIN games AS OfferedGame ON OfferedGame.game_id = tradeRequests.trade_offerer_game_id WHERE trade_offerer_user_id=$1",
+      "SELECT Receivers.user_name AS receiver_name, Offers.user_name AS offer_name, ReceivedGame.game_name AS receiver_game_name, OfferedGame.game_name AS offerer_game_name, tradeRequests.trade_id,tradeRequests.trade_offerer_game_id,tradeRequests.trade_receiver_game_id, tradeRequests.trade_offerer_user_id,tradeRequests.trade_receiver_user_id, tradeRequests.trade_success, tradeRequests.created_at ,tradeRequests.trade_complete_from_offerer, tradeRequests.trade_complete_from_receiver FROM tradeRequests JOIN users AS Receivers ON Receivers.user_id = tradeRequests.trade_receiver_user_id JOIN users AS Offers ON Offers.user_id = tradeRequests.trade_offerer_user_id JOIN games AS ReceivedGame ON ReceivedGame.game_id = tradeRequests.trade_receiver_game_id JOIN games AS OfferedGame ON OfferedGame.game_id = tradeRequests.trade_offerer_game_id WHERE trade_offerer_user_id=$1",
       trade_offerer_user_id
     );
     return trade;
@@ -72,12 +72,22 @@ const createTrade = async (trade) => {
 
 //update trade
 const updateTrade = async (trade) => {
-  const { trade_id, trade_success } = trade;
+  const {
+    trade_id,
+    trade_success,
+    trade_complete_from_offerer,
+    trade_complete_from_receiver,
+  } = trade;
 
   try {
     const updateTrade = await db.one(
-      "update tradeRequests set trade_success=$1 where trade_id=$2 returning *",
-      [trade_success, trade_id]
+      "update tradeRequests set trade_success=$1,trade_complete_from_offerer=$2, trade_complete_from_receiver=$3  where trade_id=$4 returning *",
+      [
+        trade_success,
+        trade_complete_from_offerer,
+        trade_complete_from_receiver,
+        trade_id,
+      ]
     );
     return updateTrade;
   } catch (error) {

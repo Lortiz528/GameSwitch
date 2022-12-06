@@ -9,6 +9,10 @@ const API = process.env.REACT_APP_API_URL; //localhost:3333
 
 export default function ReceivedRecord({ receivedRequest }) {
   const [status, setStatus] = useState(receivedRequest.trade_success);
+  // const [offerCompleteStatus, setOfferCompleteStatus] = useState(
+  //   receivedRequest.trade_complete_from_offerer
+  // );
+  const [request, setRequest] = useState(receivedRequest);
 
   const accept = () => {
     const acceptRequest = {};
@@ -36,6 +40,22 @@ export default function ReceivedRecord({ receivedRequest }) {
       .catch((error) => console.log(error));
   };
 
+  const completeTrade = () => {
+    receivedRequest.trade_complete_from_receiver = true;
+    console.log("receivedRequest", receivedRequest);
+
+    if (receivedRequest.trade_complete_from_offerer === true) {
+      receivedRequest.trade_success = "Completed";
+    }
+
+    axios
+      .put(`${API}/trades/updatetrade`, receivedRequest)
+      .then((res) => {
+        setRequest(res.data.payload);
+      })
+      .catch((error) => console.log(error));
+  };
+
   const formatDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
@@ -47,7 +67,15 @@ export default function ReceivedRecord({ receivedRequest }) {
     <div>
       <ul>
         <h5>Trade Offer Date: {formatDate(dateString)}</h5>
-        <h5>Trade Staus: {status}</h5>
+        <h5>Trade Status: {request.trade_success}</h5>
+        <h5>
+          {receivedRequest.offer_name} Complete Status:{" "}
+          {request.trade_complete_from_offerer ? "True" : "false"}
+        </h5>
+        <h5>
+          {receivedRequest.receiver_name} Complete Status:{" "}
+          {request.trade_complete_from_receiver ? "True" : "false"}
+        </h5>
         <p>
           {`${receivedRequest.offer_name} is offering ${receivedRequest.offerer_game_name} to switch ${receivedRequest.receiver_name}'s ${receivedRequest.receiver_game_name}`}
         </p>
@@ -56,6 +84,9 @@ export default function ReceivedRecord({ receivedRequest }) {
       <br></br>
       <br></br>
       <button onClick={reject}>Reject</button>
+      <br></br>
+      <br></br>
+      <button onClick={completeTrade}>Confirm Complete Trade</button>
       <hr />
     </div>
   );
