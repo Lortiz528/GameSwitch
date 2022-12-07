@@ -27,7 +27,7 @@ function NavBar() {
                 My Profile
               </Link>
             </button>
-            <SignOut/>
+            <SignOut />
           </>
         ) : (
           <>
