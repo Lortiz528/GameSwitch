@@ -9,6 +9,7 @@ import { CurrentUserContext } from './CurrentUserContext'
 import { useContext } from 'react'
 import Table from 'react-bootstrap/Table'
 import Image from 'react-bootstrap/Image'
+import { Button } from 'react-bootstrap'
 import './UserProfile.css'
 
 const API = process.env.REACT_APP_API_URL //localhost:3333
