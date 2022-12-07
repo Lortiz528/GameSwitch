@@ -1,6 +1,6 @@
 .dropdown {
   background-color: white;
-  width: 21%;
+  max-width: 21%;
   max-height: 280px;
   border: 1px solid gray;
   z-index: 1;
@@ -35,9 +35,8 @@
   width: 19rem;
   height: 38px;
   border-radius: 7px;
-  
 }
 
-a{
+a {
   text-decoration: none;
 }

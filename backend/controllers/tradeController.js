@@ -11,6 +11,8 @@ const {
   getOfferedTradesByUserID,
 } = require("../queries/trades");
 
+const { swapGames } = require("../queries/swapUserGames");
+
 //sub routes
 const tradeController = express.Router();
 
@@ -99,6 +101,16 @@ tradeController.delete("/:trade_id", async (req, res) => {
       success: false,
       message: `deletion error for trade with id of ${trade_id}`,
     });
+  }
+});
+
+//swap games
+tradeController.put("/swapgames", async (req, res) => {
+  const swapGame = await swapGames(req.body);
+  if (swapGame) {
+    res.status(200).json({ success: true, payload: swapGame });
+  } else {
+    res.status(404).send({ success: false, payload: "swap game error" });
   }
 });
 
