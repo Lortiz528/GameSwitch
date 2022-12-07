@@ -12,13 +12,7 @@ export default function OfferedRecord({
   setOffers,
   index,
 }) {
-  const [status, setStatus] = useState(offeredRequest.trade_success);
-  const [offerCompleteStatus, setOfferCompleteStatus] = useState(
-    offeredRequest.trade_complete_from_offerer
-  );
-  const [receiverCompleteStatus, setReceiverCompleteStatus] = useState(
-    offeredRequest.trade_complete_from_receiver
-  );
+  const [offerInfo, setOfferInfo] = useState(offeredRequest);
 
   const cancel = () => {
     const gameOffers = [...offers];
@@ -38,12 +32,21 @@ export default function OfferedRecord({
     if (offeredRequest.trade_complete_from_receiver === true) {
       offeredRequest.trade_success = "Completed";
       //swap the games here
+      const gamesInfo = {};
+      gamesInfo.offerer_id = offeredRequest.trade_offerer_user_id;
+      gamesInfo.receiver_id = offeredRequest.trade_receiver_user_id;
+      gamesInfo.offerer_game_id = offeredRequest.trade_offerer_game_id;
+      gamesInfo.receiver_game_id = offeredRequest.trade_receiver_game_id;
+      axios
+        .put(`${API}/trades/swapgames`, gamesInfo)
+        .then((res) => {})
+        .catch((error) => console.log(error));
     }
 
     axios
       .put(`${API}/trades/updatetrade`, offeredRequest)
       .then((res) => {
-        setOfferCompleteStatus(res.data.payload.trade_complete_from_offerer);
+        setOfferInfo(offeredRequest);
       })
       .catch((error) => console.log(error));
   };
@@ -55,18 +58,19 @@ export default function OfferedRecord({
 
   let dateString = offeredRequest.created_at;
 
+  console.log("offered made", offeredRequest);
   return (
     <div>
       <ul>
         <h5>Trade Offer Date: {formatDate(dateString)}</h5>
-        <h5>Trade Status: {status}</h5>
+        <h5>Trade Status: {offeredRequest.trade_success}</h5>
         <h5>
           {offeredRequest.offer_name} Complete Status:{" "}
-          {offerCompleteStatus ? "True" : "false"}
+          {offerInfo.trade_complete_from_offerer ? "True" : "false"}
         </h5>
         <h5>
           {offeredRequest.receiver_name} Complete Status:{" "}
-          {receiverCompleteStatus ? "True" : "false"}
+          {offerInfo.trade_complete_from_receiver ? "True" : "false"}
         </h5>
         <p>
           {`${offeredRequest.offer_name} is offering ${offeredRequest.offerer_game_name} to switch ${offeredRequest.receiver_name}'s ${offeredRequest.receiver_game_name}`}

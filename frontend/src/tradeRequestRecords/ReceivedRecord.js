@@ -46,6 +46,19 @@ export default function ReceivedRecord({ receivedRequest }) {
 
     if (receivedRequest.trade_complete_from_offerer === true) {
       receivedRequest.trade_success = "Completed";
+      //swap games here
+      const gamesInfo = {};
+      gamesInfo.offerer_id = receivedRequest.trade_offerer_user_id;
+      gamesInfo.receiver_id = receivedRequest.trade_receiver_user_id;
+      gamesInfo.offerer_game_id = receivedRequest.trade_offerer_game_id;
+      gamesInfo.receiver_game_id = receivedRequest.trade_receiver_game_id;
+      axios
+        .put(`${API}/trades/swapgames`, gamesInfo)
+        .then((res) => {
+          // setRequest(res.data.payload);
+          setStatus("Completed");
+        })
+        .catch((error) => console.log(error));
     }
 
     axios
@@ -63,11 +76,13 @@ export default function ReceivedRecord({ receivedRequest }) {
 
   let dateString = receivedRequest.created_at;
 
+  console.log("request is", receivedRequest);
+
   return (
     <div>
       <ul>
         <h5>Trade Offer Date: {formatDate(dateString)}</h5>
-        <h5>Trade Status: {request.trade_success}</h5>
+        <h5>Trade Status: {status}</h5>
         <h5>
           {receivedRequest.offer_name} Complete Status:{" "}
           {request.trade_complete_from_offerer ? "True" : "false"}
