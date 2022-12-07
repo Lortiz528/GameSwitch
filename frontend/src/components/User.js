@@ -1,12 +1,15 @@
-import axios from "axios";
-import "./User.css";
-import { Button, Card, Container, Image } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import axios from 'axios';
+import './User.css';
+import { Button, Card, Container, Image } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { CurrentUserContext } from './CurrentUserContext';
+import { useContext } from 'react';
 
 const API = process.env.REACT_APP_API_URL;
 
 function User() {
+  const { currentUser } = useContext(CurrentUserContext);
   const [gamesVisible, setGamesVisible] = useState(false);
   const [user, setUser] = useState([]);
   const [userGames, setUserGames] = useState([]);
@@ -48,28 +51,61 @@ function User() {
       </Card>
     );
   });
+  console.log(user);
+  console.log(currentUser);
+
+  const displaySocialMediaIcons = () => {
+    if (currentUser.user_name) {
+      return (
+        <div>
+          {user.user_facebook ? (
+            <a href={user.user_facebook}>
+              <Image
+                style={{ width: '50px', margin: '10px' }}
+                src="https://i.imgur.com/YeiuX4k.png"
+              />
+            </a>
+          ) : null}
+          {user.user_instagram ? (
+            <a href={user.user_instagram}>
+              <Image
+                style={{ width: '50px', margin: '10px' }}
+                src="https://i.imgur.com/dTKYTwR.png"
+              />
+            </a>
+          ) : null}
+          {user.user_twitch ? (
+            <a href={user.user_twitch}>
+              <Image
+                style={{ width: '50px', margin: '10px' }}
+                src="https://i.imgur.com/pSgUF1Y.jpg"
+              />
+            </a>
+          ) : null}
+        </div>
+      );
+    } else {
+      return <Link to="/signup">Sign up or Log in to view Social media</Link>;
+    }
+  };
+
+  //console.log(displaySocialMediaIcons())
 
   return (
     <Container className="userPage">
-      <Card style={{ width: "27rem" }}>
+      <Card style={{ width: '27rem' }}>
         <Card.Img src={user.user_avatar} />
         <Card.Body>
           <Card.Title>{user.user_name}</Card.Title>
           <br></br>
-          <Card.Subtitle>Game Switcher Score: {user.user_trade_score}</Card.Subtitle>
+          <Card.Subtitle>
+            Game Switcher Score: {user.user_trade_score}
+          </Card.Subtitle>
           <br></br>
           <Card.Subtitle>Location: {user.user_location}</Card.Subtitle>
           <Card.Text>{user.user_bio}</Card.Text>
-         { user.user_facebook ? <a href={user.user_facebook}>
-          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/YeiuX4k.png'/>
-         </a> : null}
-         { user.user_instagram ? <a href={user.user_instagram}>
-          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/dTKYTwR.png'/>
-         </a> : null}
-         { user.user_twitch ? <a href={user.user_twitch}>
-          <Image style={{width:'50px', margin:'10px'}} src='https://i.imgur.com/pSgUF1Y.jpg'/>
-         </a> : null}
-         <br></br>
+          {displaySocialMediaIcons()}
+          <br></br>
           <Button variant="primary" onClick={showGamesHandler}>
             {!gamesVisible
               ? `${user.user_name}'s Games`
