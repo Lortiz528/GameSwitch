@@ -7,7 +7,15 @@ const swapGames = async (swapGameRequest) => {
     swapGameRequest;
 
   try {
-    const swapGame = await db.one();
+    const swapGameOne = await db.one(
+      "update games set user_id=$1 where game_id=$2 returning *;",
+      [offerer_id, receiver_game_id]
+    );
+    const swapGameTwo = await db.one(
+      "update games set user_id=$1 where game_id=$2 returning *;",
+      [receiver_id, offerer_game_id]
+    );
+    return [swapGameOne, swapGameTwo];
   } catch (error) {
     console.log(error.message);
   }
