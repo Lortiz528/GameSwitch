@@ -1,8 +1,6 @@
 .usercard{
-    margin: 10px;
+    margin: 20px;
     box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.5);
-   
-
 }
 
 .userImage{
@@ -16,4 +14,9 @@
     width: auto;
     text-align: center;
     margin: auto;
+}
+
+.userrow{
+    margin-left: 4.8%;
+    margin-top: 1%;
 }
