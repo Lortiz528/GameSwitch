@@ -20,7 +20,7 @@ function About() {
             <Card.Text>
               I am a full stack engineer based in NYC with a background in
               Logistics/transportation. I have a passion for wildlife, space
-              exploration, and baseball.
+              exploration, and baseball. In my spare time, I am dabbling in electronics repair/ customization and watching/playing Baseball.
             </Card.Text>
             <Card.Footer>
             <a href="https://github.com/Lortiz528">
@@ -51,8 +51,8 @@ function About() {
             <Card.Title>Li Li Wu</Card.Title>
             <Card.Text>
               I am fullstack software engineer in NYC with a Bachelor of
-              Business Administration in Marketing. I like to code and create
-              website. When I am not coding, I like to binge on series.
+              Business Administration in Marketing. I have a background in logistics/ importing. I like to code and create
+              websites. When I am not coding, I like to binge on series and try new foods!
             </Card.Text>
             <Card.Footer>
             <a href="https://github.com/liliwu8">
