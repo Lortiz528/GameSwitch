@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/app";
+import { Card, Row, Container, Button } from 'react-bootstrap';
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -60,27 +61,29 @@ export default function OfferedRecord({
 
   console.log("offered made", offeredRequest);
   return (
-    <div>
-      <ul>
-        <h5>Trade Offer Date: {formatDate(dateString)}</h5>
+    <Card style={{ width: '20rem', textAlign: 'left' }}>
+  <Card.Body>
+        <Card.Title>Trade Offer Date: {formatDate(dateString)}</Card.Title>
         <h5>Trade Status: {offeredRequest.trade_success}</h5>
-        <h5>
+        <Card.Title>
           {offeredRequest.offer_name} Complete Status:{" "}
           {offerInfo.trade_complete_from_offerer ? "True" : "false"}
-        </h5>
-        <h5>
+        </Card.Title>
+        <Card.Title>
           {offeredRequest.receiver_name} Complete Status:{" "}
           {offerInfo.trade_complete_from_receiver ? "True" : "false"}
-        </h5>
-        <p>
-          {`${offeredRequest.offer_name} is offering ${offeredRequest.offerer_game_name} to switch ${offeredRequest.receiver_name}'s ${offeredRequest.receiver_game_name}`}
-        </p>
-      </ul>
-      <button onClick={cancel}>Cancel</button>
-      <button onClick={completeTrade}>Confirm Complete Trade</button>
+        </Card.Title>
+        <Card.Text>
+          {`${offeredRequest.offer_name} Offered ${offeredRequest.offerer_game_name} For${offeredRequest.receiver_name}'s Copy of ${offeredRequest.receiver_game_name}`}
+        </Card.Text>
+    
+      <Button variant="light" onClick={cancel}>Cancel</Button>
       <br></br>
-
-      <hr />
-    </div>
+      <br></br>
+      <Button variant="success" onClick={completeTrade}>Confirm Complete Trade</Button>
+      
+      </Card.Body>
+    
+    </Card>
   );
 }
