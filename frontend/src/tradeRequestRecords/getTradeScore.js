@@ -26,7 +26,7 @@ export default function GetTradeScore({ user_id }) {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [user_id]);
 
   return <div>{tradeScore}</div>;
 }

@@ -1,11 +1,11 @@
-import axios from 'axios';
-import './User.css';
-import { Button, Card, Container, Image } from 'react-bootstrap';
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { CurrentUserContext } from './CurrentUserContext';
-import { useContext } from 'react';
-
+import axios from "axios";
+import "./User.css";
+import { Button, Card, Container, Image } from "react-bootstrap";
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { CurrentUserContext } from "./CurrentUserContext";
+import { useContext } from "react";
+import GetTradeScore from "../tradeRequestRecords/getTradeScore";
 const API = process.env.REACT_APP_API_URL;
 
 function User() {
@@ -25,7 +25,7 @@ function User() {
       .catch((err) => {
         console.log(err);
       });
-  }, [user_email]);
+  }, [user_email, user.user_id]);
 
   const showGamesHandler = () => {
     axios.get(`${API}/loggedin/${user.user_id}/games`).then((res) => {
@@ -51,8 +51,8 @@ function User() {
       </Card>
     );
   });
-  console.log(user);
-  console.log(currentUser);
+  // console.log(user);
+  // console.log(currentUser);
 
   const displaySocialMediaIcons = () => {
     if (currentUser.user_name) {
@@ -61,7 +61,7 @@ function User() {
           {user.user_facebook ? (
             <a href={user.user_facebook}>
               <Image
-                style={{ width: '50px', margin: '10px' }}
+                style={{ width: "50px", margin: "10px" }}
                 src="https://i.imgur.com/YeiuX4k.png"
               />
             </a>
@@ -69,7 +69,7 @@ function User() {
           {user.user_instagram ? (
             <a href={user.user_instagram}>
               <Image
-                style={{ width: '50px', margin: '10px' }}
+                style={{ width: "50px", margin: "10px" }}
                 src="https://i.imgur.com/dTKYTwR.png"
               />
             </a>
@@ -77,7 +77,7 @@ function User() {
           {user.user_twitch ? (
             <a href={user.user_twitch}>
               <Image
-                style={{ width: '50px', margin: '10px' }}
+                style={{ width: "50px", margin: "10px" }}
                 src="https://i.imgur.com/pSgUF1Y.jpg"
               />
             </a>
@@ -90,16 +90,17 @@ function User() {
   };
 
   //console.log(displaySocialMediaIcons())
+  console.log("user_id is", user.user_id);
 
   return (
     <Container className="userPage">
-      <Card style={{ width: '27rem' }}>
+      <Card style={{ width: "27rem" }}>
         <Card.Img src={user.user_avatar} />
         <Card.Body>
           <Card.Title>{user.user_name}</Card.Title>
           <br></br>
           <Card.Subtitle>
-            Game Switcher Score: {user.user_trade_score}
+            Game Switcher Score: {<GetTradeScore user_id={user.user_id} />}
           </Card.Subtitle>
           <br></br>
           <Card.Subtitle>Location: {user.user_location}</Card.Subtitle>
