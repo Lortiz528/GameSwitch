@@ -9,19 +9,15 @@ const API = process.env.REACT_APP_API_URL; //localhost:3333
 
 export default function ReceivedRecord({ receivedRequest }) {
   const [status, setStatus] = useState(receivedRequest.trade_success);
+  // const [offerCompleteStatus, setOfferCompleteStatus] = useState(
+  //   receivedRequest.trade_complete_from_offerer
+  // );
   const [request, setRequest] = useState(receivedRequest);
 
   const accept = () => {
     const acceptRequest = {};
-    acceptRequest.trade_complete_from_offerer =
-      receivedRequest.trade_complete_from_offerer;
-    acceptRequest.trade_complete_from_receiver =
-      receivedRequest.trade_complete_from_receiver;
     acceptRequest.trade_success = "accepted";
-    receivedRequest.trade_success = "accepted";
     acceptRequest.trade_id = receivedRequest.trade_id;
-
-    //console.log("accepted request", acceptRequest);
 
     axios
       .put(`${API}/trades/updatetrade`, acceptRequest)
@@ -33,12 +29,7 @@ export default function ReceivedRecord({ receivedRequest }) {
 
   const reject = () => {
     const rejectRequest = {};
-    rejectRequest.trade_complete_from_offerer =
-      receivedRequest.trade_complete_from_offerer;
-    rejectRequest.trade_complete_from_receiver =
-      receivedRequest.trade_complete_from_receiver;
     rejectRequest.trade_success = "rejected";
-    receivedRequest.trade_success = "rejected";
     rejectRequest.trade_id = receivedRequest.trade_id;
 
     axios
@@ -51,6 +42,7 @@ export default function ReceivedRecord({ receivedRequest }) {
 
   const completeTrade = () => {
     receivedRequest.trade_complete_from_receiver = true;
+    console.log("receivedRequest", receivedRequest);
 
     if (receivedRequest.trade_complete_from_offerer === true) {
       receivedRequest.trade_success = "Completed";
@@ -84,7 +76,7 @@ export default function ReceivedRecord({ receivedRequest }) {
 
   let dateString = receivedRequest.created_at;
 
-  //console.log("request is", receivedRequest);
+  console.log("request is", receivedRequest);
 
   return (
     <div>

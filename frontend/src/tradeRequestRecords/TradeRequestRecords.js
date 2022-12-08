@@ -72,11 +72,15 @@ export default function TradeRequestRecords() {
 
   return (
     <div>
+      <h1>hello</h1>
       <h2>Requests I received</h2>
       <section>{displayTradeReceivedRecord(requests)}</section>
       <hr />
       <h2>Requests I sent</h2>
       <section>{displayTradeOfferedRecord(offers)}</section>
+      <button>
+        <Link to="/">Home</Link>
+      </button>
     </div>
   );
 }
