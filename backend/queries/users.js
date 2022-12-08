@@ -1,10 +1,10 @@
 //import the db object
-const db = require("../db/dbConfig.js");
+const db = require('../db/dbConfig.js');
 
 //get all users info from the database
 const getAllUsers = async () => {
   try {
-    const allUsers = await db.any("SELECT * FROM users");
+    const allUsers = await db.any('SELECT * FROM users');
     return allUsers;
   } catch (error) {
     console.log(error.message);
@@ -14,7 +14,7 @@ const getAllUsers = async () => {
 const getUserByEmail = async (user_email) => {
   try {
     const user = await db.any(
-      "SELECT * FROM users where user_email=$1",
+      'SELECT * FROM users where user_email=$1',
       user_email
     );
     return user;
@@ -24,12 +24,30 @@ const getUserByEmail = async (user_email) => {
 };
 
 const updateUser = async (user, email) => {
-  const { user_name, user_location, user_avatar, user_password, user_bio, user_facebook, user_socialmedia2 } =
-    user;
+  const {
+    user_name,
+    user_location,
+    user_avatar,
+    user_password,
+    user_bio,
+    user_facebook,
+    user_instagram,
+    user_twitch,
+  } = user;
   try {
     const user = await db.one(
-      "update users set user_name=$1, user_location=$2,user_avatar=$3 ,user_password=$4, user_bio=$5, user_facebook=$6,user_instagram=$7, user_twitch=$8 where user_email=$9 returning *",
-      [user_name, user_location, user_avatar, user_password, user_bio, user_facebook, user_socialmedia2, email]
+      'update users set user_name=$1, user_location=$2,user_avatar=$3 ,user_password=$4, user_bio=$5, user_facebook=$6,user_instagram=$7, user_twitch=$8 where user_email=$9 returning *',
+      [
+        user_name,
+        user_location,
+        user_avatar,
+        user_password,
+        user_bio,
+        user_facebook,
+        user_instagram,
+        user_twitch,
+        email,
+      ]
     );
     return user;
   } catch (error) {
@@ -42,7 +60,7 @@ const createUser = async (user) => {
 
   try {
     const addUser = await db.one(
-      "insert into users (user_name,user_email,user_password) values ($1,$2,$3) returning *",
+      'insert into users (user_name,user_email,user_password) values ($1,$2,$3) returning *',
       [user_name, user_email, user_password]
     );
     return addUser;
@@ -54,7 +72,7 @@ const createUser = async (user) => {
 const deleteUser = async (user_email) => {
   try {
     const oneUser = await db.one(
-      "DELETE FROM users WHERE user_email=$1 RETURNING *",
+      'DELETE FROM users WHERE user_email=$1 RETURNING *',
       user_email
     );
     return oneUser;
