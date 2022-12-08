@@ -47,7 +47,7 @@ export default function GameCollection() {
         <Card.Body>
           <Card.Title>{game.game_name}</Card.Title>
           <br />
-          <button
+          <button className='deletegame'
             onClick={() => {
               deleteGame(index, game.game_id)
             }}
@@ -57,7 +57,7 @@ export default function GameCollection() {
           <br />
           <br />
           <Link to={`/updategame/${game.game_id}`}>
-            <button>Update Game</button>
+            <button className='updategame'>Update Game</button>
           </Link>
         </Card.Body>
       </Card>
@@ -67,7 +67,7 @@ export default function GameCollection() {
   return (
     <Container>
       <Link to='/addnewgame'>
-        <button>Add New Game</button>
+        <button className='addgame'>Add Game</button>
       </Link>
       <Row className='gamerow'>
         {games.length !== 0 ? (

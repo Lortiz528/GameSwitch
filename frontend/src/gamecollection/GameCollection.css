@@ -1,13 +1,56 @@
-.game{
-margin: 16px;
-margin-top: 5px;
+.game {
+  margin: 16px;
+  margin-top: 5px;
 }
-.gameimg{
-    margin-top: 8px;
-    margin-left: 9px;
+.gameimg {
+  margin-top: 8px;
+  margin-left: 9px;
 }
 
-.gamerow{
-    margin-left: 95px;
-    margin-top: 2%
+.gamerow {
+  margin-left: 95px;
+  margin-top: 2%;
+}
+
+.addgame {
+  margin-top: 3%;
+  background-color: #4A4AD3;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.addgame:hover {
+  background-color: #6660cd;
+}
+
+.deletegame {
+  background-color: #4c42cc;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.deletegame:hover {
+  background-color: #6660cd;
+}
+
+.updategame {
+  background-color: #1657f3;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.updategame:hover {
+  background-color: #477beb;
 }
