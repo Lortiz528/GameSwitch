@@ -1,19 +1,20 @@
-/* .loginForm {
-  width: 500px;
-  margin: auto;
-} */
-
-.login {
+.update-game-form {
+  margin-top: 2%;
   z-index: 1;
   background: #ffffff;
-  max-width: 360px;
+  max-width: 500px;
   margin: 10px auto 100px;
   padding: 45px;
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  
 }
 
-.login-button {
-  background-color: #4C34DF;
+.input{
+   text-align: left;
+}
+
+.update-button{
+background-color: #1657f3;
   font-weight: bold;
   border-radius: 8px;
   width: 100%;
@@ -24,7 +25,6 @@
   margin-top: 9px;
 }
 
-.login-button:hover{
-  background-color: #674CF1;
+.update-button:hover{
+     background-color: #477beb;
 }
-

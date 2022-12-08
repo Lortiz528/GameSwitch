@@ -1,4 +1,38 @@
-.userProfileUpdateForm{
-    width:500px;
-    margin:auto
+.userProfileUpdateForm {
+  width: 500px;
+  margin: auto;
+  z-index: 1;
+  background: #ffffff;
+  max-width: 500px;
+  margin: 10px auto 100px;
+  padding: 45px;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.update-profile {
+  background-color: #1657f3;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.update-profile:hover {
+  background-color: #3C64EC;
+}
+
+.cancel-profile {
+  background-color: #4c42cc;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 20px;
+  margin-top: 9px;
+}
+
+.cancel-profile:hover {
+  background-color: #6660cd;
 }
