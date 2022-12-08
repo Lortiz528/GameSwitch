@@ -6,7 +6,7 @@ Game.Connect.Repeat!
 
 🕹️ [Deployed Frontend](https://game-switch-nyc.netlify.app/)
 
-🕹️ [Deployed Backend](https://gameswitch-pv31.onrender.com)
+🕹️ [Deployed Backend](https://latest-gameswitch.onrender.com)
 
 🕹️ [Trello](https://trello.com/b/Zu5DpOyo/capstone-group-1-video-game-exchange)
 
