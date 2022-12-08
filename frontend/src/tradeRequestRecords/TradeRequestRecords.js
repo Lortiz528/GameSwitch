@@ -6,6 +6,7 @@ import { CurrentUserContext } from "../components/CurrentUserContext";
 import { useContext } from "react";
 import ReceivedRecord from "./ReceivedRecord";
 import OfferedRecord from "./OfferedRecord";
+import { Container, Button } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -71,16 +72,20 @@ export default function TradeRequestRecords() {
   // console.log(offers);
 
   return (
-    <div>
-      <h2>Requests I received</h2>
-      <section>{displayTradeReceivedRecord(requests)}</section>
+    <Container>
+      <Container>
+      <h2>Received Trade Offers</h2>
+      <Container className="tradeCards">{displayTradeReceivedRecord(requests)}</Container>
+      </Container>
       <hr />
-      <h2>Requests I sent</h2>
-      <section>{displayTradeOfferedRecord(offers)}</section>
+      <Container>
+      <h2>Trade Requests I Sent</h2>
+      <Container className="tradeCards">{displayTradeOfferedRecord(offers)}</Container>
+      </Container>
 
-      <button>
-        <Link to="/">Home</Link>
-      </button>
-    </div>
+      
+        <Link to="/userprofile"><Button>Go Back</Button></Link>
+      
+    </Container>
   );
 }
