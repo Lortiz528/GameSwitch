@@ -65,6 +65,13 @@ function UserProfileUpdate() {
     });
   };
 
+  const dino_avatar = 'https://i.imgur.com/tvpgFjs.png';
+  const pig_avatar = 'https://i.imgur.com/9UDijyx.png';
+  const unicorn_avatar = 'https://i.imgur.com/tadXFHu.png';
+  const darkCat_avatar = 'https://i.imgur.com/BiZQKs5.png';
+  const lightCat_avatar = 'https://i.imgur.com/P6gEYWf.png';
+  const panda_avatar = 'https://i.imgur.com/D4DLHFw.png';
+
   //  [user_name, user_trade_score, user_location, user_avatar, email]
 
   return (
@@ -157,30 +164,46 @@ function UserProfileUpdate() {
           <Form.Label>
             <strong>Avatar:</strong>{' '}
           </Form.Label>
-          <Form.Control
+          <Form.Select
+            type="text"
+            id="user_avatar"
+            value={userInput.user_avatar}
+            onChange={handleTextChange}
+            required
+          >
+            <option value={dino_avatar}>Dinosaur</option>
+            <option value={pig_avatar}>Pig</option>
+            <option value={unicorn_avatar}>Unicorn</option>
+            <option value={darkCat_avatar}>Dark Cat</option>
+            <option value={lightCat_avatar}>Light Cat</option>
+            <option value={panda_avatar}>Panda</option>
+          </Form.Select>
+          {/* <Form.Control
             type="text"
             placeholder="Enter Avatar Url"
             id="user_avatar"
             value={userInput.user_avatar}
             onChange={handleTextChange}
             required
-          />
+          /> */}
         </Form.Group>
         <Image src={userInput.user_avatar} alt={userInput.user_name} />
         <br></br>
         <br />
-        {/* <button className='update-profile' type='submit'>
+        <button className="update-profile" type="submit">
           Update Profile
-        </button> */}
-        <input
+        </button>
+        {/* <input
           className="update-profile"
           type="submit"
-          value="update profile"
-        />
+          value="Update profile"
+        /> */}
       </Form>
       <br />
 
-      <Link to="/userprofile">Go back</Link>
+      <Link to="/userprofile">
+        <button className="cancel-profile">Go back</button>
+      </Link>
 
       <br></br>
     </section>
