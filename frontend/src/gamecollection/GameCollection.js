@@ -38,10 +38,10 @@ export default function GameCollection() {
 
   const games = gameCollection.map((game, index) => {
     return (
-      <Card key={index} style={{ width: '15rem' }} className='game'>
+      <Card key={index} style={{ width: '16rem' }} className='game'>
         <Card.Img
           src={game.game_img}
-          style={{ height: '250px', width: '200px' }}
+          style={{ height: '250px', width: '225px' }}
           className='gameimg'
         />
         <Card.Body>

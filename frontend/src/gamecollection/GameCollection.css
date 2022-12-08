@@ -1,6 +1,7 @@
 .game {
   margin: 16px;
   margin-top: 5px;
+  box-shadow: 8px 0px 10px rgba(48, 74, 222, 0.5);
 }
 .gameimg {
   margin-top: 8px;
@@ -8,7 +9,7 @@
 }
 
 .gamerow {
-  margin-left: 95px;
+  margin-left: 4rem;
   margin-top: 2%;
 }
 

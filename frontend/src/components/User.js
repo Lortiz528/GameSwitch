@@ -94,7 +94,7 @@ function User() {
 
   return (
     <Container className="userPage">
-      <Card style={{ width: "27rem" }}>
+      <Card style={{ width: "27rem" }} className='user-cards'>
         <Card.Img src={user.user_avatar} />
         <Card.Body>
           <Card.Title>{user.user_name}</Card.Title>
