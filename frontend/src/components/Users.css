@@ -1,22 +1,31 @@
-.usercard{
-    margin: 20px;
-    box-shadow: 8px 0px 10px rgba(0, 0, 0, 0.5);
+.usercard {
+  margin: 20px;
+  box-shadow: 8px 0px 10px rgba(48, 74, 222, 0.5);
 }
 
-.userImage{
-    width:200px;
-    height: 200px;
-    margin-bottom: 10px;
-   
+.userImage {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 10px;
 }
 
-.dropdown-userLocation{
-    width: auto;
-    text-align: center;
-    margin: auto;
+.dropdown-userLocation {
+  width: auto;
+  text-align: center;
+  margin: auto;
 }
 
-.userrow{
-    margin-left: 4.8%;
-    margin-top: 1%;
+.userrow {
+  margin-left: 4.8%;
+  margin-top: 1%;
+  animation-duration: 1.8s;
+  animation-name: fadeInBottom;
+}
+
+@keyframes fadeInBottom {
+    from {
+        opacity: 0;
+        transform: translateY(100%);
+    }
+    to { opacity: 1 }
 }
