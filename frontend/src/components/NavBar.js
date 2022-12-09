@@ -9,7 +9,7 @@ import './NavBar.css'
 
 function NavBar() {
   const { currentUser } = useContext(CurrentUserContext)
-  console.log(currentUser.length)
+ 
   return (
     <Navbar className=' nav-bar' sticky='top'>
       <Link to='/'>
@@ -24,7 +24,7 @@ function NavBar() {
           <>
             <button className='button'>
               <Link to='/userprofile' className='userprofile'>
-                My Profile
+               {currentUser.user_name}'s profile
               </Link>
             </button>
             <SignOut />

@@ -1,8 +1,7 @@
-.home-title {
-  font-size: 60px;
+.title{
   color: rgb(43, 26, 222);
   background-image: linear-gradient(60deg, #aa23e9, #45adf7);
   background-clip: text;
   color: transparent;
-  font-family: "DotGothic16", sans-serif;
+ margin-top: 5px;
 }
