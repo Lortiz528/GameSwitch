@@ -53,3 +53,8 @@
   gap: 10px;
   padding: 1em;
 } */
+
+.tradeCards{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);;
+}

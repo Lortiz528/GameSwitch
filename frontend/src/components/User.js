@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./User.css";
-import { Button, Card, Container, Image } from "react-bootstrap";
+import { Card, Container, Image } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { CurrentUserContext } from "./CurrentUserContext";
@@ -107,11 +107,11 @@ function User() {
           <Card.Text>{user.user_bio}</Card.Text>
           {displaySocialMediaIcons()}
           <br></br>
-          <Button variant="primary" onClick={showGamesHandler}>
+          <button className="user-button" onClick={showGamesHandler}>
             {!gamesVisible
               ? `${user.user_name}'s Games`
               : `Hide ${user.user_name}'s Games`}
-          </Button>
+          </button>
         </Card.Body>
       </Card>
 

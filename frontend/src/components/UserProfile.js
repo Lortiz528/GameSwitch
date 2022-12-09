@@ -49,7 +49,6 @@ export default function UserProfile() {
             </td>
             <td>
               <Image
-                roundedCircle
                 height={'200px'}
                 src={currentUser.user_avatar}
                 alt={currentUser.user_name}
