@@ -1,17 +1,18 @@
 import React from "react";
 import SignOut from "../firebaseTest/Signout";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/app";
 import { Card, Row, Container, Button } from "react-bootstrap";
+import { toast, ToastContainer } from 'react-toastify'
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
 export default function ReceivedRecord({ receivedRequest }) {
   const [status, setStatus] = useState(receivedRequest.trade_success);
   const [request, setRequest] = useState(receivedRequest);
-
+  const navigate = useNavigate();
   const accept = () => {
     const acceptRequest = {};
     acceptRequest.trade_complete_from_offerer =
@@ -28,6 +29,7 @@ export default function ReceivedRecord({ receivedRequest }) {
       .put(`${API}/trades/updatetrade`, acceptRequest)
       .then((res) => {
         setStatus("accepted");
+        notify()
       })
       .catch((error) => console.log(error));
   };
@@ -86,7 +88,20 @@ export default function ReceivedRecord({ receivedRequest }) {
   let dateString = receivedRequest.created_at;
 
   //console.log("request is", receivedRequest);
-
+  const notify = () => {
+    toast.success('You have accepted the trade! Please contact the user to coordinate switching games!', {
+      position: 'top-center',
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: true,
+      progress: undefined,
+    })
+    setTimeout(() => {
+      navigate("/userprofile")
+    }, 3100)
+  }
   return (
     <Card style={{ width: "20rem", textAlign: "left" }}>
       <Card.Body>
@@ -119,12 +134,13 @@ export default function ReceivedRecord({ receivedRequest }) {
         )}
         <br></br>
         <br></br>
-
+        <ToastContainer autoClose={2000} theme='light' />
         {receivedRequest.trade_success === "pending" ||
         receivedRequest.trade_success === "rejected" ? null : (
           <Button variant="success" onClick={completeTrade}>
             Confirm Complete Trade
           </Button>
+          
         )}
       </Card.Body>
     </Card>
