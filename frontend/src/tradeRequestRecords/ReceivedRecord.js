@@ -1,10 +1,10 @@
-import React from 'react';
-import SignOut from '../firebaseTest/Signout';
-import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { setLogLevel } from 'firebase/app';
-import { Card, Row, Container, Button } from 'react-bootstrap';
+import React from "react";
+import SignOut from "../firebaseTest/Signout";
+import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { setLogLevel } from "firebase/app";
+import { Card, Row, Container, Button } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -23,7 +23,7 @@ export default function ReceivedRecord({ receivedRequest }) {
     axios
       .put(`${API}/trades/updatetrade`, acceptRequest)
       .then((res) => {
-        setStatus('accepted');
+        setStatus("accepted");
       })
       .catch((error) => console.log(error));
   };
@@ -36,7 +36,7 @@ export default function ReceivedRecord({ receivedRequest }) {
     axios
       .put(`${API}/trades/updatetrade`, rejectRequest)
       .then((res) => {
-        setStatus('rejected');
+        setStatus("rejected");
       })
       .catch((error) => console.log(error));
   };
@@ -46,7 +46,7 @@ export default function ReceivedRecord({ receivedRequest }) {
     console.log("receivedRequest", receivedRequest);
 
     if (receivedRequest.trade_complete_from_offerer === true) {
-      receivedRequest.trade_success = 'Completed';
+      receivedRequest.trade_success = "Completed";
       //swap games here
       const gamesInfo = {};
       gamesInfo.offerer_id = receivedRequest.trade_offerer_user_id;
@@ -57,7 +57,7 @@ export default function ReceivedRecord({ receivedRequest }) {
         .put(`${API}/trades/swapgames`, gamesInfo)
         .then((res) => {
           // setRequest(res.data.payload);
-          setStatus('Completed');
+          setStatus("Completed");
         })
         .catch((error) => console.log(error));
     }
@@ -71,7 +71,7 @@ export default function ReceivedRecord({ receivedRequest }) {
   };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
@@ -80,31 +80,44 @@ export default function ReceivedRecord({ receivedRequest }) {
   console.log("request is", receivedRequest);
 
   return (
-    <Card style={{ width: '20rem', textAlign: 'left' }}>
+    <Card style={{ width: "20rem", textAlign: "left" }}>
       <Card.Body>
         <Card.Title>Trade Offer Date: {formatDate(dateString)}</Card.Title>
         <h5>Trade Status: {status}</h5>
         <Card.Title>
           {receivedRequest.offer_name} Complete Status:
-          {request.trade_complete_from_offerer ? 'True' : 'false'}
+          {request.trade_complete_from_offerer ? "True" : "false"}
         </Card.Title>
         <Card.Title>
           {receivedRequest.receiver_name} Complete Status:
-          {request.trade_complete_from_receiver ? 'True' : 'false'}
+          {request.trade_complete_from_receiver ? "True" : "false"}
         </Card.Title>
         <Card.Text>
           {`${receivedRequest.offer_name} Offered ${receivedRequest.offerer_game_name} for ${receivedRequest.receiver_name}'s Copy of ${receivedRequest.receiver_game_name}`}
         </Card.Text>
 
-        <Button variant="primary" onClick={accept}>Accept</Button>
+        {receivedRequest.trade_success === "completed" ? null : (
+          <Button variant="primary" onClick={accept}>
+            Accept
+          </Button>
+        )}
         <br></br>
         <br></br>
 
-        <Button variant="warning" onClick={reject}>Reject</Button>
+        {receivedRequest.trade_success === "completed" ? null : (
+          <Button variant="warning" onClick={reject}>
+            Reject
+          </Button>
+        )}
         <br></br>
         <br></br>
 
-        <Button variant="success" onClick={completeTrade}>Confirm Complete Trade</Button>
+        {receivedRequest.trade_success === "pending" ||
+        receivedRequest.trade_success === "rejected" ? null : (
+          <Button variant="success" onClick={completeTrade}>
+            Confirm Complete Trade
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );
