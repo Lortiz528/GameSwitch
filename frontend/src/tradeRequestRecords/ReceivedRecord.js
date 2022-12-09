@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/app";
 import { Card, Row, Container, Button } from "react-bootstrap";
-import { toast, ToastContainer } from 'react-toastify'
+import { toast, ToastContainer } from "react-toastify";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -29,7 +29,7 @@ export default function ReceivedRecord({ receivedRequest }) {
       .put(`${API}/trades/updatetrade`, acceptRequest)
       .then((res) => {
         setStatus("accepted");
-        notify()
+        notify();
       })
       .catch((error) => console.log(error));
   };
@@ -89,19 +89,22 @@ export default function ReceivedRecord({ receivedRequest }) {
 
   //console.log("request is", receivedRequest);
   const notify = () => {
-    toast.success('You have accepted the trade! Please contact the user to coordinate switching games!', {
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      pauseOnFocusLoss: false,
-      draggable: true,
-      progress: undefined,
-    })
+    toast.success(
+      "You have accepted the trade! Please contact the user to coordinate switching games!",
+      {
+        position: "top-center",
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        pauseOnFocusLoss: false,
+        draggable: true,
+        progress: undefined,
+      }
+    );
     setTimeout(() => {
-      navigate("/userprofile")
-    }, 3100)
-  }
+      navigate("/userprofile");
+    }, 3100);
+  };
   return (
     <Card style={{ width: "20rem", textAlign: "left" }}>
       <Card.Body>
@@ -116,7 +119,19 @@ export default function ReceivedRecord({ receivedRequest }) {
           {request.trade_complete_from_receiver ? "True" : "false"}
         </Card.Title>
         <Card.Text>
-          {`${receivedRequest.offer_name} Offered ${receivedRequest.offerer_game_name} for ${receivedRequest.receiver_name}'s Copy of ${receivedRequest.receiver_game_name}`}
+          <span>{`${receivedRequest.offer_name} Offered `}</span>
+          <span>
+            <Link
+              to={`/games/${receivedRequest.trade_offerer_game_id}`}
+            >{`${receivedRequest.offerer_game_name} `}</Link>
+            {"for "}
+          </span>
+          <span>{`${receivedRequest.receiver_name}'s Copy of `}</span>
+          <span>
+            <Link
+              to={`/games/${receivedRequest.trade_receiver_game_id}`}
+            >{`${receivedRequest.receiver_game_name}`}</Link>
+          </span>
         </Card.Text>
 
         {receivedRequest.trade_success === "completed" ? null : (
@@ -134,13 +149,12 @@ export default function ReceivedRecord({ receivedRequest }) {
         )}
         <br></br>
         <br></br>
-        <ToastContainer autoClose={2000} theme='light' />
+        <ToastContainer autoClose={2000} theme="light" />
         {receivedRequest.trade_success === "pending" ||
         receivedRequest.trade_success === "rejected" ? null : (
           <Button variant="success" onClick={completeTrade}>
             Confirm Complete Trade
           </Button>
-          
         )}
       </Card.Body>
     </Card>
