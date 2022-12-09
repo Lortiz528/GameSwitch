@@ -1,6 +1,12 @@
-# 🎮 GameSwitch NYC - Capstone Project 🎮
+# 🎮 GameSwitch NYC 🎮
 
 Game.Connect.Repeat!
+
+## Exchange your games with no cost!
+
+This is a platform for gamers to interact with local peers by trading video games. Game Switch provides an alternative way of refreshing your game collection. Many of you have experienced this or know someone who has. When you trade games in you local GameStop store you don't get enough. What's the use of returning when you can exchange a game you have not experienced with another gamer with no money involved. Wouldn’t it be cool to have a low cost way to get more value for your used games and also meet local peers with similar interests? 
+GameSwitch NYC has a user-friendly interface our application allows you to sign up, login, search for games, and users. You can change you profile picture to the cutest avatars it has. When you trade the game and both user accepts you can contact the user to coordinate the meetup. If you are tired of playing your game, sign up and see what games you want to play by trading the game you don't want. GameSwitch NYC has your back!
+
 
 ## Important Links
 
@@ -16,7 +22,7 @@ Game.Connect.Repeat!
 
 ## Local Setup
 
-### Frontend Setu
+### Frontend Setup
 
 ```bash
 # clone the repository to your local machine.
