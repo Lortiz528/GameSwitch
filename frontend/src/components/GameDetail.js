@@ -86,6 +86,8 @@ function GameDetail() {
                   {findUserName(user)}
                 </Link>{' '}
               </p>
+              {currentUser.user_name ? ( <p><strong>Email:</strong> {findUserEmail(user)}</p>) : null}
+             
               {currentUser.user_name !== findUserName(user) &&
               currentUser.user_name ? (
                 <button onClick={handleOpen} className='game-detail-button'>offer trade</button>
