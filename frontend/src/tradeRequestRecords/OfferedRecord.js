@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { setLogLevel } from "firebase/app";
-import { Card, Row, Container, Button } from 'react-bootstrap';
+import { Card, Row, Container, Button } from "react-bootstrap";
 
 const API = process.env.REACT_APP_API_URL; //localhost:3333
 
@@ -61,8 +61,8 @@ export default function OfferedRecord({
 
   console.log("offered made", offeredRequest);
   return (
-    <Card style={{ width: '20rem', textAlign: 'left' }}>
-  <Card.Body>
+    <Card style={{ width: "20rem", textAlign: "left" }}>
+      <Card.Body>
         <Card.Title>Trade Offer Date: {formatDate(dateString)}</Card.Title>
         <h5>Trade Status: {offeredRequest.trade_success}</h5>
         <Card.Title>
@@ -76,14 +76,23 @@ export default function OfferedRecord({
         <Card.Text>
           {`${offeredRequest.offer_name} Offered ${offeredRequest.offerer_game_name} For${offeredRequest.receiver_name}'s Copy of ${offeredRequest.receiver_game_name}`}
         </Card.Text>
-    
-      <Button variant="light" onClick={cancel}>Cancel</Button>
-      <br></br>
-      <br></br>
-      <Button variant="success" onClick={completeTrade}>Confirm Complete Trade</Button>
-      
+
+        {offeredRequest.trade_success === "accepted" ||
+        offeredRequest.trade_success === "Completed" ? null : (
+          <Button variant="light" onClick={cancel}>
+            Cancel
+          </Button>
+        )}
+        <br></br>
+        <br></br>
+        {offeredRequest.trade_success === "rejected" ||
+        offeredRequest.trade_success === "pending" ||
+        offeredRequest.trade_success === "Completed" ? null : (
+          <Button variant="success" onClick={completeTrade}>
+            Confirm Complete Trade
+          </Button>
+        )}
       </Card.Body>
-    
     </Card>
   );
 }
