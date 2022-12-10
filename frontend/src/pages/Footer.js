@@ -12,12 +12,11 @@ export default function Footer() {
         <MDBContainer className="text-center text-md-start mt-5">
           <MDBRow>
             <MDBCol>
-            <Link to="/">
+              <Link to="/">
                 <img style={{ width: '175px' }} src={logo} alt="logo" />
               </Link>
             </MDBCol>
-            <MDBCol  className="mx-auto mb-4 text-center">
-                
+            <MDBCol className="mx-auto mb-4 text-center">
               <Link to="/about" className="text-uppercase fw-bold mb-4">
                 About
               </Link>
@@ -38,13 +37,6 @@ export default function Footer() {
           </MDBRow>
         </MDBContainer>
       </section>
-
-      <div
-        className="text-center p-4"
-        style={{ backgroundColor: 'rgba(0, 0, 0, 0.02)' }}
-      >
-        2022
-      </div>
     </MDBFooter>
   );
 }

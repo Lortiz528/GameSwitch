@@ -85,7 +85,7 @@ function User() {
         </div>
       );
     } else {
-      return <Link to="/signup">Sign up or Log in to view Social media</Link>;
+      return <Link to="/signup">Sign up or Log in to view Email and Social media</Link>;
     }
   };
 
@@ -105,6 +105,11 @@ function User() {
           <br></br>
           <Card.Subtitle>Location: {user.user_location}</Card.Subtitle>
           <Card.Text>{user.user_bio}</Card.Text>
+          <hr></hr>
+          <Card.Subtitle>{user.user_name}'s Contact info:</Card.Subtitle>
+          <br></br>
+          {currentUser.user_name ? (<Card.Subtitle>{user.user_email}</Card.Subtitle>): null}
+          
           {displaySocialMediaIcons()}
           <br></br>
           <button className="user-button" onClick={showGamesHandler}>

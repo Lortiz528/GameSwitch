@@ -74,7 +74,19 @@ export default function OfferedRecord({
           {offerInfo.trade_complete_from_receiver ? "True" : "false"}
         </Card.Title>
         <Card.Text>
-          {`${offeredRequest.offer_name} Offered ${offeredRequest.offerer_game_name} For${offeredRequest.receiver_name}'s Copy of ${offeredRequest.receiver_game_name}`}
+          <span>{`${offeredRequest.offer_name} Offered `}</span>
+          <span>
+            <Link
+              to={`/games/${offeredRequest.trade_offerer_game_id}`}
+            >{`${offeredRequest.offerer_game_name} `}</Link>
+            {"for "}
+          </span>
+          <span>{`${offeredRequest.receiver_name}'s Copy of `}</span>
+          <span>
+            <Link
+              to={`/games/${offeredRequest.trade_receiver_game_id}`}
+            >{`${offeredRequest.receiver_game_name}`}</Link>
+          </span>
         </Card.Text>
 
         {offeredRequest.trade_success === "accepted" ||
