@@ -10,9 +10,11 @@
 }
 
 .dropdown-userLocation {
-  width: auto;
+  width: 16%;
   text-align: center;
   margin: auto;
+  margin-top: 1%;
+  font-size: 18px;
 }
 
 .userrow {

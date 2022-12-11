@@ -38,16 +38,21 @@ export default function OfferedRecord({
       gamesInfo.receiver_id = offeredRequest.trade_receiver_user_id;
       gamesInfo.offerer_game_id = offeredRequest.trade_offerer_game_id;
       gamesInfo.receiver_game_id = offeredRequest.trade_receiver_game_id;
+
       axios
         .put(`${API}/trades/swapgames`, gamesInfo)
-        .then((res) => {})
+        .then((res) => {
+          // setOfferInfo(offeredRequest)
+        })
         .catch((error) => console.log(error));
     }
+
+setOfferInfo(offeredRequest)
 
     axios
       .put(`${API}/trades/updatetrade`, offeredRequest)
       .then((res) => {
-        setOfferInfo(offeredRequest);
+        // setOfferInfo(offeredRequest);
       })
       .catch((error) => console.log(error));
   };

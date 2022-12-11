@@ -26,12 +26,13 @@
 }
 
 .user-button {
-  background-image: linear-gradient(
+  /* background-image: linear-gradient(
     to right,
     #4776e6 0%,
     #8e54e9 51%,
     #4776e6 100%
-  );
+  ); */
+  background-color: #654aeb;
   transition: 0.5s;
   font-weight: bold;
   border-radius: 8px;
@@ -47,6 +48,6 @@
 }
 
 .user-button:hover {
-  background-position: right center;
+background-color: #5383ec;
   color: #fff;
 }

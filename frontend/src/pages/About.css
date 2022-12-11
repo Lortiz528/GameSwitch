@@ -1,3 +1,9 @@
-.biocard{
-   margin: 10px;
+.biocard {
+  margin: 10px;
+}
+
+.about-font {
+  font-family: 'Press Start 2P';
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
 }

@@ -1,7 +1,6 @@
 .game {
   margin: 16px;
   margin-top: 5px;
-  box-shadow: 8px 0px 10px rgba(48, 74, 222, 0.5);
 }
 .gameimg {
   margin-top: 8px;
@@ -9,19 +8,19 @@
 }
 
 .gamerow {
-  margin-left: 4rem;
+  margin-left: 95px;
   margin-top: 2%;
 }
 
 .addgame {
   margin-top: 3%;
-  background-color: #4A4AD3;
+  background-color: #4a4ad3;
   font-weight: bold;
   border-radius: 8px;
   color: #fff;
   border: none;
   font-size: 20px;
-  margin-top: 9px;
+  margin-top: 2%;
 }
 
 .addgame:hover {

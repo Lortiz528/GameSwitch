@@ -1,5 +1,22 @@
-.userprofile{
-    width:500px;
-    margin:auto;
-    margin-top:3px;
+.userprofile {
+  width: 500px;
+  margin: auto;
+  margin-top: 26px;
+}
+
+.user-profile-button {
+  background-color: #5383ec;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  margin-left: 1rem;
+}
+.user-profile-button a {
+  color: white;
+}
+
+.user-profile-button:hover{
+    background-color:#654AEB ;
 }
