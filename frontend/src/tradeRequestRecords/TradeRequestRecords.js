@@ -74,14 +74,14 @@ export default function TradeRequestRecords() {
   return (
     <Container>
       <Container>
-        <h2>Received Trade Offers</h2>
+        <h2 className='pixel-font'>Inbox</h2>
         <Container className='tradeCards'>
           {displayTradeReceivedRecord(requests)}
         </Container>
       </Container>
       <hr />
       <Container>
-        <h2>Trade Requests I Sent</h2>
+        <h2 className='pixel-font'>Outbox</h2>
         <Container className='tradeCards'>
           {displayTradeOfferedRecord(offers)}
         </Container>

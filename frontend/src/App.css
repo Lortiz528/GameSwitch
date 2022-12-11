@@ -54,7 +54,13 @@
   padding: 1em;
 } */
 
-.tradeCards{
+.tradeCards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.pixel-font {
+  font-family: 'Press Start 2P';
+  font-size: 23px;
+   margin-top: 2%;
 }

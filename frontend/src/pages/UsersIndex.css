@@ -1,7 +1,9 @@
-.title{
+.title {
   color: rgb(43, 26, 222);
   background-image: linear-gradient(60deg, #aa23e9, #45adf7);
   background-clip: text;
   color: transparent;
- margin-top: 5px;
+  margin-top: 2%;
+  font-family: 'Press Start 2P';
+  font-size: 27px;
 }
