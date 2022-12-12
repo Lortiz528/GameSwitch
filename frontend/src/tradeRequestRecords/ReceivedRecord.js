@@ -103,7 +103,7 @@ export default function ReceivedRecord({ receivedRequest }) {
       }
     )
     setTimeout(() => {
-      navigate('/userprofile')
+      navigate('/traderequestrecords')
     }, 3100)
   }
   return (
@@ -112,11 +112,11 @@ export default function ReceivedRecord({ receivedRequest }) {
         <Card.Title>Trade Offer Date: {formatDate(dateString)}</Card.Title>
         <h5>Trade Status: {status}</h5>
         <Card.Title>
-          {receivedRequest.offer_name} Complete Status:
+          {receivedRequest.offer_name} Complete Status:{' '}
           {request.trade_complete_from_offerer ? 'True' : 'false'}
         </Card.Title>
         <Card.Title>
-          {receivedRequest.receiver_name} Complete Status:
+          {receivedRequest.receiver_name} Complete Status:{' '}
           {request.trade_complete_from_receiver ? 'True' : 'false'}
         </Card.Title>
         <Card.Text>
