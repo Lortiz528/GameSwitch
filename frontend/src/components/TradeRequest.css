@@ -6,4 +6,20 @@
   z-index: 3;
 }
 
+.submit-btton {
+  background-color: #654aeb;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+}
 
+.cancel-btton {
+  background-color: #A9A9A9		;
+  font-weight: bold;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+  font-size: 22px;
+}
