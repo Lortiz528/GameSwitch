@@ -59,6 +59,7 @@ export default function OfferedRecord({
       axios
         .put(`${API}/trades/swapgames`, gamesInfo)
         .then((res) => {
+          notify();
           // setOfferInfo(offeredRequest)
         })
         .catch((error) => console.log(error));
@@ -72,7 +73,6 @@ export default function OfferedRecord({
         // setOfferInfo(offeredRequest);
       })
       .catch((error) => console.log(error));
-    // notify()
   };
 
   const formatDate = (dateString) => {
