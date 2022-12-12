@@ -1,12 +1,12 @@
-import React from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { useEffect, useState } from 'react'
-import axios from 'axios'
-import { setLogLevel } from 'firebase/app'
-import { Card, Row, Container, Button } from 'react-bootstrap'
-import { toast, ToastContainer } from 'react-toastify'
+import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import { setLogLevel } from 'firebase/app';
+import { Card, Row, Container, Button } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
 
-const API = process.env.REACT_APP_API_URL //localhost:3333
+const API = process.env.REACT_APP_API_URL; //localhost:3333
 
 export default function OfferedRecord({
   offeredRequest,
@@ -14,18 +14,18 @@ export default function OfferedRecord({
   setOffers,
   index,
 }) {
-  const [offerInfo, setOfferInfo] = useState(offeredRequest)
-  let navigate = useNavigate()
+  const [offerInfo, setOfferInfo] = useState(offeredRequest);
+  let navigate = useNavigate();
   const cancel = () => {
-    const gameOffers = [...offers]
-    gameOffers.splice(index, 1)
+    const gameOffers = [...offers];
+    gameOffers.splice(index, 1);
     axios
       .delete(`${API}/trades/${offeredRequest.trade_id}`)
       .then((res) => {
-        setOffers(gameOffers)
+        setOffers(gameOffers);
       })
-      .catch((error) => console.log(error))
-  }
+      .catch((error) => console.log(error));
+  };
 
   const notify = () => {
     toast.success('Trade Complete! Now your game collection will be updated.', {
@@ -36,32 +36,32 @@ export default function OfferedRecord({
       pauseOnFocusLoss: false,
       draggable: true,
       progress: undefined,
-    })
+    });
     setTimeout(() => {
-      navigate('/gamecollection')
-    }, 3100)
-  }
+      navigate('/gamecollection');
+    }, 3100);
+  };
 
   const completeTrade = () => {
-    offeredRequest.trade_complete_from_offerer = true
-    setOfferInfo(offeredRequest)
-    console.log('offeredRequest', offeredRequest)
+    offeredRequest.trade_complete_from_offerer = true;
+    //setOfferInfo(offeredRequest)
+    console.log('offeredRequest', offeredRequest);
 
     if (offeredRequest.trade_complete_from_receiver === true) {
-      offeredRequest.trade_success = 'Completed'
+      offeredRequest.trade_success = 'Completed';
       //swap the games here
-      const gamesInfo = {}
-      gamesInfo.offerer_id = offeredRequest.trade_offerer_user_id
-      gamesInfo.receiver_id = offeredRequest.trade_receiver_user_id
-      gamesInfo.offerer_game_id = offeredRequest.trade_offerer_game_id
-      gamesInfo.receiver_game_id = offeredRequest.trade_receiver_game_id
+      const gamesInfo = {};
+      gamesInfo.offerer_id = offeredRequest.trade_offerer_user_id;
+      gamesInfo.receiver_id = offeredRequest.trade_receiver_user_id;
+      gamesInfo.offerer_game_id = offeredRequest.trade_offerer_game_id;
+      gamesInfo.receiver_game_id = offeredRequest.trade_receiver_game_id;
 
       axios
         .put(`${API}/trades/swapgames`, gamesInfo)
         .then((res) => {
           // setOfferInfo(offeredRequest)
         })
-        .catch((error) => console.log(error))
+        .catch((error) => console.log(error));
     }
 
     //setOfferInfo(offeredRequest)
@@ -71,18 +71,25 @@ export default function OfferedRecord({
       .then((res) => {
         // setOfferInfo(offeredRequest);
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(error));
     // notify()
-  }
+  };
 
   const formatDate = (dateString) => {
-    const options = { year: 'numeric', month: 'long', day: 'numeric' }
-    return new Date(dateString).toLocaleDateString(undefined, options)
+    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  let dateString = offeredRequest.created_at;
+
+  console.log('offered made', offeredRequest);
+
+  function completion() {
+    console.log('hello');
+    completeTrade();
+    setOfferInfo(offeredRequest);
+    // console.log('hello')
   }
-
-  let dateString = offeredRequest.created_at
-
-  console.log('offered made', offeredRequest)
   return (
     <Card style={{ width: '20rem', textAlign: 'left' }}>
       <Card.Body>
@@ -114,7 +121,7 @@ export default function OfferedRecord({
 
         {offeredRequest.trade_success === 'accepted' ||
         offeredRequest.trade_success === 'Completed' ? null : (
-          <Button variant='light' onClick={cancel}>
+          <Button variant="light" onClick={cancel}>
             Cancel
           </Button>
         )}
@@ -123,12 +130,17 @@ export default function OfferedRecord({
         {offeredRequest.trade_success === 'rejected' ||
         offeredRequest.trade_success === 'pending' ||
         offeredRequest.trade_success === 'Completed' ? null : (
-          <Button variant='success' onClick={completeTrade}>
+          <Button
+            variant="success"
+            onClick={() => {
+              completion();
+            }}
+          >
             Confirm Complete Trade
           </Button>
         )}
       </Card.Body>
-      <ToastContainer autoClose={2000} theme='light' />
+      <ToastContainer autoClose={2000} theme="light" />
     </Card>
-  )
+  );
 }
