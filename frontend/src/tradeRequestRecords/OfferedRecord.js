@@ -44,6 +44,7 @@ export default function OfferedRecord({
 
   const completeTrade = () => {
     offeredRequest.trade_complete_from_offerer = true
+    setOfferInfo(offeredRequest)
     console.log('offeredRequest', offeredRequest)
 
     if (offeredRequest.trade_complete_from_receiver === true) {
@@ -63,7 +64,7 @@ export default function OfferedRecord({
         .catch((error) => console.log(error))
     }
 
-    setOfferInfo(offeredRequest)
+    //setOfferInfo(offeredRequest)
 
     axios
       .put(`${API}/trades/updatetrade`, offeredRequest)
