@@ -71,7 +71,7 @@ export default function OfferedRecord({
         // setOfferInfo(offeredRequest);
       })
       .catch((error) => console.log(error))
-    notify()
+    // notify()
   }
 
   const formatDate = (dateString) => {
