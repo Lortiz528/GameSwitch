@@ -28,18 +28,15 @@ export default function OfferedRecord({
   }
 
   const notify = () => {
-    toast.success(
-      'Congrats you have successfully complete your trade\n You will be redirected in 2 seconds.',
-      {
-        position: 'top-center',
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: false,
-        pauseOnFocusLoss: false,
-        draggable: true,
-        progress: undefined,
-      }
-    )
+    toast.success('Trade Complete! Now your game collection will be updated.', {
+      position: 'top-center',
+      hideProgressBar: false,
+      closeOnClick: false,
+      pauseOnHover: false,
+      pauseOnFocusLoss: false,
+      draggable: true,
+      progress: undefined,
+    })
     setTimeout(() => {
       navigate('/gamecollection')
     }, 3100)
